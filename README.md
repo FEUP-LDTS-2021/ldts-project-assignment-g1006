@@ -1,6 +1,6 @@
 # ldts-project-assignment-g1006
 ldts-project-assignment-g1006 created by GitHub Classroom
-## LDTS_<10><1006> - <Space Invaders>
+## LDTS_<10><1006> - Space Invaders
 
 
 In this text based game you'll fight the Earth invaders with your own spaceship. You shall take them all down to assure the prosperity of our species. Good luck, our future is in your hands.
