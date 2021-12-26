@@ -1,0 +1,6 @@
+space-invaders/.idea/
+space-invaders/.gradle/
+space-invaders/out/
+space-invaders/build/
+space-invaders/*.iml
+
