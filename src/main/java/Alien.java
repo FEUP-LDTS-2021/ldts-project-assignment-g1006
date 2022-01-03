@@ -7,10 +7,10 @@ public class Alien extends Element{
     }
 
     public Position moveLeft(){
-        return position;
+        return new Position(getPosition().getX() - 1,getPosition().getY());
     }
 
-    public Position moveRight(){
-        return position;
+    public Position moveRight() {
+        return new Position(getPosition().getX() + 1, getPosition().getY());
     }
 }
