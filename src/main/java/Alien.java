@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public abstract class Alien extends Element{
+public class Alien extends Element{
 
     public Alien(int x, int y){
         super(x, y);
