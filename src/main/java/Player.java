@@ -5,10 +5,10 @@ public class Player extends Element{
     }
 
     public Position moveLeft(){
-        return new Position(0,0);
+        return position;
     }
 
     public Position moveRight(){
-        return new Position(0,0);
+        return position;
     }
 }

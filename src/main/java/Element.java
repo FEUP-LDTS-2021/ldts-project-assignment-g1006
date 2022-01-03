@@ -1,16 +1,16 @@
 public abstract class Element {
 
+    protected Position position;
+
     public Element(int x, int y) {
-        x = 0;
-        y = 0;
+        position = new Position(x,y);
     }
 
     public Position getPosition(){
-       return new Position(0,0);
+       return position;
     }
 
     public void setPosition(Position position){
-
+        this.position = position;
     }
-
 }
