@@ -5,10 +5,10 @@ public class Player extends Element{
     }
 
     public Position moveLeft(){
-        return position;
+        return new Position(getPosition().getX() - 1,getPosition().getY());
     }
 
     public Position moveRight(){
-        return position;
+        return new Position(getPosition().getX() + 1,getPosition().getY());
     }
 }
