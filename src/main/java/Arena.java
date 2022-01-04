@@ -38,7 +38,8 @@ public class Arena {
     }
 
     public void draw(TextGraphics screen){
-
+        for (Ammo ammo : projectiles)
+            ammo.draw(screen);
     }
 
     public boolean checkProjectilesCollision(){
