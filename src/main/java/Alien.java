@@ -16,6 +16,6 @@ public class Alien extends Element{
 
     @Override
     public void draw(TextGraphics screen) {
-
+        screen.setCharacter(getPosition().getX(), getPosition().getY(), getCharacter());
     }
 }
