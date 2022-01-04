@@ -9,7 +9,7 @@ public abstract class Element {
         this.character = character;
     }
 
-    public Position getPosition(){
+    protected Position getPosition(){
        return position;
     }
 

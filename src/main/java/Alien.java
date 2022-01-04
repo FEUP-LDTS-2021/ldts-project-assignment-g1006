@@ -6,12 +6,22 @@ public class Alien extends Element{
         super(x, y, character);
     }
 
-    public Position moveLeft(){
-        return new Position(getPosition().getX() - 1,getPosition().getY());
+    @Override
+    public void setPosition(Position position) {
+        super.setPosition(position);
     }
 
-    public Position moveRight() {
-        return new Position(getPosition().getX() + 1, getPosition().getY());
+    @Override
+    public Position getPosition() {
+        return super.getPosition();
+    }
+
+    public void moveLeft(){
+        //setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
+    }
+
+    public void moveRight() {
+        //setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
     }
 
     @Override

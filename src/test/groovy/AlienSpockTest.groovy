@@ -22,14 +22,18 @@ class AlienSpockTest extends Specification{
         def alien = new Alien(10,20,'A' as char)
 
         when:
-        def position1 = alien.moveLeft()
-        def position2 = alien.moveRight()
+        alien.moveLeft()
 
         then:
-        position1.getX() == 9
-        position1.getY() == 20
-        position2.getX() == 11
-        position2.getY() == 20
+        alien.getPosition().getX() == 9
+        alien.getPosition().getY() == 20
+
+        when:
+        alien.moveRight()
+
+        then:
+        alien.getPosition().getX() == 10
+        alien.getPosition().getY() == 20
     }
 
     def "draw alien character"(){

@@ -22,14 +22,18 @@ class AmmoSpockTest extends Specification{
         def ammo = new Ammo(10,20,'B' as char, 0, 0)
 
         when:
-        def position1 = ammo.moveup()
-        def position2 = ammo.movedown()
+        ammo.moveUp()
 
         then:
-        position1.getX() == 10
-        position1.getY() == 19
-        position2.getX() == 10
-        position2.getY() == 20
+        ammo.getPosition().getX() == 10
+        ammo.getPosition().getY() == 19
+
+        when:
+        ammo.moveDown()
+
+        then:
+        ammo.getPosition().getX() == 10
+        ammo.getPosition().getY() == 20
     }
 
     def "draw ammo character"(){

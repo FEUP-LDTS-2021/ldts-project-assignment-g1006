@@ -22,14 +22,18 @@ class PlayerSpockTest extends Specification{
         def player = new Player(10,20,'P' as char)
 
         when:
-        def position1 = player.moveLeft()
-        def position2 = player.moveRight()
+        player.moveLeft()
 
         then:
-        position1.getX() == 9
-        position1.getY() == 20
-        position2.getX() == 11
-        position2.getY() == 20
+        player.getPosition().getX() == 9
+        player.getPosition().getY() == 20
+
+        when:
+        player.moveRight()
+
+        then:
+        player.getPosition().getX() == 10
+        player.getPosition().getY() == 20
     }
 
     def "draw player character"(){
