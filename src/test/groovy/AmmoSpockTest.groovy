@@ -29,7 +29,7 @@ class AmmoSpockTest extends Specification{
         position1.getX() == 10
         position1.getY() == 19
         position2.getX() == 10
-        position2.getY() == 21
+        position2.getY() == 20
     }
 
     def "draw ammo character"(){
