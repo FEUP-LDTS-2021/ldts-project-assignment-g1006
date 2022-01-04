@@ -40,6 +40,9 @@ public class Arena {
     public void draw(TextGraphics screen){
         for (Ammo ammo : projectiles)
             ammo.draw(screen);
+        for (Alien alien : aliens)
+            alien.draw(screen);
+        player.draw(screen);
     }
 
     public boolean checkProjectilesCollision(){
