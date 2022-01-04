@@ -1,7 +1,7 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Ammo extends Element {
-    private enum directions{UP, DOWN}
+
     private int direction;
     private int damage;
 
@@ -37,12 +37,8 @@ public class Ammo extends Element {
         return super.getPosition();
     }
 
-    public void moveUp(){
-        setPosition(new Position(getPosition().getX(), getPosition().getY() - 1));
-    }
+    public void move(){
 
-    public void moveDown(){
-        setPosition(new Position(getPosition().getX(), getPosition().getY() + 1));
     }
 
     public void shoot(){
