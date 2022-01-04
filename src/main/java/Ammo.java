@@ -1,3 +1,5 @@
+import com.googlecode.lanterna.graphics.TextGraphics;
+
 public class Ammo extends Element {
     private enum directions{UP, DOWN}
     private int direction;
@@ -36,6 +38,10 @@ public class Ammo extends Element {
     }
 
     public void shoot(){
+
+    }
+
+    public void draw(TextGraphics screen){
 
     }
 }
