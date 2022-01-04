@@ -37,8 +37,12 @@ public class Ammo extends Element {
         return super.getPosition();
     }
 
-    public Position move(){
+    public Position moveup(){
         setPosition(new Position(getPosition().getX(), getPosition().getY() - 1));
+        return position;
+    }
+
+    public Position movedown(){
         return position;
     }
 

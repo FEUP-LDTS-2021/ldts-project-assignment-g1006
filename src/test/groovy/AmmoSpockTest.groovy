@@ -25,7 +25,7 @@ class AmmoSpockTest extends Specification{
         def position = ammo.move()
 
         then:
-        position.getX() == 10
+        position.getX() == 100
         position.getY() == 19
     }
 
