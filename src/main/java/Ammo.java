@@ -37,6 +37,10 @@ public class Ammo extends Element {
         return super.getPosition();
     }
 
+    public Position move(){
+        return position;
+    }
+
     public void shoot(){
 
     }
