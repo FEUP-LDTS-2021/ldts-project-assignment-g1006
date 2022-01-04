@@ -10,20 +10,18 @@ import java.io.IOException;
 
 public class Game {
     private Screen screen;
-    private final int width = 40;
-    private final int height = 20;
 
     public Game() {
         try {
-            TerminalSize terminalSize = new TerminalSize(width, height);
+            TerminalSize terminalSize = new TerminalSize(40, 20);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
-            Screen screen = new TerminalScreen(terminal);
+            screen = new TerminalScreen(terminal);
+
             screen.setCursorPosition(null);
             screen.startScreen();
             screen.doResizeIfNecessary();
-            this.screen = screen;
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
     }

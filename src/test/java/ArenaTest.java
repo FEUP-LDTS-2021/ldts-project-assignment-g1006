@@ -59,5 +59,4 @@ public class ArenaTest {
 
         Mockito.verify(player, Mockito.times(1)).draw(screen.newTextGraphics());
     }
-
 }
