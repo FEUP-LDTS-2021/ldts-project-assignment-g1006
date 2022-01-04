@@ -17,6 +17,18 @@ class AmmoSpockTest extends Specification{
         this.screen = screen
     }
 
+    def "ammo movement"(){
+        given:
+        def ammo = new Ammo(10,20,'B' as char, 0, 0)
+
+        when:
+        def position = ammo.move()
+
+        then:
+        position.getX() == 10
+        position.getY() == 19
+    }
+
     def "draw ammo character"(){
         given:
         def ammo = new Ammo(10,10, 'B' as char, 0, 0)
