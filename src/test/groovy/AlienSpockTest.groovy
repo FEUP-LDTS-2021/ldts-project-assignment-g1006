@@ -9,6 +9,14 @@ import spock.lang.Specification
 class AlienSpockTest extends Specification{
     private Screen screen
 
+    def setup(){
+        def terminalSize = new TerminalSize(20, 20)
+        def terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize)
+        def terminal = terminalFactory.createTerminal()
+        Screen screen = new TerminalScreen(terminal)
+        this.screen = screen
+    }
+
     def "alien movement"(){
         given:
         def alien = new Alien(10,20,'A' as char)
