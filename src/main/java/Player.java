@@ -2,8 +2,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Player extends Element{
 
-    public Player(int x, int y){
-        super(x,y);
+    public Player(int x, int y, char character){
+        super(x,y,character);
     }
 
     public Position moveLeft(){
