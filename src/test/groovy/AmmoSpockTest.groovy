@@ -17,23 +17,26 @@ class AmmoSpockTest extends Specification{
         this.screen = screen
     }
 
-    def "ammo movement"(){
+    def "ammo up movement"(){
         given:
-        def ammo = new Ammo(10,20,'B' as char, 0, 0)
+        def ammo = new Ammo(10,20,'B' as char, -1, 0)
 
         when:
-        ammo.moveUp()
+        ammo.move()
 
         then:
-        ammo.getPosition().getX() == 10
-        ammo.getPosition().getY() == 19
+        ammo.getPosition() == new Position(10,19)
+    }
+
+    def "ammo down movement"(){
+        given:
+        def ammo = new Ammo(10,20,'B' as char, 1, 0)
 
         when:
-        ammo.moveDown()
+        ammo.move()
 
         then:
-        ammo.getPosition().getX() == 10
-        ammo.getPosition().getY() == 20
+        ammo.getPosition() == new Position(10,21)
     }
 
     def "draw ammo character"(){
