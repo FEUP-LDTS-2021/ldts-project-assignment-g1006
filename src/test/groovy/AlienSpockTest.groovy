@@ -3,7 +3,7 @@ import spock.lang.Specification
 class AlienSpockTest extends Specification{
     def "alien movement"(){
         given:
-        def alien = new Alien(10,20)
+        def alien = new Alien(10,20,'A' as char)
 
         when:
         def position1 = alien.moveLeft()
