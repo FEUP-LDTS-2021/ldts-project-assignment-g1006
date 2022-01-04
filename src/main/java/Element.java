@@ -13,7 +13,7 @@ public abstract class Element {
        return position;
     }
 
-    public void setPosition(Position position){
+    protected void setPosition(Position position){
         this.position = position;
     }
 
@@ -26,4 +26,5 @@ public abstract class Element {
     }
 
     public abstract void draw(TextGraphics screen);
+
 }
