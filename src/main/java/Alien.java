@@ -17,11 +17,11 @@ public class Alien extends Element{
     }
 
     public void moveLeft(){
-        //setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
+        setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
     }
 
     public void moveRight() {
-        //setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
+        setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
     }
 
     @Override

@@ -38,11 +38,11 @@ public class Ammo extends Element {
     }
 
     public void moveUp(){
-        //setPosition(new Position(getPosition().getX(), getPosition().getY() - 1));
+        setPosition(new Position(getPosition().getX(), getPosition().getY() - 1));
     }
 
     public void moveDown(){
-        //setPosition(new Position(getPosition().getX(), getPosition().getY() + 1));
+        setPosition(new Position(getPosition().getX(), getPosition().getY() + 1));
     }
 
     public void shoot(){
