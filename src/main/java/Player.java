@@ -1,3 +1,5 @@
+import com.googlecode.lanterna.graphics.TextGraphics;
+
 public class Player extends Element{
 
     public Player(int x, int y){
@@ -10,5 +12,10 @@ public class Player extends Element{
 
     public Position moveRight(){
         return new Position(getPosition().getX() + 1,getPosition().getY());
+    }
+
+    @Override
+    public void draw(TextGraphics screen) {
+
     }
 }

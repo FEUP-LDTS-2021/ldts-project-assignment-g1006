@@ -1,4 +1,4 @@
-import java.util.Objects;
+import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Alien extends Element{
 
@@ -12,5 +12,10 @@ public class Alien extends Element{
 
     public Position moveRight() {
         return new Position(getPosition().getX() + 1, getPosition().getY());
+    }
+
+    @Override
+    public void draw(TextGraphics screen) {
+
     }
 }

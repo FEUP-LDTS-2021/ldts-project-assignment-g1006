@@ -41,7 +41,8 @@ public class Ammo extends Element {
 
     }
 
-    public void draw(TextGraphics screen){
+    @Override
+    public void draw(TextGraphics screen) {
 
     }
 }
