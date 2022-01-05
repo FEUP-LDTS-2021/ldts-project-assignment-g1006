@@ -25,6 +25,10 @@ public class Alien extends Element{
         setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
     }
 
+    public void changeDirection() {
+
+    }
+
     @Override
     public void draw(TextGraphics screen) {
         screen.setCharacter(getPosition().getX(), getPosition().getY(), getCharacter());
