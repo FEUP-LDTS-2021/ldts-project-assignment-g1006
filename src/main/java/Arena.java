@@ -66,7 +66,7 @@ public class Arena {
         return false;
     }
 
-    public boolean checkAlienProjectilesCollisions(){
-        return false;
+    public void checkAlienProjectilesCollisions(){
+
     }
 }

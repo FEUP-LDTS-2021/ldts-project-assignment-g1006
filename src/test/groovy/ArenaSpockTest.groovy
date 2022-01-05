@@ -33,7 +33,6 @@ class ArenaSpockTest extends Specification{
         arena.setProjectiles(projectiles)
 
         then:
-        arena.checkAlienProjectilesCollisions()
         !aliens.contains(alien)
         !projectiles.contains(ammo)
     }
