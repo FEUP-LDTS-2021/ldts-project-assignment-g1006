@@ -58,6 +58,5 @@ public class Arena {
     }
 
     public boolean checkAlienLimitsCollisions(){
-        return false;
     }
 }

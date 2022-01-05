@@ -1,6 +1,7 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Alien extends Element{
+    private char direction = 'R';
 
     public Alien(int x, int y, char character){
         super(x, y, character);
