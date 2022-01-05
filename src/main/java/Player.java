@@ -25,7 +25,7 @@ public class Player extends Element{
     }
 
     public Ammo shoot(){
-        return new Ammo(0, 0, 'B', 0, 0);
+        return new Ammo(getPosition().getX(), getPosition().getY() - 1, 'B', -1, 1);
     }
 
     @Override
