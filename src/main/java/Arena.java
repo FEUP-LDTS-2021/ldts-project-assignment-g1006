@@ -65,4 +65,8 @@ public class Arena {
         }
         return false;
     }
+
+    public boolean checkAlienProjectilesCollisions(){
+        return false;
+    }
 }
