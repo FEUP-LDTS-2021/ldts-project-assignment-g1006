@@ -1,4 +1,8 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+
+import javax.swing.*;
+import java.security.Key;
 import java.util.List;
 
 public class Arena {
@@ -47,5 +51,9 @@ public class Arena {
 
     public boolean checkProjectilesCollision(){
         return false;
+    }
+
+    public void processKey(KeyStroke key){
+
     }
 }
