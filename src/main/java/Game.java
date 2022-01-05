@@ -26,6 +26,10 @@ public class Game {
         }
     }
 
+    public void setScreen(Screen screen) {
+        this.screen = screen;
+    }
+
     private void draw() throws IOException {
         screen.clear();
         screen.refresh();
