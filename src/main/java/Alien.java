@@ -1,7 +1,7 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Alien extends Element{
-    private char direction = 'R';
+    private int direction = 1;
 
     public Alien(int x, int y, char character){
         super(x, y, character);
@@ -17,30 +17,16 @@ public class Alien extends Element{
         return super.getPosition();
     }
 
-    public void moveLeft(){
-        setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
+    public void move(){
+        setPosition(new Position(getPosition().getX() + getDirection(), getPosition().getY()));
     }
 
-    public void moveRight() {
-        setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
-    }
-
-    public char getDirection(){
+    public int getDirection(){
         return direction;
     }
 
     public void changeDirection() {
-        if(direction == 'R')
-            direction = 'L';
-        else if(direction == 'L')
-            direction = 'R';
-    }
-
-    public void move(){
-        if(direction == 'R')
-            moveRight();
-        if(direction == 'L')
-            moveLeft();
+        direction*=-1;
     }
 
     @Override
