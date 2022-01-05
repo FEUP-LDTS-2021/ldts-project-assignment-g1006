@@ -25,6 +25,10 @@ public class Alien extends Element{
         setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
     }
 
+    public char getDirection(){
+        return direction;
+    }
+
     public void changeDirection() {
 
     }
