@@ -53,13 +53,18 @@ public class Game {
             arena.processKey(key);
 
             if(arena.checkAlienLimitsCollisions()) {
-                for (Alien alien : arena.getAliens()) {
+                for(Alien alien : arena.getAliens()) {
                     alien.changeDirection();
                 }
             }
-            for (Alien alien : arena.getAliens()) {
+            for(Alien alien : arena.getAliens()) {
                 alien.move();
             }
+
+            for(Ammo ammo : arena.getProjectiles()) {
+                ammo.move();
+            }
+            arena.checkAlienLimitsCollisions();
         }
     }
 }
