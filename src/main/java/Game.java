@@ -51,6 +51,7 @@ public class Game {
             else if(key.getKeyType() != KeyType.ArrowDown && key.getKeyType() != KeyType.ArrowUp && key.getKeyType() != KeyType.ArrowRight && key.getKeyType() != KeyType.ArrowLeft)
                 continue;
             arena.processKey(key);
+
         }
     }
 }

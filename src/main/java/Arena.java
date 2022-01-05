@@ -56,4 +56,8 @@ public class Arena {
     public void processKey(KeyStroke key){
 
     }
+
+    public boolean checkAlienLimitsCollisions(){
+        return false;
+    }
 }
