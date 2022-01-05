@@ -24,6 +24,10 @@ public class Player extends Element{
         setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
     }
 
+    public Ammo shoot(){
+        return new Ammo(0, 0, 'B', 0, 0);
+    }
+
     @Override
     public void draw(TextGraphics screen) {
         screen.setCharacter(getPosition().getX(), getPosition().getY(), getCharacter());
