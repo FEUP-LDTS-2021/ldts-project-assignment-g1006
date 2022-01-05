@@ -36,6 +36,18 @@ class PlayerSpockTest extends Specification{
         player.getPosition().getY() == 20
     }
 
+    def "player shoots"(){
+        given:
+        def player = new Player(10,10, 'P' as char)
+
+        when:
+        def ammo = player.shoot()
+
+        then:
+        ammo.getPosition().getX() == player.getPosition().getX()
+        ammo.getPosition().getY() == player.getPosition().getY() + ammo.getDirection()
+    }
+
     def "draw player character"(){
         given:
         def player = new Player(10,10, 'P' as char)
