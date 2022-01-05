@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class Game {
     private Screen screen;
+    private Arena arena;
 
     public Game() {
         try {
@@ -24,6 +25,7 @@ public class Game {
         } catch (IOException e){
             e.printStackTrace();
         }
+        arena = new Arena(40,20);
     }
 
     public void setScreen(Screen screen) {
@@ -35,7 +37,20 @@ public class Game {
         screen.refresh();
     }
 
-    public void run(){
+    public void run() throws IOException {
+        while(true) {
+            draw();
+            KeyStroke key = screen.pollInput();
 
+            if(key.getKeyType() == KeyType.EOF)
+                break;
+            if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
+                screen.close();
+                break;
+            }
+            else if(key.getKeyType() != KeyType.ArrowDown && key.getKeyType() != KeyType.ArrowUp && key.getKeyType() != KeyType.ArrowRight && key.getKeyType() != KeyType.ArrowLeft)
+                continue;
+            arena.processKey(key);
+        }
     }
 }
