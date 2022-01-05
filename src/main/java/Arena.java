@@ -3,6 +3,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 
 import javax.swing.*;
 import java.security.Key;
+import java.util.Iterator;
 import java.util.List;
 
 public class Arena {
@@ -67,6 +68,18 @@ public class Arena {
     }
 
     public void checkAlienProjectilesCollisions(){
-
+        Iterator<Alien> it1 = aliens.iterator();
+        while(it1.hasNext()){
+            Alien alien = it1.next();
+            Iterator<Ammo> it2 = projectiles.iterator();
+            while(it2.hasNext()){
+                Ammo ammo = it2.next();
+                if(alien.getPosition().getX() == ammo.getPosition().getX() && alien.getPosition().getY() == ammo.getPosition().getY()){
+                    it1.remove();
+                    it2.remove();
+                    break;
+                }
+            }
+        }
     }
 }
