@@ -16,7 +16,6 @@ public class GameTest {
         Mockito.when(screen.pollInput()).thenReturn(key);
         Mockito.when(key.getKeyType()).thenReturn(KeyType.Character);
         Mockito.when(key.getCharacter()).thenReturn('q');
-        Mockito.when(screen.readInput()).thenReturn(key);
 
         game.run();
         Mockito.verify(screen, Mockito.times(1)).close();
