@@ -22,18 +22,16 @@ class AlienSpockTest extends Specification{
         def alien = new Alien(10,20,'A' as char)
 
         when:
-        alien.moveLeft()
+        alien.move()
 
         then:
-        alien.getPosition().getX() == 9
-        alien.getPosition().getY() == 20
+        alien.getPosition() == new Position(11,20);
 
         when:
-        alien.moveRight()
+        alien.move()
 
         then:
-        alien.getPosition().getX() == 10
-        alien.getPosition().getY() == 20
+        alien.getPosition() == new Position(12,20);
     }
 
     def "change alien movement direction"(){
@@ -44,7 +42,7 @@ class AlienSpockTest extends Specification{
         alien.changeDirection()
 
         then:
-        alien.getDirection() == 'L'
+        alien.getDirection() == -1
     }
 
     def "alien movement decision"(){
@@ -55,7 +53,7 @@ class AlienSpockTest extends Specification{
         alien.move()
 
         then:
-        alien.getPosition().getX() == 11
+        alien.getPosition() == new Position(11,10);
 
         when:
         alien.changeDirection()
@@ -63,7 +61,7 @@ class AlienSpockTest extends Specification{
         alien.move()
 
         then:
-        alien.getPosition().getX() == 9
+        alien.getPosition() == new Position(9,10);
     }
 
     def "draw alien character"(){
