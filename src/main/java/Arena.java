@@ -55,7 +55,10 @@ public class Arena {
     }
 
     public void processKey(KeyStroke key){
-
+        switch (key.getKeyType()) {
+            case ArrowLeft -> player.moveLeft();
+            case ArrowRight -> player.moveRight();
+        }
     }
 
     public boolean checkAlienLimitsCollisions(){
