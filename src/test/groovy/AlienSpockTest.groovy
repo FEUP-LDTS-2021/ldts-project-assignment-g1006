@@ -47,6 +47,25 @@ class AlienSpockTest extends Specification{
         alien.getDirection() == 'L'
     }
 
+    def "alien movement decision"(){
+        given:
+        def alien = new Alien(10,10, 'A' as char)
+
+        when:
+        alien.move()
+
+        then:
+        alien.getPosition().getX() == 11
+
+        when:
+        alien.changeDirection()
+        alien.move()
+        alien.move()
+
+        then:
+        alien.getPosition().getX() == 9
+    }
+
     def "draw alien character"(){
         given:
         def alien = new Alien(10,10, 'A' as char)
