@@ -1,18 +1,24 @@
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import java.io.IOException;
 
 public class GameTest {
-
+    private Game game;
+    private Screen screen;
+    private KeyStroke key;
+    @BeforeEach
+    public void setup() {
+        game = new Game();
+        screen = Mockito.mock(Screen.class);
+        key = Mockito.mock(KeyStroke.class);
+        game.setScreen(screen);
+    }
     @Test
     void closeTest() throws IOException {
-        Game game = new Game();
-        Screen screen = Mockito.mock(Screen.class);
-        game.setScreen(screen);
-
-        com.googlecode.lanterna.input.KeyStroke key = Mockito.mock(com.googlecode.lanterna.input.KeyStroke.class);
         Mockito.when(screen.pollInput()).thenReturn(key);
         Mockito.when(key.getKeyType()).thenReturn(KeyType.Character);
         Mockito.when(key.getCharacter()).thenReturn('q');
