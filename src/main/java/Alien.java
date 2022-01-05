@@ -36,7 +36,12 @@ public class Alien extends Element{
             direction = 'R';
     }
 
-    public void move(){}
+    public void move(){
+        if(direction == 'R')
+            moveRight();
+        if(direction == 'L')
+            moveLeft();
+    }
 
     @Override
     public void draw(TextGraphics screen) {
