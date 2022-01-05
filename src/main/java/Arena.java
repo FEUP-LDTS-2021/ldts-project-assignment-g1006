@@ -1,8 +1,10 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 
 import javax.swing.*;
 import java.security.Key;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -55,9 +57,11 @@ public class Arena {
     }
 
     public void processKey(KeyStroke key){
-        switch (key.getKeyType()) {
-            case ArrowLeft -> player.moveLeft();
-            case ArrowRight -> player.moveRight();
+        if(key != null){
+            switch (key.getKeyType()) {
+                case ArrowLeft -> player.moveLeft();
+                case ArrowRight -> player.moveRight();
+            }
         }
     }
 

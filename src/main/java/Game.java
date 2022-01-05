@@ -7,6 +7,8 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
     private Screen screen;
@@ -26,10 +28,29 @@ public class Game {
             e.printStackTrace();
         }
         arena = new Arena(40,20);
+        setupArena(arena);
     }
 
     public void setScreen(Screen screen) {
         this.screen = screen;
+    }
+
+    private List<Alien> createAliens(){
+        List<Alien> aliens = new ArrayList<>();
+        aliens.add(new Alien(5,5,'A'));
+        return aliens;
+    }
+
+    private List<Ammo> createProjectiles(){
+        List<Ammo> ammoList = new ArrayList<>();
+        ammoList.add(new Ammo(5,5,'|',1,1));
+        return ammoList;
+    }
+
+    private void setupArena(Arena arena){
+        arena.setPlayer(new Player(5,5,'P'));
+        arena.setProjectiles(createProjectiles());
+        arena.setAliens(createAliens());
     }
 
     private void draw() throws IOException {
@@ -41,10 +62,10 @@ public class Game {
         while(true) {
             draw();
             KeyStroke key = screen.pollInput();
-
-            if(key.getKeyType() == KeyType.EOF)
+            if(key == null){}
+            else if (key.getKeyType() == KeyType.EOF)
                 break;
-            if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
+            else if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
                 screen.close();
                 break;
             }
