@@ -34,7 +34,7 @@ public class Game {
             DefaultTerminalFactory factory = new DefaultTerminalFactory();
             factory.setTerminalEmulatorFontConfiguration(fontConfig);
             factory.setForceAWTOverSwing(true);
-            factory.setInitialTerminalSize(new TerminalSize(40, 20));
+            factory.setInitialTerminalSize(new TerminalSize(width, height));
 
             Terminal terminal = factory.createTerminal();
 
@@ -127,6 +127,8 @@ public class Game {
             for(Ammo ammo : arena.getProjectiles()) {
                 ammo.move();
             }
+
+            arena.checkAlienProjectilesCollisions();
 
             try{
                 TimeUnit.MILLISECONDS.sleep(20);

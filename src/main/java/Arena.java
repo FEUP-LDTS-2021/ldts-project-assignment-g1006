@@ -1,3 +1,6 @@
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -53,6 +56,8 @@ public class Arena {
     }
 
     public void draw(TextGraphics screen){
+        screen.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
+        screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         for (Ammo ammo : projectiles)
             ammo.draw(screen);
         for (Alien alien : aliens)

@@ -1,3 +1,6 @@
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public class Ammo extends Element {
@@ -47,6 +50,8 @@ public class Ammo extends Element {
 
     @Override
     public void draw(TextGraphics screen) {
-        screen.setCharacter(getPosition().getX(), getPosition().getY(), getCharacter());
+        screen.setForegroundColor(TextColor.Factory.fromString("#E7D501"));
+        screen.enableModifiers(SGR.BOLD);
+        screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "|");
     }
 }
