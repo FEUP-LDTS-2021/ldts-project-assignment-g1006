@@ -63,15 +63,16 @@ public class Game {
         while(true) {
             draw();
             KeyStroke key = screen.pollInput();
-            if(key == null){}
-            else if (key.getKeyType() == KeyType.EOF)
-                break;
-            else if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
-                screen.close();
-                break;
+            if(key != null){
+                if (key.getKeyType() == KeyType.EOF)
+                    break;
+                if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q'){
+                    screen.close();
+                    break;
+                }
+                else if(key.getKeyType() != KeyType.ArrowDown && key.getKeyType() != KeyType.ArrowUp && key.getKeyType() != KeyType.ArrowRight && key.getKeyType() != KeyType.ArrowLeft)
+                    continue;
             }
-            else if(key.getKeyType() != KeyType.ArrowDown && key.getKeyType() != KeyType.ArrowUp && key.getKeyType() != KeyType.ArrowRight && key.getKeyType() != KeyType.ArrowLeft)
-                continue;
             arena.processKey(key);
 
             if(arena.checkAlienLimitsCollisions()) {
