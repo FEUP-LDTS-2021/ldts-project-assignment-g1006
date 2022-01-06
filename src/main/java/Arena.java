@@ -20,6 +20,14 @@ public class Arena {
         this.height = height;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -69,15 +77,6 @@ public class Arena {
                 }
             }
         }
-    }
-
-    public boolean checkAlienLimitsCollisions(){
-        for(Alien alien : aliens){
-            if(alien.getPosition().getX() == 0 || alien.getPosition().getX() == width - 1){
-                return true;
-            }
-        }
-        return false;
     }
 
     public void checkAlienProjectilesCollisions(){
