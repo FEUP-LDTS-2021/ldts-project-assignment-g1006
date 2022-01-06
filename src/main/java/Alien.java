@@ -20,8 +20,12 @@ public class Alien extends Element{
         return super.getPosition();
     }
 
-    public void move(){
-        setPosition(new Position(getPosition().getX() + getDirection(), getPosition().getY()));
+    public void move(Arena arena){
+        Position newPos = new Position(getPosition().getX() + getDirection(), getPosition().getY());
+        if (newPos.getX() >= 0 && newPos.getX() <= arena.getWidth() - 1)
+            setPosition(newPos);
+        else
+            changeDirection();
     }
 
     public int getDirection(){
