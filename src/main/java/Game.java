@@ -58,6 +58,8 @@ public class Game {
     }
 
     public static Game getInstance(){
+        if(singleton == null)
+            singleton = new Game();
         return singleton;
     }
 
