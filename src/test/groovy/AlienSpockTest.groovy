@@ -7,13 +7,14 @@ import spock.lang.Specification
 
 class AlienSpockTest extends Specification{
     private Screen screen
-
+    private Arena arena
     def setup(){
         def terminalSize = new TerminalSize(20, 20)
         def terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize)
         def terminal = terminalFactory.createTerminal()
         Screen screen = new TerminalScreen(terminal)
         this.screen = screen
+        this.arena = new Arena(20,20)
     }
 
     def "alien movement"(){
@@ -115,10 +116,9 @@ class AlienSpockTest extends Specification{
         given:
         def alien1 = new Alien(10,10,'A' as char)
         def alien2 = new Alien(10,12,'A' as char)
-        def projectiles = []
-        def arena = Mock(Arena.class)
-        alien1.freeToShoot(arena) >> false
+        arena.setAliens([alien2, alien1])
         arena.setProjectiles([])
+        alien1.freeToShoot(arena) >> false
 
         when:
         alien1.shoot(arena)
@@ -131,8 +131,8 @@ class AlienSpockTest extends Specification{
         given:
         def alien1 = new Alien(10, 10, 'A' as char)
         def alien2 = new Alien(10, 12, 'A' as char)
-        def arena = Mock(Arena.class)
         alien2.freeToShoot(arena) >> true
+        arena.setAliens([alien1, alien2])
         arena.setProjectiles([])
 
         when:
