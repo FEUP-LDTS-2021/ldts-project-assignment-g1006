@@ -32,8 +32,8 @@ public class Alien extends Element{
         direction*=-1;
     }
 
-    public boolean freeToShoot(List<Alien> aliens){
-        for (Alien alien : aliens){
+    public boolean freeToShoot(Arena arena){
+        for (Alien alien : arena.getAliens()){
             if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()){
                 return false;
             }
@@ -41,7 +41,7 @@ public class Alien extends Element{
         return true;
     }
 
-    public void shoot(List<Ammo> projectiles){
+    public void shoot(Arena arena){
 
     }
 
