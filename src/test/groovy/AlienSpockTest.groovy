@@ -78,10 +78,11 @@ class AlienSpockTest extends Specification{
         given:
         def alien1 = new Alien(10,10,'A' as char)
         def alien2 = new Alien(10,11,'A' as char)
-        def aliens = [alien1, alien2]
+        def arena = Mock(Arena.class)
+        arena.getAliens() >> [alien1, alien2]
 
         expect:
-        !alien1.freeToShoot(aliens)
+        !alien1.freeToShoot(arena)
 
     }
 
@@ -89,10 +90,11 @@ class AlienSpockTest extends Specification{
         given:
         def alien1 = new Alien(10,10,'A' as char)
         def alien2 = new Alien(10,19,'A' as char)
-        def aliens = [alien1, alien2]
+        def arena = Mock(Arena.class)
+        arena.getAliens() >> [alien1, alien2]
 
         expect:
-        !alien1.freeToShoot(aliens)
+        !alien1.freeToShoot(arena)
 
     }
 
@@ -100,10 +102,11 @@ class AlienSpockTest extends Specification{
         given:
         def alien1 = new Alien(10,10,'A' as char)
         def alien2 = new Alien(11,12,'A' as char)
-        def aliens = [alien1, alien2]
+        def arena = Mock(Arena.class)
+        arena.getAliens() >> [alien1, alien2]
 
         expect:
-        alien1.freeToShoot(aliens)
+        alien1.freeToShoot(arena)
 
     }
 
@@ -113,27 +116,30 @@ class AlienSpockTest extends Specification{
         def alien1 = new Alien(10,10,'A' as char)
         def alien2 = new Alien(10,12,'A' as char)
         def projectiles = []
-        alien1.freeToShoot([]) >> false
+        def arena = Mock(Arena.class)
+        alien1.freeToShoot(arena) >> false
+        arena.setProjectiles([])
 
         when:
-        alien1.shoot(projectiles)
+        alien1.shoot(arena)
 
         then:
-        projectiles.isEmpty()
+        arena.getProjectiles().isEmpty()
     }
 
     def "test alien shooting below another one"() {
         given:
         def alien1 = new Alien(10, 10, 'A' as char)
         def alien2 = new Alien(10, 12, 'A' as char)
-        alien2.freeToShoot([]) >> true
-        def projectiles = []
+        def arena = Mock(Arena.class)
+        alien2.freeToShoot(arena) >> true
+        arena.setProjectiles([])
 
         when:
-        alien2.shoot(projectiles)
+        alien2.shoot(arena)
 
         then:
-        projectiles[0].getPosition() == new Position(10,13)
+        arena.getProjectiles()[0].getPosition() == new Position(10,13)
     }
 }
 
