@@ -16,16 +16,19 @@ public class Player extends Element{
         return super.getPosition();
     }
 
-    public void moveLeft(){
-        setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
+    public void moveLeft(Arena arena){
+        if (getPosition().getX() >= 0)
+            setPosition(new Position(getPosition().getX() - 1, getPosition().getY()));
     }
 
-    public void moveRight() {
-        setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
+    public void moveRight(Arena arena) {
+        if (getPosition().getX() <= arena.getWidth()-1)
+            setPosition(new Position(getPosition().getX() + 1, getPosition().getY()));
     }
 
-    public Ammo shoot(){
-        return new Ammo(getPosition().getX(), getPosition().getY() - 1, 'B', -1, 1);
+    public void shoot(Arena arena){
+        Ammo ammo = new Ammo(getPosition().getX(), getPosition().getY() - 1, '|', -1, 1);
+        arena.getProjectiles().add(ammo);
     }
 
     @Override

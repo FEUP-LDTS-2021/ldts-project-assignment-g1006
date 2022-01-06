@@ -67,14 +67,9 @@ public class Arena {
     public void processKey(KeyStroke key){
         if(key != null){
             switch (key.getKeyType()) {
-                case ArrowLeft -> {
-                    if(player.getPosition().getX() > 0)
-                        player.moveLeft();
-                }
-                case ArrowRight -> {
-                    if(player.getPosition().getX() < width - 1)
-                        player.moveRight();
-                }
+                case ArrowLeft -> player.moveLeft(this);
+                case ArrowRight -> player.moveRight(this);
+                case ArrowUp -> player.shoot(this);
             }
         }
     }
