@@ -3,6 +3,7 @@ import com.googlecode.lanterna.screen.Screen
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
 import org.mockito.Mock
+import org.mockito.Mockito
 import spock.lang.Specification
 
 class AlienSpockTest extends Specification{
@@ -17,18 +18,47 @@ class AlienSpockTest extends Specification{
         this.arena = new Arena(20,20)
     }
 
+    def "alien move outside of the arena (right side)"(){
+        given:
+        def arena = Mock(Arena.class)
+        arena.getWidth() >> 20
+        def alien = new Alien(20,10,'A' as char)
+
+        when:
+        alien.move(arena)
+
+        then:
+        alien.getPosition() == new Position(20,10)
+    }
+
+    def "alien move outside of the arena (left side)"(){
+        given:
+        def alien = new Alien(0,10,'A' as char)
+        def arena = Mock(Arena.class)
+        arena.getWidth() >> 20
+        alien.changeDirection()
+
+        when:
+        alien.move(arena)
+
+        then:
+        alien.getPosition() == new Position(0,10)
+    }
+
     def "alien movement"(){
         given:
+        def arena = Mock(Arena.class)
+        arena.getWidth() >> 20
         def alien = new Alien(10,20,'A' as char)
 
         when:
-        alien.move()
+        alien.move(arena)
 
         then:
         alien.getPosition() == new Position(11,20);
 
         when:
-        alien.move()
+        alien.move(arena)
 
         then:
         alien.getPosition() == new Position(12,20);
@@ -47,18 +77,20 @@ class AlienSpockTest extends Specification{
 
     def "alien movement decision"(){
         given:
+        def arena = Mock(Arena.class)
+        arena.getWidth() >> 20
         def alien = new Alien(10,10, 'A' as char)
 
         when:
-        alien.move()
+        alien.move(arena)
 
         then:
         alien.getPosition() == new Position(11,10);
 
         when:
         alien.changeDirection()
-        alien.move()
-        alien.move()
+        alien.move(arena)
+        alien.move(arena)
 
         then:
         alien.getPosition() == new Position(9,10);
