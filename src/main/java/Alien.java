@@ -33,6 +33,11 @@ public class Alien extends Element{
     }
 
     public boolean freeToShoot(List<Alien> aliens){
+        for (Alien alien : aliens){
+            if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()){
+                return false;
+            }
+        }
         return true;
     }
 
