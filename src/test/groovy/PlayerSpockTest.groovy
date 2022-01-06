@@ -8,6 +8,7 @@ import spock.lang.Specification
 
 class PlayerSpockTest extends Specification{
     private Screen screen
+    private Arena arena
 
     def setup(){
         def terminalSize = new TerminalSize(20, 20)
@@ -15,21 +16,23 @@ class PlayerSpockTest extends Specification{
         def terminal = terminalFactory.createTerminal()
         Screen screen = new TerminalScreen(terminal)
         this.screen = screen
+        this.arena = Mock(Arena.class)
     }
 
     def "player movement"(){
         given:
         def player = new Player(10,20,'P' as char)
+        arena.getWidth() >> 20
 
         when:
-        player.moveLeft()
+        player.moveLeft(arena)
 
         then:
         player.getPosition().getX() == 9
         player.getPosition().getY() == 20
 
         when:
-        player.moveRight()
+        player.moveRight(arena)
 
         then:
         player.getPosition().getX() == 10
@@ -38,14 +41,16 @@ class PlayerSpockTest extends Specification{
 
     def "player shoots"(){
         given:
+        def arena1 = new Arena(20,20)
+        arena1.setProjectiles([])
         def player = new Player(10,10, 'P' as char)
 
         when:
-        def ammo = player.shoot()
+        player.shoot(arena1)
 
         then:
-        ammo.getPosition().getX() == player.getPosition().getX()
-        ammo.getPosition().getY() == player.getPosition().getY() + ammo.getDirection()
+        arena1.getProjectiles()[0].getPosition().getX() == player.getPosition().getX()
+        arena1.getProjectiles()[0].getPosition().getY() == player.getPosition().getY() - 1
     }
 
     def "draw player character"(){
