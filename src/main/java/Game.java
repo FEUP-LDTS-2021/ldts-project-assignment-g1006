@@ -5,8 +5,16 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -19,24 +27,49 @@ public class Game {
 
     public Game() {
         try {
-            TerminalSize terminalSize = new TerminalSize(width, height);
-            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
-            Terminal terminal = terminalFactory.createTerminal();
+            AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadFont());
+            DefaultTerminalFactory factory = new DefaultTerminalFactory();
+            factory.setTerminalEmulatorFontConfiguration(fontConfig);
+            factory.setForceAWTOverSwing(true);
+            factory.setInitialTerminalSize(new TerminalSize(40, 20));
+
+            Terminal terminal = factory.createTerminal();
+
+            ((AWTTerminalFrame)terminal).addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    e.getWindow().dispose();
+                }
+            });
+
             screen = new TerminalScreen(terminal);
 
             screen.setCursorPosition(null);
             screen.startScreen();
             screen.doResizeIfNecessary();
-        } catch (IOException e){
+        } catch (IOException | FontFormatException | URISyntaxException e){
             e.printStackTrace();
         }
         arena = new Arena(width,height);
         setupArena(arena);
     }
 
+    public Font loadFont() throws URISyntaxException, IOException, FontFormatException {
+        int FONT_SIZE = 20;
+        URL resource = getClass().getClassLoader().getResource("square.ttf");
+        File fontFile = new File(resource.toURI());
+        Font font =  Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();ge.registerFont(font);
+
+        return font.deriveFont(Font.PLAIN, FONT_SIZE);
+    }
+
     public void setScreen(Screen screen) {
         this.screen = screen;
     }
+
+
 
     private List<Alien> createAliens(){
         List<Alien> aliens = new ArrayList<>();
