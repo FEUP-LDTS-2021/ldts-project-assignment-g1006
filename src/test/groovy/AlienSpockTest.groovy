@@ -2,8 +2,6 @@ import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.screen.Screen
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
-import com.googlecode.lanterna.terminal.Terminal
-import org.mockito.Mockito
 import spock.lang.Specification
 
 class AlienSpockTest extends Specification{
@@ -73,6 +71,39 @@ class AlienSpockTest extends Specification{
 
         then:
         screen.getBackCharacter(10,10).getCharacter() == alien.getCharacter()
+    }
+
+    def "test if there is an alien below"(){
+        given:
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(10,11,'A' as char)
+        def aliens = [alien1, alien2]
+
+        expect:
+        !alien1.freeToShoot(aliens)
+
+    }
+
+    def "test if there is an alien below in the same column"(){
+        given:
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(10,19,'A' as char)
+        def aliens = [alien1, alien2]
+
+        expect:
+        !alien1.freeToShoot(aliens)
+
+    }
+
+    def "test if there isn't any alien below"(){
+        given:
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(11,12,'A' as char)
+        def aliens = [alien1, alien2]
+
+        expect:
+        alien1.freeToShoot(aliens)
+
     }
 }
 
