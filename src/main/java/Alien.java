@@ -42,7 +42,10 @@ public class Alien extends Element{
     }
 
     public void shoot(Arena arena){
-
+        if (freeToShoot(arena)){
+            Ammo ammo = new Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
+            arena.getProjectiles().add(ammo);
+        }
     }
 
     @Override
