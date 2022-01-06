@@ -13,8 +13,8 @@ import java.util.List;
 public class Game {
     private Screen screen;
     private Arena arena;
-    private int width = 200;
-    private int height = 200;
+    private int width = 180;
+    private int height = 180;
 
     public Game() {
         try {

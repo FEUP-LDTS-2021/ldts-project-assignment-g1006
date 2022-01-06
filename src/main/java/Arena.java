@@ -59,15 +59,21 @@ public class Arena {
     public void processKey(KeyStroke key){
         if(key != null){
             switch (key.getKeyType()) {
-                case ArrowLeft -> player.moveLeft();
-                case ArrowRight -> player.moveRight();
+                case ArrowLeft -> {
+                    if(player.getPosition().getX() > 0)
+                        player.moveLeft();
+                }
+                case ArrowRight -> {
+                    if(player.getPosition().getX() < width - 1)
+                        player.moveRight();
+                }
             }
         }
     }
 
     public boolean checkAlienLimitsCollisions(){
         for(Alien alien : aliens){
-            if(alien.getPosition().getX() == 0 || alien.getPosition().getX() == width){
+            if(alien.getPosition().getX() == 0 || alien.getPosition().getX() == width - 1){
                 return true;
             }
         }
