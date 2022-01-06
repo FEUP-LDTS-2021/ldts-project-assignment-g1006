@@ -39,6 +39,29 @@ class PlayerSpockTest extends Specification{
         player.getPosition().getY() == 20
     }
 
+    def "player movement outside of the arena (left side)"(){
+        given:
+        def player = new Player(0,20,'P' as char)
+
+        when:
+        player.moveLeft(arena);
+
+        then:
+        player.getPosition() == new Position(0,20)
+    }
+
+    def "player movement outside of the arena (right side)"(){
+        given:
+        def player = new Player(19,20,'P' as char)
+        arena.getWidth() >> 20
+
+        when:
+        player.moveRight(arena);
+
+        then:
+        player.getPosition() == new Position(19,20)
+    }
+
     def "player shoots"(){
         given:
         def arena1 = new Arena(20,20)
