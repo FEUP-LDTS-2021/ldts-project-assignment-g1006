@@ -1,5 +1,8 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
+import java.util.List;
+import java.util.Objects;
+
 public class Alien extends Element{
     private int direction = 1;
 
@@ -27,6 +30,10 @@ public class Alien extends Element{
 
     public void changeDirection() {
         direction*=-1;
+    }
+
+    public boolean freeToShoot(List<Alien> aliens){
+        return true;
     }
 
     @Override
