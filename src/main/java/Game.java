@@ -9,12 +9,13 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class Game {
     private Screen screen;
     private Arena arena;
-    private int width = 180;
-    private int height = 180;
+    private int width = 50;
+    private int height = 25;
 
     public Game() {
         try {
@@ -83,6 +84,12 @@ public class Game {
 
             for(Ammo ammo : arena.getProjectiles()) {
                 ammo.move();
+            }
+
+            try{
+                TimeUnit.MILLISECONDS.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
