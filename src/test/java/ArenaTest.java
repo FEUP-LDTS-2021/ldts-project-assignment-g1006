@@ -48,6 +48,7 @@ public class ArenaTest {
     public void processKeyRight(){
         KeyStroke key = Mockito.mock(KeyStroke.class);
         Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowRight);
+        Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
 
         arena.processKey(key);
         Mockito.verify(player, Mockito.times(1)).moveRight();
@@ -58,6 +59,7 @@ public class ArenaTest {
     public void processKeyLeft(){
         KeyStroke key = Mockito.mock(KeyStroke.class);
         Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowLeft);
+        Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
 
         arena.processKey(key);
         Mockito.verify(player, Mockito.times(1)).moveLeft();
