@@ -26,7 +26,7 @@ public class Game {
     private int height = 25;
 
 
-    private static Game singleton;
+    private static Game singleton = null;
 
     public Game() {
         try {
