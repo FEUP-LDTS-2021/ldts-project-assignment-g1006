@@ -2,6 +2,7 @@ import com.googlecode.lanterna.TerminalSize
 import com.googlecode.lanterna.screen.Screen
 import com.googlecode.lanterna.screen.TerminalScreen
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory
+import org.mockito.Mock
 import spock.lang.Specification
 
 class AlienSpockTest extends Specification{
@@ -104,6 +105,35 @@ class AlienSpockTest extends Specification{
         expect:
         alien1.freeToShoot(aliens)
 
+    }
+
+
+    def "test alien shooting above another one"(){
+        given:
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(10,12,'A' as char)
+        def projectiles = []
+        alien1.freeToShoot([]) >> false
+
+        when:
+        alien1.shoot(projectiles)
+
+        then:
+        projectiles.isEmpty()
+    }
+
+    def "test alien shooting below another one"() {
+        given:
+        def alien1 = new Alien(10, 10, 'A' as char)
+        def alien2 = new Alien(10, 12, 'A' as char)
+        alien2.freeToShoot([]) >> true
+        def projectiles = []
+
+        when:
+        alien2.shoot(projectiles)
+
+        then:
+        projectiles[0].getPosition() == new Position(10,13)
     }
 }
 
