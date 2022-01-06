@@ -25,6 +25,9 @@ public class Game {
     private int width = 50;
     private int height = 25;
 
+
+    private static Game singleton;
+
     public Game() {
         try {
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadFont());
@@ -52,6 +55,10 @@ public class Game {
         }
         arena = new Arena(width,height);
         setupArena(arena);
+    }
+
+    public static Game getInstance(){
+        return singleton;
     }
 
     public Font loadFont() throws URISyntaxException, IOException, FontFormatException {
