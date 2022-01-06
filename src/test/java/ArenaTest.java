@@ -1,6 +1,7 @@
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -51,7 +52,7 @@ public class ArenaTest {
         Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
 
         arena.processKey(key);
-        Mockito.verify(player, Mockito.times(1)).moveRight();
+        Mockito.verify(player, Mockito.times(1)).moveRight(arena);
 
     }
 
@@ -62,7 +63,19 @@ public class ArenaTest {
         Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
 
         arena.processKey(key);
-        Mockito.verify(player, Mockito.times(1)).moveLeft();
+        Mockito.verify(player, Mockito.times(1)).moveLeft(arena);
 
+    }
+
+    @Test
+    public void processKeyUp(){
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowUp);
+        Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
+
+        arena.processKey(key);
+
+        Mockito.verify(player, Mockito.times(1)).shoot(arena);
+        Assertions.assertEquals(arena.getProjectiles().size(), 1);
     }
 }
