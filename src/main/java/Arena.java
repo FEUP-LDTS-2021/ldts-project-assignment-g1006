@@ -67,7 +67,7 @@ public class Arena {
 
     public boolean checkAlienLimitsCollisions(){
         for(Alien alien : aliens){
-            if(alien.getPosition().getX() == 0 || alien.getPosition().getX() == 40){
+            if(alien.getPosition().getX() == 0 || alien.getPosition().getX() == width){
                 return true;
             }
         }

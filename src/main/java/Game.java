@@ -13,10 +13,12 @@ import java.util.List;
 public class Game {
     private Screen screen;
     private Arena arena;
+    private int width = 200;
+    private int height = 200;
 
     public Game() {
         try {
-            TerminalSize terminalSize = new TerminalSize(40, 20);
+            TerminalSize terminalSize = new TerminalSize(width, height);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
             screen = new TerminalScreen(terminal);
@@ -27,7 +29,7 @@ public class Game {
         } catch (IOException e){
             e.printStackTrace();
         }
-        arena = new Arena(40,20);
+        arena = new Arena(width,height);
         setupArena(arena);
     }
 
@@ -48,7 +50,7 @@ public class Game {
     }
 
     private void setupArena(Arena arena){
-        arena.setPlayer(new Player(5,5,'P'));
+        arena.setPlayer(new Player(5,15,'P'));
         arena.setProjectiles(createProjectiles());
         arena.setAliens(createAliens());
     }
