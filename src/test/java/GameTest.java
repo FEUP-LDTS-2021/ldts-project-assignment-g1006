@@ -1,6 +1,10 @@
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -13,7 +17,15 @@ public class GameTest {
     @BeforeEach
     public void setup() {
         game = new Game();
-        screen = Mockito.mock(Screen.class);
+        try{
+            TerminalSize terminalSize = new TerminalSize(20, 20);
+            DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+            Terminal terminal = terminalFactory.createTerminal();
+            screen = new TerminalScreen(terminal);
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
         key = Mockito.mock(KeyStroke.class);
         game.setScreen(screen);
     }
