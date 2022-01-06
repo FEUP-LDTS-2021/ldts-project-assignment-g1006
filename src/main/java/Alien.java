@@ -41,6 +41,10 @@ public class Alien extends Element{
         return true;
     }
 
+    public void shoot(List<Ammo> projectiles){
+
+    }
+
     @Override
     public void draw(TextGraphics screen) {
         screen.setCharacter(getPosition().getX(), getPosition().getY(), getCharacter());
