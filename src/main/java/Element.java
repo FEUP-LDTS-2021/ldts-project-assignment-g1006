@@ -1,6 +1,6 @@
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public abstract class Element {
+public abstract class Element implements DrawCommand{
     protected char character;
     protected Position position;
 
@@ -25,6 +25,7 @@ public abstract class Element {
         this.character = character;
     }
 
+    @Override
     public abstract void draw(TextGraphics screen);
 
 }
