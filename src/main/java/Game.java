@@ -25,10 +25,9 @@ public class Game {
     private int width = 50;
     private int height = 25;
 
-
     private static Game singleton = null;
 
-    public Game() {
+    private Game() {
         try {
             AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadFont());
             DefaultTerminalFactory factory = new DefaultTerminalFactory();

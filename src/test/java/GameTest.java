@@ -17,7 +17,7 @@ public class GameTest {
     private KeyStroke key;
     @BeforeEach
     public void setup() {
-        game = new Game();
+        game = Game.getInstance();
         try{
             TerminalSize terminalSize = new TerminalSize(20, 20);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
@@ -43,10 +43,8 @@ public class GameTest {
 
     @Test
     void instanceTest() {
-        new Game();
         Game game1 = Game.getInstance();
         Assertions.assertNotNull(game1);
-        new Game();
-        Assertions.assertEquals(Game.getInstance(),game1);
+        Assertions.assertEquals(game,game1);
     }
 }
