@@ -80,17 +80,28 @@ public class Game {
 
 
 
-    private List<Alien> createAliens(){
-        List<Alien> aliens = new ArrayList<>();
-        aliens.add(new Alien(5,5,'A'));
+    private List<List<Alien>> createAliens(){
+        List<List<Alien>> aliens = new ArrayList<>();
+        //aliens.add(new Alien(5,5,'A'));
+        int numberOfRows = 3;
+        int aliensPerRow = 6;
+        for(int i = 0; i < numberOfRows; i++){
+            List<Alien> row = new ArrayList<>();
+            for(int j = 0; j < aliensPerRow; j++){
+                row.add(new Alien(j, i, 'A'));
+            }
+            aliens.add(row);
+        }
         return aliens;
     }
+
 
     private List<Ammo> createProjectiles(){
         List<Ammo> ammoList = new ArrayList<>();
         ammoList.add(new Ammo(5,5,'|',1,1));
         return ammoList;
     }
+
 
     private void setupArena(Arena arena){
         arena.setPlayer(new Player(5,15,'P'));
@@ -120,8 +131,9 @@ public class Game {
             }
             arena.processKey(key);
 
-            for(Alien alien : arena.getAliens()) {
-                alien.move(arena);
+            for (List<Alien> row : arena.getAliens()) {
+                for(Alien alien : row)
+                    alien.move(arena);
             }
 
             for(Ammo ammo : arena.getProjectiles()) {

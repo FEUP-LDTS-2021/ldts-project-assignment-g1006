@@ -15,7 +15,7 @@ public class Arena {
     private int width;
     private int height;
     private Player player;
-    private List<Alien> aliens;
+    private List<List<Alien>> aliens;
     private List<Ammo> projectiles;
 
     public Arena(int width, int height){
@@ -39,11 +39,11 @@ public class Arena {
         this.player = player;
     }
 
-    public List<Alien> getAliens() {
+    public List<List<Alien>> getAliens() {
         return aliens;
     }
 
-    public void setAliens(List<Alien> aliens) {
+    public void setAliens(List<List<Alien>> aliens) {
         this.aliens = aliens;
     }
 
@@ -60,8 +60,10 @@ public class Arena {
         screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
         for (Ammo ammo : projectiles)
             ammo.draw(screen);
-        for (Alien alien : aliens)
-            alien.draw(screen);
+        for (List<Alien> row : aliens) {
+            for(Alien alien : row)
+                alien.draw(screen);
+        }
         player.draw(screen);
     }
 
@@ -80,16 +82,18 @@ public class Arena {
     }
 
     public void checkAlienProjectilesCollisions(){
-        Iterator<Alien> it1 = aliens.iterator();
-        while(it1.hasNext()){
-            Alien alien = it1.next();
-            Iterator<Ammo> it2 = projectiles.iterator();
-            while(it2.hasNext()){
-                Ammo ammo = it2.next();
-                if(alien.getPosition().getX() == ammo.getPosition().getX() && alien.getPosition().getY() == ammo.getPosition().getY()){
-                    it1.remove();
-                    it2.remove();
-                    break;
+        for(List<Alien> row : aliens) {
+            Iterator<Alien> it1 = row.iterator();
+            while (it1.hasNext()) {
+                Alien alien = it1.next();
+                Iterator<Ammo> it2 = projectiles.iterator();
+                while (it2.hasNext()) {
+                    Ammo ammo = it2.next();
+                    if (alien.getPosition().getX() == ammo.getPosition().getX() && alien.getPosition().getY() == ammo.getPosition().getY()) {
+                        it1.remove();
+                        it2.remove();
+                        break;
+                    }
                 }
             }
         }

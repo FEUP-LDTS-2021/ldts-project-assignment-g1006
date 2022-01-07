@@ -22,7 +22,7 @@ public class ArenaTest {
         ammo = Mockito.mock(Ammo.class);
         arena.setProjectiles(List.of(ammo));
         alien = Mockito.mock(Alien.class);
-        arena.setAliens(List.of(alien));
+        arena.setAliens(List.of(List.of(alien)));
         player = Mockito.mock(Player.class);
         arena.setPlayer(player);
     }

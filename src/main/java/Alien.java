@@ -39,6 +39,7 @@ public class Alien extends Element{
         direction*=-1;
     }
 
+    /*
     public boolean freeToShoot(Arena arena){
         for (Alien alien : arena.getAliens()){
             if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()){
@@ -54,6 +55,7 @@ public class Alien extends Element{
             arena.getProjectiles().add(ammo);
         }
     }
+    */
 
     @Override
     public void draw(TextGraphics screen) {
