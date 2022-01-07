@@ -22,7 +22,7 @@ class AlienSpockTest extends Specification{
         given:
         def arena = Mock(Arena.class)
         arena.getWidth() >> 20
-        def alien = new NormalAlien(20,10,'A' as char)
+        def alien = new Alien(20,10,'A' as char)
 
         when:
         alien.move(arena)
@@ -33,7 +33,7 @@ class AlienSpockTest extends Specification{
 
     def "alien move outside of the arena (left side)"(){
         given:
-        def alien = new NormalAlien(0,10,'A' as char)
+        def alien = new Alien(0,10,'A' as char)
         def arena = Mock(Arena.class)
         arena.getWidth() >> 20
         alien.changeDirection()
@@ -49,7 +49,7 @@ class AlienSpockTest extends Specification{
         given:
         def arena = Mock(Arena.class)
         arena.getWidth() >> 20
-        def alien = new NormalAlien(10,20,'A' as char)
+        def alien = new Alien(10,20,'A' as char)
 
         when:
         alien.move(arena)
@@ -66,7 +66,7 @@ class AlienSpockTest extends Specification{
 
     def "change alien movement direction"(){
         given:
-        def alien = new NormalAlien(10,10, 'A' as char)
+        def alien = new Alien(10,10, 'A' as char)
 
         when:
         alien.changeDirection()
@@ -79,7 +79,7 @@ class AlienSpockTest extends Specification{
         given:
         def arena = Mock(Arena.class)
         arena.getWidth() >> 20
-        def alien = new NormalAlien(10,10, 'A' as char)
+        def alien = new Alien(10,10, 'A' as char)
 
         when:
         alien.move(arena)
@@ -98,7 +98,7 @@ class AlienSpockTest extends Specification{
 
     def "draw alien character"(){
         given:
-        def alien = new NormalAlien(10,10, 'A' as char)
+        def alien = new Alien(10,10, 'A' as char)
 
         when:
         alien.draw(screen.newTextGraphics())
@@ -109,8 +109,8 @@ class AlienSpockTest extends Specification{
 
     def "test if there is an alien below"(){
         given:
-        def alien1 = new NormalAlien(10,10,'A' as char)
-        def alien2 = new NormalAlien(10,11,'A' as char)
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(10,11,'A' as char)
         def arena = Mock(Arena.class)
         arena.getAliens() >> [alien1, alien2]
 
@@ -121,8 +121,8 @@ class AlienSpockTest extends Specification{
 
     def "test if there is an alien below in the same column"(){
         given:
-        def alien1 = new NormalAlien(10,10,'A' as char)
-        def alien2 = new NormalAlien(10,19,'A' as char)
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(10,19,'A' as char)
         def arena = Mock(Arena.class)
         arena.getAliens() >> [alien1, alien2]
 
@@ -133,8 +133,8 @@ class AlienSpockTest extends Specification{
 
     def "test if there isn't any alien below"(){
         given:
-        def alien1 = new NormalAlien(10,10,'A' as char)
-        def alien2 = new NormalAlien(11,12,'A' as char)
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(11,12,'A' as char)
         def arena = Mock(Arena.class)
         arena.getAliens() >> [alien1, alien2]
 
@@ -146,8 +146,8 @@ class AlienSpockTest extends Specification{
 
     def "test alien shooting above another one"(){
         given:
-        def alien1 = new NormalAlien(10,10,'A' as char)
-        def alien2 = new NormalAlien(10,12,'A' as char)
+        def alien1 = new Alien(10,10,'A' as char)
+        def alien2 = new Alien(10,12,'A' as char)
         arena.setAliens([alien2, alien1])
         arena.setProjectiles([])
         alien1.freeToShoot(arena) >> false
@@ -161,8 +161,8 @@ class AlienSpockTest extends Specification{
 
     def "test alien shooting below another one"() {
         given:
-        def alien1 = new NormalAlien(10, 10, 'A' as char)
-        def alien2 = new NormalAlien(10, 12, 'A' as char)
+        def alien1 = new Alien(10, 10, 'A' as char)
+        def alien2 = new Alien(10, 12, 'A' as char)
         alien2.freeToShoot(arena) >> true
         arena.setAliens([alien1, alien2])
         arena.setProjectiles([])

@@ -6,10 +6,8 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Alien extends Element{
-    protected int direction = 1;
-    protected int armor;
-    protected Boolean isDead;
+public class Alien extends Element{
+    private int direction = 1;
 
     public Alien(int x, int y, char character){
         super(x, y, character);
@@ -58,21 +56,7 @@ public abstract class Alien extends Element{
         }
     }
     */
-    public void reduceArmor(){
-        this.armor--;
-    }
 
-    public int getArmor(){
-        return armor;
-    }
-
-    public void setAsDead(){
-        isDead = true;
-    }
-
-    public Boolean isDead(){
-        return isDead;
-    }
     @Override
     public void draw(TextGraphics screen) {
         screen.setForegroundColor(TextColor.Factory.fromString("#07C400"));

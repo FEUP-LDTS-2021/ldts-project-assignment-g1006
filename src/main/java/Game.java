@@ -88,7 +88,7 @@ public class Game {
         for(int i = 0; i < numberOfRows; i++){
             List<Alien> row = new ArrayList<>();
             for(int j = 0; j < aliensPerRow; j++){
-                row.add(new NormalAlien(j, i, 'A'));
+                row.add(new Alien(j, i, 'A'));
             }
             aliens.add(row);
         }
