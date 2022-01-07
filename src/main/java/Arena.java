@@ -89,7 +89,7 @@ public class Arena {
                 Iterator<Ammo> it2 = projectiles.iterator();
                 while (it2.hasNext()) {
                     Ammo ammo = it2.next();
-                    if (alien.getPosition().getX() == ammo.getPosition().getX() && alien.getPosition().getY() == ammo.getPosition().getY()) {
+                    if (alien.getPosition().equals(ammo.getPosition())) {
                         it1.remove();
                         it2.remove();
                         break;
