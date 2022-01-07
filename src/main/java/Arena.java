@@ -56,8 +56,10 @@ public class Arena {
     }
 
     public void draw(TextGraphics screen){
-        screen.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
-        screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        if(screen != null) {
+            screen.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
+            screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+        }
         for (Ammo ammo : projectiles)
             ammo.draw(screen);
         for (List<Alien> row : aliens) {

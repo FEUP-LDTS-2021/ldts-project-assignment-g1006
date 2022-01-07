@@ -107,6 +107,7 @@ class AlienSpockTest extends Specification{
         screen.getBackCharacter(10,10).getCharacter() == alien.getCharacter()
     }
 
+    /*
     def "test if there is an alien below"(){
         given:
         def alien1 = new Alien(10,10,'A' as char)
@@ -173,5 +174,5 @@ class AlienSpockTest extends Specification{
         then:
         arena.getProjectiles()[0].getPosition() == new Position(10,13)
     }
+    */
 }
-

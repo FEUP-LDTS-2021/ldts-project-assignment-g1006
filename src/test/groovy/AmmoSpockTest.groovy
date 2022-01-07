@@ -41,7 +41,7 @@ class AmmoSpockTest extends Specification{
 
     def "draw ammo character"(){
         given:
-        def ammo = new Ammo(10,10, 'B' as char, 0, 0)
+        def ammo = new Ammo(10,10, '|' as char, 0, 0)
 
         when:
         ammo.draw(screen.newTextGraphics())

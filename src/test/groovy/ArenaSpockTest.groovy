@@ -15,7 +15,7 @@ class ArenaSpockTest extends Specification{
         def ammo = new Ammo(10, 4, 'B' as char, -1, 1)
 
         when:
-        def aliens = [alien]
+        def aliens = [[alien]]
         def projectiles = [ammo]
         arena.setAliens(aliens)
         arena.setProjectiles(projectiles)
