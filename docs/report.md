@@ -10,28 +10,31 @@ This project was developed by Alexandre Correia (up202007042@fe.up.pt), Henrique
 ### Implemented Features
 
 - **Movement** - Single direction movement. Every spaceship moves horizontally.
-
-- **Aliens** - Represented by character 'A'. They switch direction when they are about to leave the arena. SCREENSHOT OF THE ALIENS
+- **Aliens** - Represented by character 'A'. They switch direction when they are about to leave the arena. 
 - **Ammo** - The player can shoot multiple bullets. If an alien is hit, it will die and dissapear from the screen.
-SCREENSHOT OF THE AMMO BEING SHOT
+
+### Planned Features
+
+- **Aliens** - They exist in many shapes and forms. Some will be able to shoot back at the player (only the ones that dont have any others bellow them). They can have armor aswell.
+  MOCK OF FUTURE ALIENS
+
+- **Menu** - We will design a Menu for the game, which will be able to redirect the player to the leaderboard or the game.
+
+- **Leaderboard** - Contains the best players' names, and the time that needed to defeat the Aliens.
+
+- **Shields** - They will be deployed between the Player and the Aliens. They can support a limited amount of Ammo, so they will eventually break.
+
+- **Ammo** - The ammo that the player can shoot will be limited. In this way, it can only shoot one or a few bullets at a time.
 
 
-### DESIGN
+## DESIGN
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
-
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
-
-**Example of one of such subsections**:
-
+### Singleton Pattern
 
 **Problem in Context**
 
-While thinking about the Game it self, we realised that there could be lots of Game class objects created during an execution of the code. That is obviously incorrect, since there can only be ONE object of the Game class.
-SCREENSHOT OF GAME CONSTRUCTOR BEFORE IMPLEMENTATION OF THE PATTERN (using methods explained above)
+While thinking about the Game itself, we realised that there could be lots of Game class objects created during an execution of the code. That is obviously incorrect, since there can only be ONE object of the Game class.
+Link to Game class constructor: https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1006/blob/68d6da17c528137e35c9dc79a5c4d23cc771390e/src/main/java/Game.java#L28 .
 
 **The Pattern**
 
@@ -39,19 +42,21 @@ We decided to use the Singleton Pattern, which can be classified as a Creational
 
 **Implementation**
 
-The following images show in detail how the pattern was implemented:
-SCREENSHOT OF GAME SINGLETON PATTERN AND APPLICATION.JAVA (using methods explained above)
-UML DIAGRAM SCREENSHOT
+The following image shows in detail how the pattern was implemented:
+<p align="center" justify="center">
+  <img src="singletonUML"/>
+</p>
 
 **Consequences**
 
 The usage of this pattern had a positive impact in our code, since it completely solved our problem. In fact, it was impossible to achieve what we wanted using a regular constructor for the game class, since constructors always return a new object, by design.
 
+### Command Pattern
 
 **Problem in Context**
 
 We realized that each object of each class that extended Element had to be drawn. The problem regarding that is the code is very fragile in the sense that if we wanted to add way more different things to be drawed, it could have gotten out of hand very easily.
-SCREENSHOT OF ARENA DRAW (using methods explained above)
+
 
 **The Pattern**
 
@@ -59,9 +64,10 @@ We decided to use the Command Pattern, which can be considered a Behavioral Patt
 
 **Implementation**
 
-The following images show in detail how the pattern was implemented:
-SCREENSHOT OF DRAW COMMAND PATTERN AND SOME CLASSES THAT EXTEND ELEMENT (using methods explained above)
-UML DIAGRAM SCREENSHOT
+The following image shows in detail how the pattern was implemented:
+<p align="center" justify="center">
+  <img src="drawcommandUML"/>
+</p>
 
 **Consequences**
 
@@ -79,11 +85,6 @@ https://refactoring.guru/smells/feature-envy
 This code smell consists of a method (or in this case, a part of a method) that uses more data from another class that its own. For example, part of the code in Game::run() function, specially the section after the arena.processkey() function call, only uses data from the Arena class, so it should be in that class.
 The solution is very simple. The code should be moved to the arena class, using the move method: https://refactoring.guru/move-method.
 
-
-### TESTING
-
-Here's an image of the tests' coverage report.
-SREENSHOT OF TESTS COVERAGE REPORT
 
 ### SELF-EVALUATION
 
