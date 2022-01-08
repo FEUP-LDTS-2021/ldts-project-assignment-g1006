@@ -3,7 +3,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Ammo extends Element {
+public class Ammo extends Element implements DrawCommand{
 
     private int direction;
     private int damage;

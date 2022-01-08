@@ -6,7 +6,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import java.util.List;
 import java.util.Objects;
 
-public class Alien extends Element{
+public class Alien extends Element implements DrawCommand{
     private int direction = 1;
 
     public Alien(int x, int y, char character){

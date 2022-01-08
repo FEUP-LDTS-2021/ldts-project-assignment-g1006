@@ -3,7 +3,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Player extends Element{
+public class Player extends Element implements DrawCommand{
 
     public Player(int x, int y, char character){
         super(x,y,character);
