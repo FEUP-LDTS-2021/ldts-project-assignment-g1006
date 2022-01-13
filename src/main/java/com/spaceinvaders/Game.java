@@ -1,3 +1,5 @@
+package com.spaceinvaders;
+
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
@@ -81,7 +83,7 @@ public class Game {
 
     private List<List<Alien>> createAliens(){
         List<List<Alien>> aliens = new ArrayList<>();
-        //aliens.add(new Alien(5,5,'A'));
+        //aliens.add(new com.spaceinvaders.Alien(5,5,'A'));
         int numberOfRows = 3;
         int aliensPerRow = 6;
         for(int i = 0; i < numberOfRows; i++){

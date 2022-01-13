@@ -4,7 +4,7 @@ plugins {
     id 'groovy'
 }
 
-group 'com.game'
+group 'com.spaceinvaders'
 version '1.0-SNAPSHOT'
 
 repositories {

@@ -1,10 +1,9 @@
+package com.spaceinvaders;
+
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-
-import java.util.List;
-import java.util.Objects;
 
 public class Alien extends Element implements DrawCommand{
     private int direction = 1;
@@ -40,8 +39,8 @@ public class Alien extends Element implements DrawCommand{
     }
 
     /*
-    public boolean freeToShoot(Arena arena){
-        for (Alien alien : arena.getAliens()){
+    public boolean freeToShoot(com.spaceinvaders.Arena arena){
+        for (com.spaceinvaders.Alien alien : arena.getAliens()){
             if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()){
                 return false;
             }
@@ -49,9 +48,9 @@ public class Alien extends Element implements DrawCommand{
         return true;
     }
 
-    public void shoot(Arena arena){
+    public void shoot(com.spaceinvaders.Arena arena){
         if (freeToShoot(arena)){
-            Ammo ammo = new Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
+            com.spaceinvaders.Ammo ammo = new com.spaceinvaders.Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
             arena.getProjectiles().add(ammo);
         }
     }

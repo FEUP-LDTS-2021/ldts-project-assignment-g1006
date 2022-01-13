@@ -1,3 +1,5 @@
+package com.spaceinvaders;
+
 import java.util.Objects;
 
 public class Position {

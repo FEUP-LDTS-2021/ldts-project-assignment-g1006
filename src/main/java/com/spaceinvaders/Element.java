@@ -1,3 +1,5 @@
+package com.spaceinvaders;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
 public abstract class Element {

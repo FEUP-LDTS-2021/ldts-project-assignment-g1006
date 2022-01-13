@@ -1,3 +1,5 @@
+import com.spaceinvaders.Game;
+
 import java.io.IOException;
 
 public class Application {
