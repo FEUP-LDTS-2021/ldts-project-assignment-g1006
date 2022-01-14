@@ -37,21 +37,21 @@ public class LanternaGUITest {
     void drawPlayer(){
         Position  position = new Position(10,10);
         gui.drawPlayer(position);
-        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getX(), "P");
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "P");
     }
 
     @Test
     void drawAlien(){
         Position  position = new Position(10,10);
         gui.drawAlien(position);
-        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getX(), "A");
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "A");
     }
 
     @Test
     void drawAmmo(){
         Position  position = new Position(10,10);
         gui.drawAmmo(position);
-        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getX(), "|");
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "|");
     }
 
     @Test
