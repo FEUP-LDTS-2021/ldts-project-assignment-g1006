@@ -2,6 +2,10 @@ package com.spaceinvaders;
 
 import com.googlecode.lanterna.screen.Screen;
 import com.spaceinvaders.gui.GUI;
+import com.spaceinvaders.model.*;
+import com.spaceinvaders.model.Alien;
+import com.spaceinvaders.model.Ammo;
+import com.spaceinvaders.model.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

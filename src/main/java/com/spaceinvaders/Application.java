@@ -1,4 +1,4 @@
-import com.spaceinvaders.Game;
+package com.spaceinvaders;
 
 import java.awt.*;
 import java.io.IOException;

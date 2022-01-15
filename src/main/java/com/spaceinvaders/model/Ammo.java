@@ -1,6 +1,6 @@
-package com.spaceinvaders;
+package com.spaceinvaders.model;
 
-public class Ammo extends Element{
+public class Ammo extends Element {
 
     private int direction;
     private int damage;

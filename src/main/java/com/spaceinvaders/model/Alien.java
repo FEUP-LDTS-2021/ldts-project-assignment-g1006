@@ -1,4 +1,4 @@
-package com.spaceinvaders;
+package com.spaceinvaders.model;
 
 public class Alien extends Element {
     private int direction = 1;
@@ -34,8 +34,8 @@ public class Alien extends Element {
     }
 
     /*
-    public boolean freeToShoot(com.spaceinvaders.Arena arena){
-        for (com.spaceinvaders.Alien alien : arena.getAliens()){
+    public boolean freeToShoot(com.spaceinvaders.model.Arena arena){
+        for (com.spaceinvaders.model.Alien alien : arena.getAliens()){
             if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()){
                 return false;
             }
@@ -43,9 +43,9 @@ public class Alien extends Element {
         return true;
     }
 
-    public void shoot(com.spaceinvaders.Arena arena){
+    public void shoot(com.spaceinvaders.model.Arena arena){
         if (freeToShoot(arena)){
-            com.spaceinvaders.Ammo ammo = new com.spaceinvaders.Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
+            com.spaceinvaders.model.Ammo ammo = new com.spaceinvaders.model.Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
             arena.getProjectiles().add(ammo);
         }
     }

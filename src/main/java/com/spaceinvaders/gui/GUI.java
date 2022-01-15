@@ -1,7 +1,7 @@
 package com.spaceinvaders.gui;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.spaceinvaders.Position;
+import com.spaceinvaders.model.Position;
 
 import java.io.IOException;
 

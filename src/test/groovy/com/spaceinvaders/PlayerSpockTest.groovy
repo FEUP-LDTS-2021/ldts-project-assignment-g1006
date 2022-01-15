@@ -1,5 +1,8 @@
 package com.spaceinvaders
 
+import com.spaceinvaders.model.Arena
+import com.spaceinvaders.model.Player
+import com.spaceinvaders.model.Position
 import spock.lang.Specification
 
 class PlayerSpockTest extends Specification{

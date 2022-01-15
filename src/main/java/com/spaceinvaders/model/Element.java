@@ -1,4 +1,6 @@
-package com.spaceinvaders;
+package com.spaceinvaders.model;
+
+import com.spaceinvaders.model.Position;
 
 public abstract class Element {
     protected char character;

@@ -1,6 +1,6 @@
-package com.spaceinvaders;
+package com.spaceinvaders.model;
 
-public class Player extends Element{
+public class Player extends Element {
 
     public Player(int x, int y, char character){
         super(x,y,character);

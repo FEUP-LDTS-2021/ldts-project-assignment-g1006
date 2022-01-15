@@ -1,4 +1,4 @@
-package com.spaceinvaders;
+package com.spaceinvaders.model;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.spaceinvaders.gui.*;

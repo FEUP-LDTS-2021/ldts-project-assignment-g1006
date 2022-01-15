@@ -2,6 +2,10 @@ package com.spaceinvaders;
 
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.gui.LanternaGUI;
+import com.spaceinvaders.model.Alien;
+import com.spaceinvaders.model.Ammo;
+import com.spaceinvaders.model.Arena;
+import com.spaceinvaders.model.Player;
 
 import java.awt.*;
 import java.io.IOException;
@@ -32,7 +36,7 @@ public class Game {
 
     private List<List<Alien>> createAliens(){
         List<List<Alien>> aliens = new ArrayList<>();
-        //aliens.add(new com.spaceinvaders.Alien(5,5,'A'));
+        //aliens.add(new com.spaceinvaders.model.Alien(5,5,'A'));
         int numberOfRows = 3;
         int aliensPerRow = 6;
         for(int i = 0; i < numberOfRows; i++){

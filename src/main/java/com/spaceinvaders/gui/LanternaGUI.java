@@ -12,7 +12,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-import com.spaceinvaders.Position;
+import com.spaceinvaders.model.Position;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
