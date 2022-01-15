@@ -5,6 +5,8 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -79,6 +81,18 @@ public class LanternaGUI implements GUI {
     @Override
     public int getHeight() {
         return height;
+    }
+
+    @Override
+    public Action getAction() throws IOException {
+        KeyStroke keyPressed = screen.pollInput();
+        if (screen.pollInput() == null) return Action.NONE;
+        else if (keyPressed.getKeyType() == KeyType.ArrowUp)return Action.KEYUP;
+        else if (keyPressed.getKeyType() == KeyType.ArrowLeft)return Action.KEYLEFT;
+        else if (keyPressed.getKeyType() == KeyType.ArrowRight)return Action.KEYRIGHT;
+        else if (keyPressed.getKeyType() == KeyType.EOF) return Action.EXIT;
+        else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == 'q') return Action.EXIT;
+        else return Action.NONE;
     }
 
     @Override
