@@ -12,17 +12,18 @@ public class PlayerController {
     }
 
     public Position moveLeft(){
-        return null;
+        return new Position(player.getPosition().getX() - 1, player.getPosition().getY());
     }
 
     public Position moveRight() {
-        return null;
+        return new Position(player.getPosition().getX() + 1, player.getPosition().getY());
     }
 
     public void move(Position position){
+        player.setPosition(position);
     }
     
     public Ammo shoot(){
-        return null;
+        return new Ammo(player.getPosition().getX(), player.getPosition().getY() - 1, '|', -1, 1);
     }
 }
