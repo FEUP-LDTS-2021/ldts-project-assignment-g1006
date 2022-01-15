@@ -1,5 +1,6 @@
 package com.spaceinvaders.gui;
 
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.spaceinvaders.Position;
 
 import java.io.IOException;
@@ -14,9 +15,10 @@ enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
     void refresh() throws IOException;
     void clear();
     void close() throws IOException;
+    TextGraphics createTextGraphics();
 
-    void drawBackground();
-    void drawPlayer(Position position);
-    void drawAmmo(Position position);
-    void drawAlien(Position position);
+    void drawBackground(TextGraphics textGraphics);
+    void drawPlayer(TextGraphics textGraphics, Position position);
+    void drawAmmo(TextGraphics textGraphics, Position position);
+    void drawAlien(TextGraphics textGraphics, Position position);
 }

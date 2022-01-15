@@ -1,10 +1,7 @@
 package com.spaceinvaders;
 
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
+import com.spaceinvaders.gui.*;
 
 import java.util.Iterator;
 import java.util.List;
@@ -53,31 +50,27 @@ public class Arena {
         this.projectiles = projectiles;
     }
 
-    public void draw(TextGraphics screen){
-        if(screen != null) {
-            screen.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
-            screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
-        }
+    public void draw(LanternaGUI gui){
+        TextGraphics tg = gui.createTextGraphics();
+        gui.drawBackground(tg);
         for (Ammo ammo : projectiles)
-            ammo.draw(screen);
+            gui.drawAmmo(tg, ammo.getPosition());
         for (List<Alien> row : aliens) {
             for(Alien alien : row)
-                alien.draw(screen);
+                gui.drawAlien(tg, alien.getPosition());
         }
-        player.draw(screen);
+        gui.drawPlayer(tg, player.getPosition());
     }
 
     public boolean checkProjectilesCollision(){
         return false;
     }
 
-    public void processKey(KeyStroke key){
-        if(key != null){
-            switch (key.getKeyType()) {
-                case ArrowLeft -> player.moveLeft(this);
-                case ArrowRight -> player.moveRight(this);
-                case ArrowUp -> player.shoot(this);
-            }
+    public void processKey(GUI.Action action){
+        switch (action) {
+            case KEYLEFT -> player.moveLeft(this);
+            case KEYRIGHT -> player.moveRight(this);
+            case KEYUP -> player.shoot(this);
         }
     }
 

@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.spaceinvaders.Position;
 import org.junit.jupiter.api.Test;
@@ -41,27 +42,28 @@ public class LanternaGUITest {
     @Test
     void drawPlayer(){
         Position  position = new Position(10,10);
-        gui.drawPlayer(position);
+        gui.drawPlayer(textGraphics, position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "P");
     }
 
     @Test
     void drawAlien(){
         Position  position = new Position(10,10);
-        gui.drawAlien(position);
+        gui.drawAlien(textGraphics, position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "A");
     }
 
     @Test
     void drawAmmo(){
         Position  position = new Position(10,10);
-        gui.drawAmmo(position);
+        gui.drawAmmo(textGraphics, position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "|");
     }
 
     @Test
     void drawBackground(){
-        gui.drawBackground();
+
+        gui.drawBackground(textGraphics);
         String color = "#3360FF";
         Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(TextColor.Factory.fromString(color));
     }

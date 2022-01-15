@@ -1,8 +1,7 @@
 package com.spaceinvaders;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
+import com.spaceinvaders.gui.GUI;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,52 +29,28 @@ public class ArenaTest {
     }
 
     @Test
-    public void drawAmmo(){
-        arena.draw(screen.newTextGraphics());
-        Mockito.verify(ammo, Mockito.times(1)).draw(screen.newTextGraphics());
-    }
-
-    @Test
-    public void drawPlayer(){
-        arena.draw(screen.newTextGraphics());
-        Mockito.verify(player, Mockito.times(1)).draw(screen.newTextGraphics());
-    }
-
-    @Test
-    public void drawAlien(){
-        arena.draw(screen.newTextGraphics());
-        Mockito.verify(player, Mockito.times(1)).draw(screen.newTextGraphics());
-    }
-
-    @Test
     public void processKeyRight(){
-        KeyStroke key = Mockito.mock(KeyStroke.class);
-        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowRight);
         Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
 
-        arena.processKey(key);
+        arena.processKey(GUI.Action.KEYRIGHT);
         Mockito.verify(player, Mockito.times(1)).moveRight(arena);
 
     }
 
     @Test
     public void processKeyLeft(){
-        KeyStroke key = Mockito.mock(KeyStroke.class);
-        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowLeft);
         Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
 
-        arena.processKey(key);
+        arena.processKey(GUI.Action.KEYLEFT);
         Mockito.verify(player, Mockito.times(1)).moveLeft(arena);
 
     }
 
     @Test
     public void processKeyUp(){
-        KeyStroke key = Mockito.mock(KeyStroke.class);
-        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowUp);
         Mockito.when(player.getPosition()).thenReturn(new Position(1,1));
 
-        arena.processKey(key);
+        arena.processKey(GUI.Action.KEYUP);
 
         Mockito.verify(player, Mockito.times(1)).shoot(arena);
         Assertions.assertEquals(arena.getProjectiles().size(), 1);

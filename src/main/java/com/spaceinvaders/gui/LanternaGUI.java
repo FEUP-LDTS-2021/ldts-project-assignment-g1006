@@ -86,7 +86,7 @@ public class LanternaGUI implements GUI {
     @Override
     public Action getAction() throws IOException {
         KeyStroke keyPressed = screen.pollInput();
-        if (screen.pollInput() == null) return Action.NONE;
+        if (keyPressed == null) return Action.NONE;
         else if (keyPressed.getKeyType() == KeyType.ArrowUp)return Action.KEYUP;
         else if (keyPressed.getKeyType() == KeyType.ArrowLeft)return Action.KEYLEFT;
         else if (keyPressed.getKeyType() == KeyType.ArrowRight)return Action.KEYRIGHT;
@@ -111,31 +111,32 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawBackground() {
-        TextGraphics textGraphics = screen.newTextGraphics();
+    public TextGraphics createTextGraphics() {
+        return screen.newTextGraphics();
+    }
+
+    @Override
+    public void drawBackground(TextGraphics textGraphics) {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
     }
 
     @Override
-    public void drawPlayer(Position position) {
-        TextGraphics textGraphics = screen.newTextGraphics();
+    public void drawPlayer(TextGraphics textGraphics, Position position) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "P");
     }
 
     @Override
-    public void drawAmmo(Position position) {
-        TextGraphics textGraphics = screen.newTextGraphics();
+    public void drawAmmo(TextGraphics textGraphics, Position position) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#E7D501"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "|");
     }
 
     @Override
-    public void drawAlien(Position position) {
-        TextGraphics textGraphics = screen.newTextGraphics();
+    public void drawAlien(TextGraphics textGraphics, Position position) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#07C400"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "A");
