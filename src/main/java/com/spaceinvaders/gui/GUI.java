@@ -5,8 +5,11 @@ import com.spaceinvaders.Position;
 import java.io.IOException;
 
 public interface GUI {
+enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
+
     int getWidth();
     int getHeight();
+    Action getAction() throws IOException;
 
     void refresh() throws IOException;
     void clear();
