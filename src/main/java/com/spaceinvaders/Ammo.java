@@ -1,11 +1,6 @@
 package com.spaceinvaders;
 
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-
-public class Ammo extends Element implements DrawCommand{
+public class Ammo extends Element{
 
     private int direction;
     private int damage;
@@ -48,12 +43,5 @@ public class Ammo extends Element implements DrawCommand{
 
     public void shoot(){
 
-    }
-
-    @Override
-    public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#E7D501"));
-        screen.enableModifiers(SGR.BOLD);
-        screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "|");
     }
 }

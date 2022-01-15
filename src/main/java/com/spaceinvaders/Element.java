@@ -1,7 +1,5 @@
 package com.spaceinvaders;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
-
 public abstract class Element {
     protected char character;
     protected Position position;
@@ -26,7 +24,5 @@ public abstract class Element {
     public void setCharacter(char character) {
         this.character = character;
     }
-
-    public abstract void draw(TextGraphics screen);
 
 }

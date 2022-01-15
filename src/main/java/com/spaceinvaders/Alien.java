@@ -1,11 +1,6 @@
 package com.spaceinvaders;
 
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-
-public class Alien extends Element implements DrawCommand{
+public class Alien extends Element {
     private int direction = 1;
 
     public Alien(int x, int y, char character){
@@ -55,11 +50,4 @@ public class Alien extends Element implements DrawCommand{
         }
     }
     */
-
-    @Override
-    public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#07C400"));
-        screen.enableModifiers(SGR.BOLD);
-        screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "A");
-    }
 }

@@ -1,11 +1,6 @@
 package com.spaceinvaders;
 
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
-
-public class Player extends Element implements DrawCommand{
+public class Player extends Element{
 
     public Player(int x, int y, char character){
         super(x,y,character);
@@ -34,12 +29,5 @@ public class Player extends Element implements DrawCommand{
     public void shoot(Arena arena){
         Ammo ammo = new Ammo(getPosition().getX(), getPosition().getY() - 1, '|', -1, 1);
         arena.getProjectiles().add(ammo);
-    }
-
-    @Override
-    public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        screen.enableModifiers(SGR.BOLD);
-        screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "P");
     }
 }
