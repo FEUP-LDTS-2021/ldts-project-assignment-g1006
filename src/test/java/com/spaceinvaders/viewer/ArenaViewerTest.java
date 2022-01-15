@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ArenaViewerTest {
@@ -28,7 +29,7 @@ public class ArenaViewerTest {
     }
 
     @Test
-    void draw() {
+    void draw() throws IOException {
         arenaViewer.draw();
 
         TextGraphics tg = gui.createTextGraphics();
