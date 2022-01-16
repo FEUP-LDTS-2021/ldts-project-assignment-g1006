@@ -102,8 +102,11 @@ public class ArenaController extends Controller<Arena> {
                 while (it2.hasNext()) {
                     Ammo ammo = it2.next();
                     if (alien.getPosition().equals(ammo.getPosition())) {
-                        it1.remove();
-                        it2.remove();
+                        alien.handleShot(ammo);
+                        if(alien.isDead()){
+                            it1.remove();
+                            it2.remove();
+                        }
                         break;
                     }
                 }
