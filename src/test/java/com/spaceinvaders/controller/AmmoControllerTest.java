@@ -2,6 +2,8 @@ package com.spaceinvaders.controller;
 
 import com.spaceinvaders.model.Ammo;
 import com.spaceinvaders.model.Arena;
+import com.spaceinvaders.model.Position;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -19,12 +21,22 @@ public class AmmoControllerTest {
     }
 
     @Test
-    void move(){
-        Ammo ammo = Mockito.mock(Ammo.class);
+    void moveUp(){
+        Ammo ammo = new Ammo(10,10,'|', -1, 0);
         Mockito.when(arena.getProjectiles()).thenReturn(List.of(ammo));
 
         ammoController.step();
 
-        Mockito.verify(ammo, Mockito.times(1)).move();
+        Assertions.assertEquals(ammo.getPosition(), new Position(10, 9));
+    }
+
+    @Test
+    void moveDown(){
+        Ammo ammo = new Ammo(10,10,'|', 1, 0);
+        Mockito.when(arena.getProjectiles()).thenReturn(List.of(ammo));
+
+        ammoController.step();
+
+        Assertions.assertEquals(ammo.getPosition(), new Position(10, 11));
     }
 }
