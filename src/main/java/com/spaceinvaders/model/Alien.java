@@ -57,6 +57,11 @@ public class Alien extends Element {
         dead = true;
     }
 
+    public void handleShot(Ammo ammo){
+
+    }
+
+
     /*
     public boolean freeToShoot(com.spaceinvaders.model.Arena arena){
         for (com.spaceinvaders.model.Alien alien : arena.getAliens()){
