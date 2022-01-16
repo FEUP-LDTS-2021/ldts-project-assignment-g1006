@@ -2,6 +2,8 @@ package com.spaceinvaders
 
 import com.spaceinvaders.model.Alien
 import com.spaceinvaders.model.Arena
+import com.spaceinvaders.model.ArmoredAlienStrategy
+import com.spaceinvaders.model.NormalAlienStrategy
 import spock.lang.Specification
 
 class AlienSpockTest extends Specification{
@@ -20,6 +22,24 @@ class AlienSpockTest extends Specification{
 
         then:
         alien.getDirection() == -1
+    }
+
+    def "alien strategy test"(){
+        given:
+        def alien1 = new Alien(10,10, 'A' as char,0)
+        def alien2 = new Alien(10,10, 'A' as char,1)
+
+        when:
+        def strategy = alien1.getStrategy()
+
+        then:
+        strategy instanceof NormalAlienStrategy
+
+        when:
+        strategy = alien2.getStrategy()
+
+        then:
+        strategy instanceof ArmoredAlienStrategy
     }
 
     /*
