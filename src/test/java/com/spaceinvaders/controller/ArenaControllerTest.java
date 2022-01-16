@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArenaControllerTest {
     private ArenaController arenaController;
@@ -155,22 +156,40 @@ public class ArenaControllerTest {
         Assertions.assertTrue(arenaController.checkLimits(new Position(19, 10)));
     }
 
-//    @Test
-//    void checkAlienProjectilesCollisions(){
-//        Arena arena = new Arena(40, 20);
-//        Alien alien = new Alien(1,1,'A');
-//        Ammo ammo = new Ammo(1,1,'|', 1, 0);
-//
-//        List<List<Alien>> aliens = List.of(List.of(alien));
-//        List<Ammo> projectiles = List.of(ammo);
-//
-//        arena.setAliens(aliens);
-//        arena.setProjectiles(projectiles);
-//
-//        ArenaController arenaController = new ArenaController(arena, gui);
-//        arenaController.checkAlienProjectilesCollisions();
-//
-//        Assertions.assertEquals(aliens.size(), 0);
-//        Assertions.assertEquals(projectiles.size(), 0);
-//    }
+    @Test
+    void checkAlienProjectilesCollisions(){
+        Arena arena = new Arena(40, 20);
+        Alien alien = new Alien(10,14,'A',0);
+        Ammo ammo = new Ammo(10,14,'|', -1, 1);
+
+        List<List<Alien>> aliens = new ArrayList<>(new ArrayList<>());
+        List<Alien> listAlien = new ArrayList<>();
+        listAlien.add(alien);
+        aliens.add(listAlien);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        projectiles.add(ammo);
+
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        ArenaController arenaController = new ArenaController(arena, gui);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertTrue(alien.isDead());
+
+
+        alien.setArmor(1);
+        aliens = List.of(List.of(alien));
+        projectiles = List.of(ammo);
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertFalse(alien.isDead());
+        Assertions.assertEquals(alien.getArmor(),0);
+        Assertions.assertEquals(ammo.getDirection(),1);
+    }
 }
