@@ -11,8 +11,6 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
 
 public class ArenaControllerTest {
     private ArenaController arenaController;
@@ -35,7 +33,55 @@ public class ArenaControllerTest {
         this.alienController = Mockito.mock(AlienController.class);
         this.ammoController = Mockito.mock(AmmoController.class);
 
-        this.arenaController = new ArenaController(arena, arenaViewer, gui, playerController, alienController, ammoController);
+        this.arenaController = new ArenaController(arena, gui);
+        arenaController.setAlienController(alienController);
+        arenaController.setAmmoController(ammoController);
+        arenaController.setArenaViewer(arenaViewer);
+        arenaController.setPlayerController(playerController);
+    }
+
+    @Test
+    void getArenaViewer(){
+        Assertions.assertEquals(arenaController.getArenaViewer(), arenaViewer);
+    }
+
+    @Test
+    void getAmmoController(){
+        Assertions.assertEquals(arenaController.getAmmoController(), ammoController);
+    }
+
+    @Test
+    void getAlienController(){
+        Assertions.assertEquals(arenaController.getAlienController(), alienController);
+    }
+
+    @Test
+    void getPlayerController(){
+        Assertions.assertEquals(arenaController.getPlayerController(), playerController);
+    }
+
+    @Test
+    void setArenaViewer() {
+        arenaController.setArenaViewer(arenaViewer);
+        Assertions.assertEquals(arenaController.getArenaViewer(), arenaViewer);
+    }
+
+    @Test
+    void setAmmoController() {
+        arenaController.setAmmoController(ammoController);
+        Assertions.assertEquals(arenaController.getAmmoController(), ammoController);
+    }
+
+    @Test
+    void setAlienController() {
+        arenaController.setAlienController(alienController);
+        Assertions.assertEquals(arenaController.getAlienController(), alienController);
+    }
+
+    @Test
+    void setPlayerController() {
+        arenaController.setPlayerController(playerController);
+        Assertions.assertEquals(arenaController.getPlayerController(), playerController);
     }
 
     @Test
