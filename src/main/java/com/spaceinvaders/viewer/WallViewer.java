@@ -6,6 +6,6 @@ import com.spaceinvaders.model.Wall;
 public class WallViewer implements ElementViewer<Wall> {
     @Override
     public void drawElement(Wall element, GUI gui) {
-        gui.drawPlayer(gui.createTextGraphics(), element.getPosition());
+        gui.drawWall(gui.createTextGraphics(), element.getPosition());
     }
 }
