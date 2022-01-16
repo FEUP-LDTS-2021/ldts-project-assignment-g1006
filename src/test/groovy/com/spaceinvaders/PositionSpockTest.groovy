@@ -1,3 +1,6 @@
+package com.spaceinvaders
+
+import com.spaceinvaders.model.Position
 import spock.lang.Specification
 
 class PositionSpockTest extends Specification{

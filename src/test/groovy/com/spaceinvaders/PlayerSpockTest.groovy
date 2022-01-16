@@ -1,21 +1,14 @@
-import com.googlecode.lanterna.TerminalSize
-import com.googlecode.lanterna.screen.Screen
-import com.googlecode.lanterna.screen.TerminalScreen
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory
-import com.googlecode.lanterna.terminal.Terminal
-import org.mockito.Mockito
+package com.spaceinvaders
+
+import com.spaceinvaders.model.Arena
+import com.spaceinvaders.model.Player
+import com.spaceinvaders.model.Position
 import spock.lang.Specification
 
 class PlayerSpockTest extends Specification{
-    private Screen screen
     private Arena arena
 
     def setup(){
-        def terminalSize = new TerminalSize(20, 20)
-        def terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize)
-        def terminal = terminalFactory.createTerminal()
-        Screen screen = new TerminalScreen(terminal)
-        this.screen = screen
         this.arena = Mock(Arena.class)
     }
 
@@ -74,16 +67,5 @@ class PlayerSpockTest extends Specification{
         then:
         arena1.getProjectiles()[0].getPosition().getX() == player.getPosition().getX()
         arena1.getProjectiles()[0].getPosition().getY() == player.getPosition().getY() - 1
-    }
-
-    def "draw player character"(){
-        given:
-        def player = new Player(10,10, 'P' as char)
-
-        when:
-        player.draw(screen.newTextGraphics())
-
-        then:
-        screen.getBackCharacter(10,10).getCharacter() == player.getCharacter()
     }
 }

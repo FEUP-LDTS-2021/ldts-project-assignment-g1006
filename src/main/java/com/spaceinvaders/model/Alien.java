@@ -1,12 +1,6 @@
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
+package com.spaceinvaders.model;
 
-import java.util.List;
-import java.util.Objects;
-
-public class Alien extends Element{
+public class Alien extends Element {
     private int direction = 1;
 
     public Alien(int x, int y, char character){
@@ -40,8 +34,8 @@ public class Alien extends Element{
     }
 
     /*
-    public boolean freeToShoot(Arena arena){
-        for (Alien alien : arena.getAliens()){
+    public boolean freeToShoot(com.spaceinvaders.model.Arena arena){
+        for (com.spaceinvaders.model.Alien alien : arena.getAliens()){
             if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()){
                 return false;
             }
@@ -49,18 +43,11 @@ public class Alien extends Element{
         return true;
     }
 
-    public void shoot(Arena arena){
+    public void shoot(com.spaceinvaders.model.Arena arena){
         if (freeToShoot(arena)){
-            Ammo ammo = new Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
+            com.spaceinvaders.model.Ammo ammo = new com.spaceinvaders.model.Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
             arena.getProjectiles().add(ammo);
         }
     }
     */
-
-    @Override
-    public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#07C400"));
-        screen.enableModifiers(SGR.BOLD);
-        screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "A");
-    }
 }

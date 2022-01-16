@@ -1,6 +1,8 @@
-import com.googlecode.lanterna.graphics.TextGraphics;
+package com.spaceinvaders.model;
 
-public abstract class Element implements DrawCommand{
+import com.spaceinvaders.model.Position;
+
+public abstract class Element {
     protected char character;
     protected Position position;
 
@@ -24,8 +26,5 @@ public abstract class Element implements DrawCommand{
     public void setCharacter(char character) {
         this.character = character;
     }
-
-    @Override
-    public abstract void draw(TextGraphics screen);
 
 }

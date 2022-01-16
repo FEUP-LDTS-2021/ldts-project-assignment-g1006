@@ -1,7 +1,4 @@
-import com.googlecode.lanterna.SGR;
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
+package com.spaceinvaders.model;
 
 public class Ammo extends Element {
 
@@ -46,12 +43,5 @@ public class Ammo extends Element {
 
     public void shoot(){
 
-    }
-
-    @Override
-    public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#E7D501"));
-        screen.enableModifiers(SGR.BOLD);
-        screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "|");
     }
 }
