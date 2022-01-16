@@ -2,7 +2,6 @@ package com.spaceinvaders
 
 import com.spaceinvaders.model.Alien
 import com.spaceinvaders.model.Arena
-import com.spaceinvaders.model.Position
 import spock.lang.Specification
 
 class AlienSpockTest extends Specification{
@@ -10,49 +9,6 @@ class AlienSpockTest extends Specification{
 
     def setup(){
         this.arena = Mock(Arena.class)
-    }
-
-    def "alien move outside of the arena (right side)"(){
-        given:
-        arena.getWidth() >> 20
-        def alien = new Alien(20,10,'A' as char)
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(20,10)
-    }
-
-    def "alien move outside of the arena (left side)"(){
-        given:
-        def alien = new Alien(0,10,'A' as char)
-        arena.getWidth() >> 20
-        alien.changeDirection()
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(0,10)
-    }
-
-    def "alien movement"(){
-        given:
-        arena.getWidth() >> 20
-        def alien = new Alien(10,20,'A' as char)
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(11,20);
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(12,20);
     }
 
     def "change alien movement direction"(){
@@ -64,26 +20,6 @@ class AlienSpockTest extends Specification{
 
         then:
         alien.getDirection() == -1
-    }
-
-    def "alien movement decision"(){
-        given:
-        arena.getWidth() >> 20
-        def alien = new Alien(10,10, 'A' as char)
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(11,10);
-
-        when:
-        alien.changeDirection()
-        alien.move(arena)
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(9,10);
     }
 
     /*
