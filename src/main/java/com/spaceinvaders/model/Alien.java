@@ -33,7 +33,7 @@ public class Alien extends Element {
         return strategy;
     }
 
-    public void setStrategy(){
+    private void setStrategy(){
         if(armor > 0)
             this.strategy = new ArmoredAlienStrategy();
         else
