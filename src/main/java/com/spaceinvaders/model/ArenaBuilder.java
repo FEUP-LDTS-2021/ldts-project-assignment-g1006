@@ -9,6 +9,7 @@ public class ArenaBuilder {
         arena.setAliens(createAliens());
         arena.setProjectiles(createProjectiles());
         arena.setPlayer(createPlayer());
+        arena.setWalls(createWalls());
         return arena;
     }
 
@@ -34,6 +35,17 @@ public class ArenaBuilder {
     }
 
     private Player createPlayer(){
-        return new Player(5,15,'P');
+        return new Player(5,20,'P');
+    }
+
+    private List<Wall> createWalls(){
+        int x = 10; int y = 17; int health = 2; int size = 3;
+        List<Wall> walls = new ArrayList<>();
+        while (x <= 40){
+            for (int i = 0; i<size; i++)
+                walls.add(new Wall(x+i, y, 'O', health));
+            x += 10;
+        }
+        return walls;
     }
 }
