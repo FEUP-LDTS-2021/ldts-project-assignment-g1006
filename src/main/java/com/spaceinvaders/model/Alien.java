@@ -62,7 +62,7 @@ public class Alien extends Element {
     }
 
     public void handleShot(Ammo ammo){
-
+        setArmor(strategy.handleShot(getArmor(),ammo));
     }
 
 
