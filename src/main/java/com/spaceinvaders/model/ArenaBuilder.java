@@ -19,7 +19,7 @@ public class ArenaBuilder {
         for(int i = 0; i < numberOfRows; i++){
             List<Alien> row = new ArrayList<>();
             for(int j = 0; j < aliensPerRow; j++){
-                row.add(new Alien(j, i, 'A'));
+                row.add(new Alien(j, i, 'A',0));
             }
             aliens.add(row);
         }

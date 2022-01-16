@@ -2,9 +2,11 @@ package com.spaceinvaders.model;
 
 public class Alien extends Element {
     private int direction = 1;
+    private int armor;
 
-    public Alien(int x, int y, char character){
+    public Alien(int x, int y, char character, int armor){
         super(x, y, character);
+        this.armor = armor;
     }
 
     @Override
