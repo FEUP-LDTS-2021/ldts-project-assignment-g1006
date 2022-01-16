@@ -45,8 +45,14 @@ public class Alien extends Element {
             setAsDead();
             return;
         }
+        else
+            setAsAlive();
         this.armor = armor;
         setStrategy();
+    }
+
+    private void setAsAlive() {
+
     }
 
     public int getArmor(){
