@@ -7,7 +7,7 @@ public class Alien extends Element {
 
     public Alien(int x, int y, char character, int armor){
         super(x, y, character);
-        this.armor = armor;
+        setArmor(armor);
         setStrategy();
     }
 
@@ -38,6 +38,10 @@ public class Alien extends Element {
             this.strategy = new ArmoredAlienStrategy();
         else
             this.strategy = new NormalAlienStrategy();
+    }
+
+    public void setArmor(int armor) {
+
     }
 
     /*
