@@ -1,5 +1,6 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.model.Ammo;
 import com.spaceinvaders.model.Arena;
 
 public class AmmoController extends Controller<Arena>{
@@ -9,6 +10,8 @@ public class AmmoController extends Controller<Arena>{
 
     @Override
     public void step() {
-
+        for (Ammo ammo : getModel().getProjectiles()){
+            ammo.move();
+        }
     }
 }
