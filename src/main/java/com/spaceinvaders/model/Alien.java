@@ -3,6 +3,7 @@ package com.spaceinvaders.model;
 public class Alien extends Element {
     private int direction = 1;
     private int armor;
+    private AlienStrategy strategy;
 
     public Alien(int x, int y, char character, int armor){
         super(x, y, character);
@@ -25,6 +26,14 @@ public class Alien extends Element {
 
     public void changeDirection() {
         direction*=-1;
+    }
+
+    public AlienStrategy getStrategy(){
+        return strategy;
+    }
+
+    public void setStrategy(){
+
     }
 
     /*
