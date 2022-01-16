@@ -8,6 +8,7 @@ public class Arena {
     private Player player;
     private List<List<Alien>> aliens;
     private List<Ammo> projectiles;
+    private List<Wall> walls;
 
     public Arena(int width, int height){
         this.width = width;
@@ -46,4 +47,11 @@ public class Arena {
         this.projectiles = projectiles;
     }
 
+    public List<Wall> getWalls() {
+        return walls;
+    }
+
+    public void setWalls(List<Wall> walls) {
+        this.walls = walls;
+    }
 }

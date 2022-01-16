@@ -144,4 +144,12 @@ public class LanternaGUI implements GUI {
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "A");
     }
+
+    @Override
+    public void drawWall(TextGraphics textGraphics, Position position) {
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
+        textGraphics.setForegroundColor(TextColor.Factory.fromString("#666666"));
+        textGraphics.enableModifiers(SGR.BOLD);
+        textGraphics.putString(position.getX(), position.getY(), "O");
+    }
 }

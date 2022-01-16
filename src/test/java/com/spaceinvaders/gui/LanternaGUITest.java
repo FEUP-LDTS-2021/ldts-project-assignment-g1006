@@ -68,6 +68,13 @@ public class LanternaGUITest {
     }
 
     @Test
+    void drawWall(){
+        Position  position = new Position(10,10);
+        gui.drawWall(textGraphics, position);
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "O");
+    }
+
+    @Test
     void getKeyClose() throws IOException {
         KeyStroke key = Mockito.mock(KeyStroke.class);
         Mockito.when(terminalScreen.pollInput()).thenReturn(key);

@@ -144,7 +144,7 @@ public class ArenaControllerTest {
     void processActionKeyUp(){
         arenaController.processAction(GUI.Action.KEYUP);
 
-        Mockito.when(arena.getProjectiles()).thenReturn(new ArrayList<Ammo>());
+        Mockito.when(arena.getProjectiles()).thenReturn(new ArrayList<>());
         Mockito.verify(playerController, Mockito.times(1)).shoot();
     }
 
@@ -191,5 +191,24 @@ public class ArenaControllerTest {
         Assertions.assertFalse(alien.isDead());
         Assertions.assertEquals(alien.getArmor(),0);
         Assertions.assertEquals(ammo.getDirection(),1);
+    }
+
+    @Test
+    void checkWallProjectilesCollisions() {
+        Arena arena = new Arena(40, 20);
+        Wall wall = new Wall(1, 1, 'O', 1);
+        Ammo ammo = new Ammo(1, 1, '|', 1, 1);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        List<Wall> walls = new ArrayList<>();
+        walls.add(wall);
+        projectiles.add(ammo);
+
+        arena.setWalls(walls);
+
+        arenaController.checkWallProjectilesCollisions();
+
+        Assertions.assertEquals(walls.size(), 0);
+        Assertions.assertEquals(projectiles.size(), 0);
     }
 }
