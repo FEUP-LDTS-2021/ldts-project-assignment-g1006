@@ -52,7 +52,7 @@ public class Alien extends Element {
     }
 
     private void setAsAlive() {
-
+        dead = false;
     }
 
     public int getArmor(){
