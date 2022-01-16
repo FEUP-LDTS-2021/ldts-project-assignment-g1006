@@ -8,7 +8,6 @@ public class Alien extends Element {
     public Alien(int x, int y, char character, int armor){
         super(x, y, character);
         setArmor(armor);
-        setStrategy();
     }
 
     @Override
@@ -41,7 +40,8 @@ public class Alien extends Element {
     }
 
     public void setArmor(int armor) {
-
+        this.armor = armor;
+        setStrategy();
     }
 
     /*
