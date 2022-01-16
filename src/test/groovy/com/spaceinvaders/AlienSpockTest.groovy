@@ -104,6 +104,23 @@ class AlienSpockTest extends Specification{
         ammo.getDirection() == -1
     }
 
+    def "alien test if alive"(){
+        given:
+        def alien = new Alien(10,10,'A' as char,1)
+
+        when:
+        alien.setArmor(-1)
+
+        then:
+        alien.isDead()
+
+        when:
+        alien.setArmor(0)
+
+        then:
+        !alien.isDead()
+    }
+
     /*
     def "test if there is an alien below"(){
         given:
