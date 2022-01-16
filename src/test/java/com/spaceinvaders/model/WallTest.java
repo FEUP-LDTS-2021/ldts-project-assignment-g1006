@@ -13,6 +13,17 @@ public class WallTest {
     }
 
     @Test
+    void getPosition(){
+        Assertions.assertEquals(wall.getPosition(), new Position(1,1));
+    }
+
+    @Test
+    void setPosition(){
+        wall.setPosition(new Position(2,2));
+        Assertions.assertEquals(wall.getPosition(), new Position(2,2));
+    }
+
+    @Test
     void getHealth(){
         Assertions.assertEquals(wall.getHealth(), 3);
     }
