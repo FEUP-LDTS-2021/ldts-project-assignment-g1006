@@ -54,7 +54,7 @@ public class Alien extends Element {
     }
 
     public void setAsDead(){
-
+        dead = true;
     }
 
     /*
