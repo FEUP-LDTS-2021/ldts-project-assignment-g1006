@@ -49,6 +49,10 @@ public class Alien extends Element {
         setStrategy();
     }
 
+    public int getArmor(){
+        return armor;
+    }
+
     public Boolean isDead(){
         return dead;
     }
