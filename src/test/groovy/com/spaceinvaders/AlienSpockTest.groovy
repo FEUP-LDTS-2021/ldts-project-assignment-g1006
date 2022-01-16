@@ -42,6 +42,24 @@ class AlienSpockTest extends Specification{
         strategy instanceof ArmoredAlienStrategy
     }
 
+    def "alien change strategy test"(){
+        given:
+        def alien1 = new Alien(10,10, 'A' as char,0)
+
+        when:
+        def strategy = alien1.getStrategy()
+
+        then:
+        strategy instanceof NormalAlienStrategy
+
+        when:
+        alien1.setArmor(1)
+        strategy = alien1.getStrategy()
+
+        then:
+        strategy instanceof ArmoredAlienStrategy
+    }
+
     /*
     def "test if there is an alien below"(){
         given:
