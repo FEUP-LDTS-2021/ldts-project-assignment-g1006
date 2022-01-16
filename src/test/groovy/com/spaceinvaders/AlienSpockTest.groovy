@@ -13,7 +13,7 @@ class AlienSpockTest extends Specification{
 
     def "change alien movement direction"(){
         given:
-        def alien = new Alien(10,10, 'A' as char)
+        def alien = new Alien(10,10, 'A' as char,0)
 
         when:
         alien.changeDirection()
