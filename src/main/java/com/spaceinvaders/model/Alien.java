@@ -4,6 +4,7 @@ public class Alien extends Element {
     private int direction = 1;
     private int armor;
     private AlienStrategy strategy;
+    private Boolean dead = false;
 
     public Alien(int x, int y, char character, int armor){
         super(x, y, character);
@@ -40,8 +41,20 @@ public class Alien extends Element {
     }
 
     public void setArmor(int armor) {
+        if(armor < 0){
+            setAsDead();
+            return;
+        }
         this.armor = armor;
         setStrategy();
+    }
+
+    public Boolean isDead(){
+        return dead;
+    }
+
+    public void setAsDead(){
+
     }
 
     /*

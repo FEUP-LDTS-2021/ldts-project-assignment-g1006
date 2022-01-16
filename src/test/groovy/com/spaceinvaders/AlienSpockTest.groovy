@@ -60,6 +60,26 @@ class AlienSpockTest extends Specification{
         strategy instanceof ArmoredAlienStrategy
     }
 
+    def "alien test if dead"(){
+        given:
+        def alien = new Alien(10,10,'A' as char,1)
+
+        expect:
+        !alien.isDead()
+
+        when:
+        alien.setArmor(0)
+
+        then:
+        !alien.isDead()
+
+        when:
+        alien.setArmor(-1)
+
+        then:
+        alien.isDead()
+    }
+
     /*
     def "test if there is an alien below"(){
         given:
