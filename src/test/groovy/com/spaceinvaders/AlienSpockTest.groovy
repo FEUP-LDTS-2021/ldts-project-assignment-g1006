@@ -1,6 +1,7 @@
 package com.spaceinvaders
 
 import com.spaceinvaders.model.Alien
+import com.spaceinvaders.model.Ammo
 import com.spaceinvaders.model.Arena
 import com.spaceinvaders.model.ArmoredAlienStrategy
 import com.spaceinvaders.model.NormalAlienStrategy
@@ -78,6 +79,29 @@ class AlienSpockTest extends Specification{
 
         then:
         alien.isDead()
+    }
+
+    def "handle shot test"(){
+        given:
+        def alien = new Alien(10,10,'A' as char, 2)
+        def ammo = new Ammo(10,10,'|' as char, -1,1)
+
+        when:
+        alien.handleShot(ammo)
+
+        then:
+        alien.getArmor() == 1
+        ammo.getDirection() == 1
+        !alien.isDead()
+
+        when:
+        alien.setArmor(0)
+        ammo.setDirection(-1)
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDirection() == -1
     }
 
     /*
