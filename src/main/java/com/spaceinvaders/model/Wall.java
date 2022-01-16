@@ -9,10 +9,10 @@ public class Wall extends Element{
     }
 
     public int getHealth() {
-        return 0;
+        return health;
     }
 
     public void decreaseHealth(int damage){
-
+        this.health -= damage;
     }
 }
