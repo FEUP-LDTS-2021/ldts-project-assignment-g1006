@@ -1,5 +1,8 @@
 # ldts-project-assignment-g1006
 ldts-project-assignment-g1006 created by GitHub Classroom
+
+[![BCH compliance](https://bettercodehub.com/edge/badge/FEUP-LDTS-2021/ldts-project-assignment-g1006?branch=main&token=6c2912fabeb46d2118283b31263a3e4c40ce67a8)](https://bettercodehub.com/)
+
 ## LDTS_<10><1006> - Space Invaders
 
 
