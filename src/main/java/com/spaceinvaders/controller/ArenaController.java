@@ -12,31 +12,53 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ArenaController extends Controller<Arena> {
-    private final PlayerController playerController;
-    private final AlienController alienController;
-    private final AmmoController ammoController;
-    private final ArenaViewer arenaViewer;
+    private PlayerController playerController;
+    private AlienController alienController;
+    private AmmoController ammoController;
+    private ArenaViewer arenaViewer;
     private final GUI gui;
     private boolean exit;
 
     public ArenaController(Arena model, GUI gui) {
         super(model);
         this.gui = gui;
-        this.playerController = new PlayerController(getModel().getPlayer());
-        this.alienController = new AlienController(getModel());
-        this.ammoController = new AmmoController(getModel());
-        this.arenaViewer = new ArenaViewer(gui, getModel());
+        setPlayerController(new PlayerController(getModel().getPlayer()));
+        setAlienController(new AlienController(getModel()));
+        setAmmoController(new AmmoController(getModel()));
+        setArenaViewer(new ArenaViewer(gui, getModel()));
         this.exit = false;
     }
 
-    public ArenaController(Arena arena, ArenaViewer arenaViewer, GUI gui, PlayerController playerController, AlienController alienController, AmmoController ammoController) {
-        super(arena);
-        this.gui = gui;
-        this.playerController = playerController;
+    public AlienController getAlienController() {
+        return alienController;
+    }
+
+    public AmmoController getAmmoController() {
+        return ammoController;
+    }
+
+    public ArenaViewer getArenaViewer() {
+        return arenaViewer;
+    }
+
+    public PlayerController getPlayerController() {
+        return playerController;
+    }
+
+    public void setAlienController(AlienController alienController){
         this.alienController = alienController;
+    }
+
+    public void setAmmoController(AmmoController ammoController) {
         this.ammoController = ammoController;
+    }
+
+    public void setArenaViewer(ArenaViewer arenaViewer) {
         this.arenaViewer = arenaViewer;
-        this.exit = false;
+    }
+
+    public void setPlayerController(PlayerController playerController) {
+        this.playerController = playerController;
     }
 
     public boolean exit(){
