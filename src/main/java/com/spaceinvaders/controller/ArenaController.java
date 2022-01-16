@@ -1,10 +1,7 @@
 package com.spaceinvaders.controller;
 
 import com.spaceinvaders.gui.GUI;
-import com.spaceinvaders.model.Alien;
-import com.spaceinvaders.model.Ammo;
-import com.spaceinvaders.model.Arena;
-import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.*;
 import com.spaceinvaders.viewer.ArenaViewer;
 
 import java.io.IOException;
@@ -72,6 +69,7 @@ public class ArenaController extends Controller<Arena> {
         alienController.step();
         ammoController.step();
         checkAlienProjectilesCollisions();
+        checkWallProjectilesCollisions();
     }
 
     public void processAction(GUI.Action action){
@@ -106,6 +104,21 @@ public class ArenaController extends Controller<Arena> {
                         it2.remove();
                         break;
                     }
+                }
+            }
+        }
+    }
+
+    public void checkWallProjectilesCollisions(){
+        for (int i = getModel().getWalls().size() - 1; i >= 0; i--) {
+            Wall wall = getModel().getWalls().get(i);
+            for (int j = getModel().getProjectiles().size() - 1; j >= 0; j--){
+                Ammo ammo = getModel().getProjectiles().get(j);
+                if (ammo.getPosition().equals(wall.getPosition())) {
+                    wall.decreaseHealth(ammo.getDamage());
+                    if (wall.getHealth() <= 0)
+                        getModel().getWalls().remove(i);
+                    getModel().getProjectiles().remove(j);
                 }
             }
         }
