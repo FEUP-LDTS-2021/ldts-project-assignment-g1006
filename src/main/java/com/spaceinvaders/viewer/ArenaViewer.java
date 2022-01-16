@@ -25,6 +25,7 @@ public class ArenaViewer {
 
         for (List<Alien> list : arena.getAliens()) drawElements(list, new AlienViewer());
         drawElements(arena.getProjectiles(), new AmmoViewer());
+        drawElements(arena.getWalls(), new WallViewer());
         drawElement(arena.getPlayer(), new PlayerViewer());
 
         gui.refresh();
