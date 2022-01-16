@@ -17,6 +17,7 @@ public class ArenaControllerTest {
     private ArenaController arenaController;
     private PlayerController playerController;
     private AlienController alienController;
+    private AmmoController ammoController;
     private ArenaViewer arenaViewer;
     private GUI gui;
     private Arena arena;
@@ -31,8 +32,9 @@ public class ArenaControllerTest {
         this.playerController = Mockito.mock(PlayerController.class);
         this.arenaViewer = Mockito.mock(ArenaViewer.class);
         this.alienController = Mockito.mock(AlienController.class);
+        this.ammoController = Mockito.mock(AmmoController.class);
 
-        this.arenaController = new ArenaController(arena, arenaViewer, gui, playerController, alienController);
+        this.arenaController = new ArenaController(arena, arenaViewer, gui, playerController, alienController, ammoController);
     }
 
     @Test
@@ -42,6 +44,7 @@ public class ArenaControllerTest {
         arenaController.step();
 
         Mockito.verify(alienController, Mockito.times(1)).step();
+        Mockito.verify(ammoController, Mockito.times(1)).step();
         Mockito.verify(arenaViewer, Mockito.times(1)).draw();
     }
 
