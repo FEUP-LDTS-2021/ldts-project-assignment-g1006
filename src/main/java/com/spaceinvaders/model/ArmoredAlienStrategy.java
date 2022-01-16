@@ -3,6 +3,7 @@ package com.spaceinvaders.model;
 public class ArmoredAlienStrategy implements AlienStrategy{
     @Override
     public int handleShot(int armor, Ammo ammo) {
-        return 0;
+        ammo.setDirection(ammo.getDirection()*-1);
+        return armor - ammo.getDamage();
     }
 }
