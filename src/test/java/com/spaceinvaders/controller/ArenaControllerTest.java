@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ArenaControllerTest {
@@ -107,4 +108,23 @@ public class ArenaControllerTest {
         Assertions.assertTrue(arenaController.checkLimits(new Position(0, 10)));
         Assertions.assertTrue(arenaController.checkLimits(new Position(19, 10)));
     }
+
+//    @Test
+//    void checkAlienProjectilesCollisions(){
+//        Arena arena = new Arena(40, 20);
+//        Alien alien = new Alien(1,1,'A');
+//        Ammo ammo = new Ammo(1,1,'|', 1, 0);
+//
+//        List<List<Alien>> aliens = List.of(List.of(alien));
+//        List<Ammo> projectiles = List.of(ammo);
+//
+//        arena.setAliens(aliens);
+//        arena.setProjectiles(projectiles);
+//
+//        ArenaController arenaController = new ArenaController(arena, gui);
+//        arenaController.checkAlienProjectilesCollisions();
+//
+//        Assertions.assertEquals(aliens.size(), 0);
+//        Assertions.assertEquals(projectiles.size(), 0);
+//    }
 }

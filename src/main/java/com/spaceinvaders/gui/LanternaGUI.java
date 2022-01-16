@@ -123,6 +123,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawPlayer(TextGraphics textGraphics, Position position) {
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "P");
@@ -130,6 +131,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawAmmo(TextGraphics textGraphics, Position position) {
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#E7D501"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "|");
@@ -137,6 +139,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawAlien(TextGraphics textGraphics, Position position) {
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#07C400"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "A");
