@@ -1,5 +1,6 @@
 package com.spaceinvaders;
 
+import com.spaceinvaders.state.GameState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,5 +22,16 @@ public class GameTest {
         Game game1 = Game.getInstance();
         Assertions.assertNotNull(game1);
         Assertions.assertEquals(game,game1);
+    }
+
+    @Test
+    void gameStateTest(){
+        GameState gameState = new GameState(game) {
+            @Override
+            public void step(Game game, long time) {}
+        };
+        game.setGameState(gameState);
+
+        Assertions.assertEquals(game.getGameState(), gameState);
     }
 }
