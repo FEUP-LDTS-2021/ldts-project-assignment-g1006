@@ -18,10 +18,11 @@ public class ArenaBuilder {
         int numberOfRows = 3;
         int aliensPerRow = 6;
         int maxArmorLevel = 3;
+        int minArmorLevel = 0;
         for(int i = 0; i < numberOfRows; i++){
             List<Alien> row = new ArrayList<>();
             for(int j = 0; j < aliensPerRow; j++){
-                int armorLevel = (int)Math.floor(Math.random() * (maxArmorLevel - 0 + 1) + 1);
+                int armorLevel = (int)Math.floor(Math.random() * (maxArmorLevel - minArmorLevel + 1) + minArmorLevel);
                 row.add(new Alien(j, i, 'A', armorLevel));
             }
             aliens.add(row);
