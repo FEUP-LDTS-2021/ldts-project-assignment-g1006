@@ -17,10 +17,12 @@ public class ArenaBuilder {
         List<List<Alien>> aliens = new ArrayList<>();
         int numberOfRows = 3;
         int aliensPerRow = 6;
+        int maxArmorLevel = 3;
         for(int i = 0; i < numberOfRows; i++){
             List<Alien> row = new ArrayList<>();
             for(int j = 0; j < aliensPerRow; j++){
-                row.add(new Alien(j, i, 'A',0));
+                int armorLevel = (int)Math.floor(Math.random() * (maxArmorLevel - 0 + 1) + 1);
+                row.add(new Alien(j, i, 'A', armorLevel));
             }
             aliens.add(row);
         }
