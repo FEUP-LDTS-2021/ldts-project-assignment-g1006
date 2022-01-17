@@ -213,4 +213,21 @@ public class ArenaControllerTest {
         Assertions.assertEquals(walls.size(), 0);
         Assertions.assertEquals(projectiles.size(), 0);
     }
+
+    @Test
+    void checkProjectilesOutOfBounds(){
+        Arena arena = new Arena(40, 20);
+        Ammo ammo1 = new Ammo(1, 1, '|', 1, 1);
+        Ammo ammo2 = new Ammo(41, 21, '|', 1, 1);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        projectiles.add(ammo1);
+        projectiles.add(ammo2);
+
+        arena.setProjectiles(projectiles);
+        ArenaController arenaController = new ArenaController(arena, gui);
+        arenaController.checkProjectilesOutOfBounds();
+
+        Assertions.assertEquals(projectiles.size(), 1);
+    }
 }
