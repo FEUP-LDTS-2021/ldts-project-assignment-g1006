@@ -35,7 +35,10 @@ public class ArenaViewerTest {
 
         for (List<Alien> list : arena.getAliens()){
             for (Alien alien : list)
-                Mockito.verify(gui, Mockito.times(1)).drawAlien(tg, alien.getPosition());
+                if(alien.getArmor() == 0)
+                    Mockito.verify(gui, Mockito.times(1)).drawNormalAlien(tg, alien.getPosition());
+                else
+                    Mockito.verify(gui, Mockito.times(1)).drawArmoredAlien(tg, alien.getPosition());
         }
 
         for (Ammo ammo : arena.getProjectiles()){

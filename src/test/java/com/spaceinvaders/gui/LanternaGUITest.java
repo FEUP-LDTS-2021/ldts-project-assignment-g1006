@@ -46,9 +46,16 @@ public class LanternaGUITest {
     }
 
     @Test
-    void drawAlien(){
+    void drawNormalAlien(){
         Position  position = new Position(10,10);
-        gui.drawAlien(textGraphics, position);
+        gui.drawNormalAlien(textGraphics, position);
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "A");
+    }
+
+    @Test
+    void drawArmoredAlien(){
+        Position  position = new Position(10,10);
+        gui.drawArmoredAlien(textGraphics, position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "A");
     }
 
