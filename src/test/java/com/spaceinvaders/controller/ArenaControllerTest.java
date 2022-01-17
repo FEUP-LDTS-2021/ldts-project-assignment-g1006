@@ -205,7 +205,9 @@ public class ArenaControllerTest {
         projectiles.add(ammo);
 
         arena.setWalls(walls);
-
+        arena.setProjectiles(projectiles);
+        ArenaController arenaController = new ArenaController(arena, gui);
+        
         arenaController.checkWallProjectilesCollisions();
 
         Assertions.assertEquals(walls.size(), 0);
