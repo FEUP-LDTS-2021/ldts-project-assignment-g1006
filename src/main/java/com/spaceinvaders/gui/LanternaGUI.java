@@ -116,13 +116,15 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawBackground(TextGraphics textGraphics) {
+    public void drawBackground() {
+        TextGraphics textGraphics = createTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
     }
 
     @Override
-    public void drawPlayer(TextGraphics textGraphics, Position position) {
+    public void drawPlayer(Position position) {
+        TextGraphics textGraphics = createTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         textGraphics.enableModifiers(SGR.BOLD);
@@ -130,7 +132,8 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawAmmo(TextGraphics textGraphics, Position position) {
+    public void drawAmmo(Position position) {
+        TextGraphics textGraphics = createTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#E7D501"));
         textGraphics.enableModifiers(SGR.BOLD);
@@ -138,7 +141,8 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawNormalAlien(TextGraphics textGraphics, Position position) {
+    public void drawNormalAlien(Position position) {
+        TextGraphics textGraphics = createTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#07C400"));
         textGraphics.enableModifiers(SGR.BOLD);
@@ -146,14 +150,16 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawArmoredAlien(TextGraphics textGraphics, Position position){
+    public void drawArmoredAlien(Position position){
+        TextGraphics textGraphics = createTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#E50000"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "A");}
 
     @Override
-    public void drawWall(TextGraphics textGraphics, Position position) {
+    public void drawWall(Position position) {
+        TextGraphics textGraphics = createTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#666666"));
         textGraphics.enableModifiers(SGR.BOLD);

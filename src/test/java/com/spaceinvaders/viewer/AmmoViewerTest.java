@@ -21,6 +21,6 @@ public class AmmoViewerTest {
     @Test
     void drawElement() {
         viewer.drawElement(ammo, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawPlayer(gui.createTextGraphics(), ammo.getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawAmmo(ammo.getPosition());
     }
 }

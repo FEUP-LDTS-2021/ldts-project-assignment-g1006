@@ -1,6 +1,5 @@
 package com.spaceinvaders.viewer;
 
-import com.googlecode.lanterna.graphics.TextGraphics;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.Alien;
 import com.spaceinvaders.model.Arena;
@@ -20,8 +19,7 @@ public class ArenaViewer {
 
     public void draw() throws IOException {
         gui.clear();
-        TextGraphics tg = gui.createTextGraphics();
-        gui.drawBackground(tg);
+        gui.drawBackground();
 
         for (List<Alien> list : arena.getAliens()) drawElements(list, new AlienViewer());
         drawElements(arena.getProjectiles(), new AmmoViewer());

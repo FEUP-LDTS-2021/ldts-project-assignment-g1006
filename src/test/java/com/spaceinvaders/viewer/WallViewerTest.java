@@ -21,6 +21,6 @@ public class WallViewerTest {
     @Test
     void drawElement() {
         viewer.drawElement(wall, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawWall(gui.createTextGraphics(), wall.getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawWall(wall.getPosition());
     }
 }

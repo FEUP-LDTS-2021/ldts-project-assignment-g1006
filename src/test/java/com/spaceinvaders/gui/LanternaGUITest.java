@@ -23,7 +23,7 @@ public class LanternaGUITest {
         this.terminalScreen = Mockito.mock(TerminalScreen.class);
         this.gui = new LanternaGUI(terminalScreen);
         this.textGraphics = Mockito.mock(TextGraphics.class);
-        Mockito.when(terminalScreen.newTextGraphics()).thenReturn(textGraphics);
+        Mockito.when(gui.createTextGraphics()).thenReturn(textGraphics);
     }
 
     @Test
@@ -41,35 +41,34 @@ public class LanternaGUITest {
     @Test
     void drawPlayer(){
         Position  position = new Position(10,10);
-        gui.drawPlayer(textGraphics, position);
+        gui.drawPlayer(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "P");
     }
 
     @Test
     void drawNormalAlien(){
         Position  position = new Position(10,10);
-        gui.drawNormalAlien(textGraphics, position);
+        gui.drawNormalAlien(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "A");
     }
 
     @Test
     void drawArmoredAlien(){
         Position  position = new Position(10,10);
-        gui.drawArmoredAlien(textGraphics, position);
+        gui.drawArmoredAlien(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "A");
     }
 
     @Test
     void drawAmmo(){
         Position  position = new Position(10,10);
-        gui.drawAmmo(textGraphics, position);
+        gui.drawAmmo(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "|");
     }
 
     @Test
     void drawBackground(){
-
-        gui.drawBackground(textGraphics);
+        gui.drawBackground();
         String color = "#3360FF";
         Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(TextColor.Factory.fromString(color));
     }
@@ -77,7 +76,7 @@ public class LanternaGUITest {
     @Test
     void drawWall(){
         Position  position = new Position(10,10);
-        gui.drawWall(textGraphics, position);
+        gui.drawWall(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "O");
     }
 

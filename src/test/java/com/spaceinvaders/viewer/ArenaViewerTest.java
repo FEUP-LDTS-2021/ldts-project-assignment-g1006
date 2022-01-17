@@ -31,24 +31,24 @@ public class ArenaViewerTest {
         arenaViewer.draw();
 
         TextGraphics tg = gui.createTextGraphics();
-        Mockito.verify(gui, Mockito.times(1)).drawBackground(tg);
+        Mockito.verify(gui, Mockito.times(1)).drawBackground();
 
         for (List<Alien> list : arena.getAliens()){
             for (Alien alien : list)
                 if(alien.getArmor() == 0)
-                    Mockito.verify(gui, Mockito.times(1)).drawNormalAlien(tg, alien.getPosition());
+                    Mockito.verify(gui, Mockito.times(1)).drawNormalAlien(alien.getPosition());
                 else
-                    Mockito.verify(gui, Mockito.times(1)).drawArmoredAlien(tg, alien.getPosition());
+                    Mockito.verify(gui, Mockito.times(1)).drawArmoredAlien(alien.getPosition());
         }
 
         for (Ammo ammo : arena.getProjectiles()){
-            Mockito.verify(gui, Mockito.times(1)).drawAmmo(tg, ammo.getPosition());
+            Mockito.verify(gui, Mockito.times(1)).drawAmmo(ammo.getPosition());
         }
 
         for (Wall wall : arena.getWalls()){
-            Mockito.verify(gui, Mockito.times(1)).drawWall(tg, wall.getPosition());
+            Mockito.verify(gui, Mockito.times(1)).drawWall(wall.getPosition());
         }
 
-        Mockito.verify(gui, Mockito.times(1)).drawPlayer(tg, arena.getPlayer().getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawPlayer(arena.getPlayer().getPosition());
     }
 }

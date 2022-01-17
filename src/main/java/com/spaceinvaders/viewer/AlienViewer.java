@@ -7,8 +7,8 @@ public class AlienViewer implements ElementViewer<Alien> {
     @Override
     public void drawElement(Alien element, GUI gui) {
         if(element.getArmor() == 0)
-            gui.drawNormalAlien(gui.createTextGraphics(), element.getPosition());
+            gui.drawNormalAlien(element.getPosition());
         else
-            gui.drawArmoredAlien(gui.createTextGraphics(), element.getPosition());
+            gui.drawArmoredAlien(element.getPosition());
     }
 }
