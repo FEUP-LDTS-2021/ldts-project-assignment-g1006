@@ -4,6 +4,7 @@ import com.spaceinvaders.controller.ArenaController;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.gui.LanternaGUI;
 import com.spaceinvaders.model.*;
+import com.spaceinvaders.state.GameState;
 
 import java.awt.*;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.net.URISyntaxException;
 public class Game {
     private final ArenaController arenaController;
     private final GUI gui;
+    private GameState gameState;
     private int width = 50;
     private int height = 25;
 
@@ -27,6 +29,14 @@ public class Game {
         if(singleton == null)
             singleton = new Game();
         return singleton;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
     }
 
     public void run() throws IOException {
