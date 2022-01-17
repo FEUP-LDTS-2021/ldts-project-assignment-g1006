@@ -70,6 +70,7 @@ public class ArenaController extends Controller<Arena> {
         ammoController.step();
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
+        checkProjectilesOutOfBounds();
     }
 
     public void processAction(GUI.Action action){
@@ -126,4 +127,6 @@ public class ArenaController extends Controller<Arena> {
             }
         }
     }
+
+    public void checkProjectilesOutOfBounds(){}
 }
