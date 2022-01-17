@@ -84,7 +84,10 @@ public class ArenaController extends Controller<Arena> {
                 Position newPos = playerController.moveRight();
                 if(checkLimits(newPos)) playerController.move(newPos);
             }
-            case KEYUP -> getModel().getProjectiles().add(playerController.shoot());
+            case KEYUP -> {
+                if(getModel().getProjectiles().size() <= 1)
+                    getModel().getProjectiles().add(playerController.shoot());
+            }
         }
     }
 
@@ -128,5 +131,11 @@ public class ArenaController extends Controller<Arena> {
         }
     }
 
-    public void checkProjectilesOutOfBounds(){}
+    public void checkProjectilesOutOfBounds(){
+        for (int i = getModel().getProjectiles().size() - 1; i >= 0; i--) {
+            Ammo ammo = getModel().getProjectiles().get(i);
+            if(ammo.getPosition().getX() > 40 || ammo.getPosition().getX() < 0 || ammo.getPosition().getY() > 20 || ammo.getPosition().getY() < 0)
+                getModel().getProjectiles().remove(i);
+        }
+    }
 }
