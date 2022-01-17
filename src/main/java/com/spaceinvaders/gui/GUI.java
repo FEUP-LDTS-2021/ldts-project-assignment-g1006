@@ -20,6 +20,7 @@ enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
     void drawBackground(TextGraphics textGraphics);
     void drawPlayer(TextGraphics textGraphics, Position position);
     void drawAmmo(TextGraphics textGraphics, Position position);
-    void drawAlien(TextGraphics textGraphics, Position position);
+    void drawNormalAlien(TextGraphics textGraphics, Position position);
+    void drawArmoredAlien(TextGraphics textGraphics, Position position);
     void drawWall(TextGraphics textGraphics, Position position);
 }

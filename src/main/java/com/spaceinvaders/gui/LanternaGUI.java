@@ -138,12 +138,15 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawAlien(TextGraphics textGraphics, Position position) {
+    public void drawNormalAlien(TextGraphics textGraphics, Position position) {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#07C400"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "A");
     }
+
+    @Override
+    public void drawArmoredAlien(TextGraphics textGraphics, Position position){}
 
     @Override
     public void drawWall(TextGraphics textGraphics, Position position) {
