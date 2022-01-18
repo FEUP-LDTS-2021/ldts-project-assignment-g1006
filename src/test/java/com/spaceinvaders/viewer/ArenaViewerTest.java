@@ -19,10 +19,10 @@ public class ArenaViewerTest {
     void setup() {
         this.gui = Mockito.mock(GUI.class);
         this.arena = new Arena(20,20);
-        this.arena.setAliens(List.of(List.of(new Alien(0, 0, 'A',0))));
-        this.arena.setPlayer(new Player(1,1,'P'));
-        this.arena.setProjectiles(List.of(new Ammo(2,2,'|', 1, 0)));
-        this.arena.setWalls(List.of(new Wall(1,1,'O',1)));
+        this.arena.setAliens(List.of(List.of(new Alien(0, 0,0))));
+        this.arena.setPlayer(new Player(1,1));
+        this.arena.setProjectiles(List.of(new Ammo(2,2, 1, 0)));
+        this.arena.setWalls(List.of(new Wall(1,1,1)));
         this.arenaViewer = new ArenaViewer(gui, arena);
     }
 
@@ -30,7 +30,6 @@ public class ArenaViewerTest {
     void draw() throws IOException {
         arenaViewer.draw();
 
-        TextGraphics tg = gui.createTextGraphics();
         Mockito.verify(gui, Mockito.times(1)).drawBackground();
 
         for (List<Alien> list : arena.getAliens()){

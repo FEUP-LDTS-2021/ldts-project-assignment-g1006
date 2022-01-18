@@ -25,7 +25,7 @@ public class AlienControllerTest {
 
     @Test
     void moveRight(){
-        Alien alien = new Alien(10,10,'A',0);
+        Alien alien = new Alien(10,10,0);
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
@@ -36,7 +36,7 @@ public class AlienControllerTest {
 
     @Test
     void moveLeft(){
-        Alien alien = new Alien(10,10,'A',0); alien.changeDirection();
+        Alien alien = new Alien(10,10,0); alien.changeDirection();
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
@@ -47,7 +47,7 @@ public class AlienControllerTest {
 
     @Test
     void testRightLimit(){
-        Alien alien = new Alien(20,10,'A',0);
+        Alien alien = new Alien(20,10,0);
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
@@ -59,7 +59,7 @@ public class AlienControllerTest {
 
     @Test
     void testLeftLimit(){
-        Alien alien = new Alien(0,10,'A',0); alien.changeDirection();
+        Alien alien = new Alien(0,10,0); alien.changeDirection();
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 

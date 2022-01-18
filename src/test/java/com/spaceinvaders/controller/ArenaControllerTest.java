@@ -162,8 +162,8 @@ public class ArenaControllerTest {
     @Test
     void checkAlienProjectilesCollisions(){
         Arena arena = new Arena(40, 20);
-        Alien alien = new Alien(10,14,'A',0);
-        Ammo ammo = new Ammo(10,14,'|', -1, 1);
+        Alien alien = new Alien(10,14,0);
+        Ammo ammo = new Ammo(10,14, -1, 1);
 
         List<List<Alien>> aliens = new ArrayList<>(new ArrayList<>());
         List<Alien> listAlien = new ArrayList<>();
@@ -199,8 +199,8 @@ public class ArenaControllerTest {
     @Test
     void checkWallProjectilesCollisions() {
         Arena arena = new Arena(40, 20);
-        Wall wall = new Wall(1, 1, 'O', 1);
-        Ammo ammo = new Ammo(1, 1, '|', 1, 1);
+        Wall wall = new Wall(1, 1, 1);
+        Ammo ammo = new Ammo(1, 1, 1, 1);
 
         List<Ammo> projectiles = new ArrayList<>();
         List<Wall> walls = new ArrayList<>();
@@ -220,8 +220,8 @@ public class ArenaControllerTest {
     @Test
     void checkProjectilesOutOfBounds() {
         Arena arena = new Arena(40, 20);
-        Ammo ammo1 = new Ammo(1, 1, '|', 1, 1);
-        Ammo ammo2 = new Ammo(41, 21, '|', 1, 1);
+        Ammo ammo1 = new Ammo(1, 1, 1, 1);
+        Ammo ammo2 = new Ammo(41, 21, 1, 1);
 
         List<Ammo> projectiles = new ArrayList<>();
         projectiles.add(ammo1);
@@ -237,8 +237,8 @@ public class ArenaControllerTest {
     @Test
     void checkProjectilesPlayerCollisions(){
         Arena arena = new Arena(40, 20);
-        Ammo ammo = new Ammo(1, 1, '|', 1, 1);
-        Player player = new Player(1,1, 'P');
+        Ammo ammo = new Ammo(1, 1, 1, 1);
+        Player player = new Player(1,1);
 
         List<Ammo> projectiles = new ArrayList<>();
         projectiles.add(ammo);
@@ -254,11 +254,11 @@ public class ArenaControllerTest {
     @Test
     void checkAmmoPassingThroughAliens(){
         Arena arena = new Arena(40, 20);
-        Alien alien = new Alien(10,14,'A',2);
-        Alien alien2 = new Alien(12,14,'A',0);
-        Alien alien3 = new Alien(14,14,'A',3);
-        Alien alien4 = new Alien(16,14,'A', 0);
-        Ammo ammo = new Ammo(10,14,'|', -1, 9);
+        Alien alien = new Alien(10,14,2);
+        Alien alien2 = new Alien(12,14,0);
+        Alien alien3 = new Alien(14,14,3);
+        Alien alien4 = new Alien(16,14, 0);
+        Ammo ammo = new Ammo(10,14, -1, 9);
 
         List<List<Alien>> aliens = new ArrayList<>(new ArrayList<>());
         List<Alien> listAlien = new ArrayList<>();

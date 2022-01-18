@@ -25,7 +25,7 @@ public class AmmoControllerTest {
 
     @Test
     void moveUp(){
-        Ammo ammo = new Ammo(10,10,'|', -1, 0);
+        Ammo ammo = new Ammo(10,10, -1, 0);
         Mockito.when(arena.getProjectiles()).thenReturn(List.of(ammo));
 
         ammoController.step(game, 0);
@@ -35,7 +35,7 @@ public class AmmoControllerTest {
 
     @Test
     void moveDown(){
-        Ammo ammo = new Ammo(10,10,'|', 1, 0);
+        Ammo ammo = new Ammo(10,10, 1, 0);
         Mockito.when(arena.getProjectiles()).thenReturn(List.of(ammo));
 
         ammoController.step(game, 0);

@@ -8,7 +8,7 @@ class AmmoSpockTest extends Specification{
 
     def "ammo getPosition"(){
         given:
-        def ammo = new Ammo(10,20,'B' as char, -1, 0)
+        def ammo = new Ammo(10,20, -1, 0)
 
         expect:
         ammo.getPosition() == new Position(10,20)
@@ -16,7 +16,7 @@ class AmmoSpockTest extends Specification{
 
     def "ammo setPosition"(){
         given:
-        def ammo = new Ammo(10,20,'B' as char, 1, 0)
+        def ammo = new Ammo(10,20, 1, 0)
 
         when:
         ammo.setPosition(new Position(1,1))
@@ -27,7 +27,7 @@ class AmmoSpockTest extends Specification{
 
     def "ammo getDamage"(){
         given:
-        def ammo = new Ammo(10,20,'B' as char, -1, 0)
+        def ammo = new Ammo(10,20, -1, 0)
 
         expect:
         ammo.getDamage() == 0
@@ -35,7 +35,7 @@ class AmmoSpockTest extends Specification{
 
     def "ammo setDamage"(){
         given:
-        def ammo = new Ammo(10,20,'B' as char, 1, 0)
+        def ammo = new Ammo(10,20, 1, 0)
 
         when:
         ammo.setDamage(1)
@@ -46,7 +46,7 @@ class AmmoSpockTest extends Specification{
 
     def "ammo getDirection"(){
         given:
-        def ammo = new Ammo(10,20,'B' as char, -1, 0)
+        def ammo = new Ammo(10,20, -1, 0)
 
         expect:
         ammo.getDirection() == -1
@@ -54,7 +54,7 @@ class AmmoSpockTest extends Specification{
 
     def "ammo setDirection"(){
         given:
-        def ammo = new Ammo(10,20,'B' as char, -1, 0)
+        def ammo = new Ammo(10,20, -1, 0)
 
         when:
         ammo.setDirection(1)

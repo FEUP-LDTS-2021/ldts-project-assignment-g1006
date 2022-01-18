@@ -38,7 +38,7 @@ public class ArenaBuilder {
     }
 
     private Player createPlayer(){
-        return new Player(5,20,'P');
+        return new Player(5,20);
     }
 
     private List<Wall> createWalls(){
@@ -46,7 +46,7 @@ public class ArenaBuilder {
         List<Wall> walls = new ArrayList<>();
         while (x <= 40){
             for (int i = 0; i<size; i++)
-                walls.add(new Wall(x+i, y, 'O', health));
+                walls.add(new Wall(x+i, y, health));
             x += 10;
         }
         return walls;
