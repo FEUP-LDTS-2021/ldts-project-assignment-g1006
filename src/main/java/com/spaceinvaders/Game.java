@@ -1,17 +1,16 @@
 package com.spaceinvaders;
 
-import com.spaceinvaders.controller.ArenaController;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.gui.LanternaGUI;
 import com.spaceinvaders.model.*;
 import com.spaceinvaders.state.GameState;
+import com.spaceinvaders.state.PlayingState;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Game {
-    private final ArenaController arenaController;
     private final GUI gui;
     private GameState gameState;
     private int width = 50;
@@ -22,7 +21,7 @@ public class Game {
     private Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(width, height);
         ArenaBuilder builder = new ArenaBuilder();
-        this.arenaController = new ArenaController(builder.createArena(width, height), gui);
+        this.gameState = new PlayingState(builder.createArena(width, height), gui);
     }
 
     public static Game getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -43,11 +42,10 @@ public class Game {
         int fps = 60;
         int frameTime = 1000 / fps;
 
-
-        while (!arenaController.exit()){
+        while (gameState != null){
             long startTime = System.currentTimeMillis();
 
-            arenaController.step(this, startTime);
+            gameState.step(this, startTime);
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;

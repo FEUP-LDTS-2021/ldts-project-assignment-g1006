@@ -6,11 +6,9 @@ import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.Arena;
 
 public class PlayingState extends GameState<Arena> {
-    private final GUI gui;
 
     public PlayingState(Arena arena, GUI gui) {
-        super(arena);
-        this.gui = gui;
+        super(arena, gui);
     }
 
     @Override

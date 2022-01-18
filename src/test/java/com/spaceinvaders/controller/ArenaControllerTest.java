@@ -104,7 +104,7 @@ public class ArenaControllerTest {
         Position position = new Position(10,10);
         Mockito.when(playerController.moveRight()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYRIGHT);
+        arenaController.processAction(game, GUI.Action.KEYRIGHT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveRight();
         Mockito.verify(playerController, Mockito.times(1)).move(position);
@@ -115,7 +115,7 @@ public class ArenaControllerTest {
         Position position = new Position(10,10);
         Mockito.when(playerController.moveLeft()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYLEFT);
+        arenaController.processAction(game, GUI.Action.KEYLEFT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveLeft();
         Mockito.verify(playerController, Mockito.times(1)).move(position);
@@ -126,7 +126,7 @@ public class ArenaControllerTest {
         Position position = new Position(20,10);
         Mockito.when(playerController.moveRight()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYRIGHT);
+        arenaController.processAction(game, GUI.Action.KEYRIGHT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveRight();
         Mockito.verify(playerController, Mockito.times(0)).move(position);
@@ -137,7 +137,7 @@ public class ArenaControllerTest {
         Position position = new Position(-1,10);
         Mockito.when(playerController.moveLeft()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYLEFT);
+        arenaController.processAction(game, GUI.Action.KEYLEFT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveLeft();
         Mockito.verify(playerController, Mockito.times(0)).move(position);
@@ -145,7 +145,7 @@ public class ArenaControllerTest {
 
     @Test
     void processActionKeyUp(){
-        arenaController.processAction(GUI.Action.KEYUP);
+        arenaController.processAction(game, GUI.Action.KEYUP);
 
         Mockito.when(arena.getProjectiles()).thenReturn(new ArrayList<>());
         Mockito.verify(playerController, Mockito.times(1)).shoot();
