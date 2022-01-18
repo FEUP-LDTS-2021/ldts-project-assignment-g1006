@@ -104,6 +104,49 @@ class AlienSpockTest extends Specification{
         ammo.getDirection() == -1
     }
 
+    def "handle shot bullets passing through test"(){
+        given:
+        def alien = new Alien(12,12,'A' as char, 0)
+        def ammo = new Ammo(12,12,'|' as char, -1, 2)
+
+        when:
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDirection() == -1
+        ammo.getDamage() == 1
+
+        when:
+        alien.setArmor(0)
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDamage() == 0
+
+        when:
+        ammo.setDamage(4)
+
+        and:
+        alien.setArmor(2)
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDirection() == -1
+        ammo.getDamage() == 1
+
+        when:
+        alien.setArmor(1)
+        alien.handleShot(ammo)
+
+        then:
+        alien.getArmor() == 0
+        ammo.getDamage() == 1
+        ammo.getDirection() == 1
+    }
+
     def "alien test if alive"(){
         given:
         def alien = new Alien(10,10,'A' as char,1)
