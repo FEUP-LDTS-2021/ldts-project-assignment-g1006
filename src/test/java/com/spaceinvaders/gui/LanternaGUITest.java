@@ -118,4 +118,22 @@ public class LanternaGUITest {
 
         Assertions.assertEquals(gui.getAction(), GUI.Action.KEYUP);
     }
+
+    @Test
+    void getKeyDown() throws IOException {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(terminalScreen.pollInput()).thenReturn(key);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowDown);
+
+        Assertions.assertEquals(gui.getAction(), GUI.Action.KEYDOWN);
+    }
+
+    @Test
+    void getKeyEnter() throws IOException {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(terminalScreen.pollInput()).thenReturn(key);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.Enter);
+
+        Assertions.assertEquals(gui.getAction(), GUI.Action.ENTER);
+    }
 }
