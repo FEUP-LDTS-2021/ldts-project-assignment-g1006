@@ -105,7 +105,9 @@ public class ArenaController extends Controller<Arena> {
                         alien.handleShot(ammo);
                         if(alien.isDead()){
                             it1.remove();
-                            it2.remove();
+                            if(ammo.getDamage() <= 0)
+                                it2.remove();
+
                         }
                         break;
                     }
