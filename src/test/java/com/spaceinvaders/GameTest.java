@@ -4,6 +4,7 @@ import com.spaceinvaders.state.GameState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.awt.*;
 import java.io.IOException;
@@ -26,10 +27,7 @@ public class GameTest {
 
     @Test
     void gameStateTest(){
-        GameState gameState = new GameState(game) {
-            @Override
-            public void step(Game game, long time) {}
-        };
+        GameState gameState = Mockito.mock(GameState.class);
         game.setGameState(gameState);
 
         Assertions.assertEquals(game.getGameState(), gameState);
