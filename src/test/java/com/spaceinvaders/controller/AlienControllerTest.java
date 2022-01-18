@@ -1,5 +1,6 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.model.Alien;
 import com.spaceinvaders.model.Arena;
 import com.spaceinvaders.model.Position;
@@ -13,9 +14,11 @@ import java.util.List;
 public class AlienControllerTest {
     private AlienController alienController;
     private Arena arena;
+    private Game game;
 
     @BeforeEach
     void setup(){
+        this.game = Mockito.mock(Game.class);
         this.arena = Mockito.mock(Arena.class);
         this.alienController = new AlienController(arena);
     }
@@ -26,7 +29,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step();
+        alienController.step(game, 0);
 
         Assertions.assertEquals(alien.getPosition(), new Position(11,10));
     }
@@ -37,7 +40,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step();
+        alienController.step(game, 0);
 
         Assertions.assertEquals(alien.getPosition(), new Position(9,10));
     }
@@ -48,7 +51,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step();
+        alienController.step(game, 0);
 
         Assertions.assertEquals(alien.getPosition(), new Position(20,10));
         Assertions.assertEquals(alien.getDirection(), -1);
@@ -60,7 +63,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step();
+        alienController.step(game, 0);
 
         Assertions.assertEquals(alien.getPosition(), new Position(0,10));
         Assertions.assertEquals(alien.getDirection(), 1);

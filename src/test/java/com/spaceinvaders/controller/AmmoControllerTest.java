@@ -1,5 +1,6 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.model.Ammo;
 import com.spaceinvaders.model.Arena;
 import com.spaceinvaders.model.Position;
@@ -13,10 +14,12 @@ import java.util.List;
 public class AmmoControllerTest {
     private AmmoController ammoController;
     private Arena arena;
+    private Game game;
 
     @BeforeEach
     void setup(){
         this.arena = Mockito.mock(Arena.class);
+        this.game = Mockito.mock(Game.class);
         this.ammoController = new AmmoController(arena);
     }
 
@@ -25,7 +28,7 @@ public class AmmoControllerTest {
         Ammo ammo = new Ammo(10,10,'|', -1, 0);
         Mockito.when(arena.getProjectiles()).thenReturn(List.of(ammo));
 
-        ammoController.step();
+        ammoController.step(game, 0);
 
         Assertions.assertEquals(ammo.getPosition(), new Position(10, 9));
     }
@@ -35,7 +38,7 @@ public class AmmoControllerTest {
         Ammo ammo = new Ammo(10,10,'|', 1, 0);
         Mockito.when(arena.getProjectiles()).thenReturn(List.of(ammo));
 
-        ammoController.step();
+        ammoController.step(game, 0);
 
         Assertions.assertEquals(ammo.getPosition(), new Position(10, 11));
     }

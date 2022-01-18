@@ -37,6 +37,6 @@ public class GameStateTest {
     @Test
     void step() throws IOException {
         gameState.step(game, 0);
-        Mockito.verify(arenaController, Mockito.times(1)).step();
+        Mockito.verify(arenaController, Mockito.times(1)).step(game, 0);
     }
 }

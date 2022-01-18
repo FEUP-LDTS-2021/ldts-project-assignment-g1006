@@ -1,5 +1,6 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
 import com.spaceinvaders.viewer.ArenaViewer;
@@ -21,10 +22,12 @@ public class ArenaControllerTest {
     private ArenaViewer arenaViewer;
     private GUI gui;
     private Arena arena;
+    private Game game;
 
     @BeforeEach
     void setup(){
         this.arena = Mockito.mock(Arena.class);
+        this.game = Mockito.mock(Game.class);
         Mockito.when(arena.getWidth()).thenReturn(20);
         Player player = Mockito.mock(Player.class);
         Mockito.when(arena.getPlayer()).thenReturn(player);
@@ -89,10 +92,10 @@ public class ArenaControllerTest {
     void step() throws IOException {
         Mockito.when(gui.getAction()).thenReturn(GUI.Action.NONE);
 
-        arenaController.step();
+        arenaController.step(game, 0);
 
-        Mockito.verify(alienController, Mockito.times(1)).step();
-        Mockito.verify(ammoController, Mockito.times(1)).step();
+        Mockito.verify(alienController, Mockito.times(1)).step(game, 0);
+        Mockito.verify(ammoController, Mockito.times(1)).step(game, 0);
         Mockito.verify(arenaViewer, Mockito.times(1)).draw();
     }
 
