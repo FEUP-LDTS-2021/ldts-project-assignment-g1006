@@ -66,6 +66,7 @@ public class ArenaController extends Controller<Arena> {
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
         checkProjectilesOutOfBounds();
+        checkProjectilesPlayerCollisions();
     }
 
     public void processAction(Game game, GUI.Action action){
@@ -134,5 +135,9 @@ public class ArenaController extends Controller<Arena> {
             if(ammo.getPosition().getX() > 40 || ammo.getPosition().getX() < 0 || ammo.getPosition().getY() > 20 || ammo.getPosition().getY() < 0)
                 getModel().getProjectiles().remove(i);
         }
+    }
+
+    public void checkProjectilesPlayerCollisions(){
+
     }
 }
