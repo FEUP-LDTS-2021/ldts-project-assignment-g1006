@@ -32,8 +32,10 @@ class PlayerSpockTest extends Specification{
 
         when:
         player.setPosition(new Position(1,1))
+        player.setHealth(2);
 
         then:
         player.getPosition() == new Position(1,1)
+        player.getHealth() == 2;
     }
 }
