@@ -3,29 +3,31 @@ package com.spaceinvaders.model.menu;
 import com.spaceinvaders.model.Position;
 
 public class Button {
-    private String text;
-    private String color;
-    private Position position;
-    private boolean highlight;
+    private final String text;
+    private final String color;
+    private final Position position;
+    private final boolean highlight;
 
     public Button(String text, String color, Position position){
-
+        this.text = text;
+        this.color = color;
+        this.position = position;
+        this.highlight = false;
     }
 
     public Position getPosition() {
-        return null;
+        return position;
     }
 
     public String getText() {
-        return null;
+        return text;
     }
 
     public String getColor() {
-        return null;
+        return color;
     }
 
     public boolean getHighlight(){
-        return false;
+        return highlight;
     }
 }
-
