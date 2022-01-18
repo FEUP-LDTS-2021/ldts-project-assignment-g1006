@@ -23,6 +23,7 @@ class PlayerSpockTest extends Specification{
 
         then:
         position == new Position(10,20)
+        player.getHealth() == 3;
     }
 
     def "player sets"(){
