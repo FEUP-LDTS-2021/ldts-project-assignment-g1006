@@ -138,6 +138,5 @@ public class ArenaController extends Controller<Arena> {
     }
 
     public void checkProjectilesPlayerCollisions(){
-
     }
 }

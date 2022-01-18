@@ -235,6 +235,22 @@ public class ArenaControllerTest {
     }
 
     @Test
+    void checkProjectilesPlayerCollisions(){
+        Arena arena = new Arena(40, 20);
+        Ammo ammo = new Ammo(1, 1, '|', 1, 1);
+        Player player = new Player(1,1, 'P');
+
+        List<Ammo> projectiles = new ArrayList<>();
+        projectiles.add(ammo);
+
+        arena.setProjectiles(projectiles);
+        ArenaController arenaController = new ArenaController(arena, gui);
+        arenaController.checkProjectilesPlayerCollisions();
+
+        Assertions.assertEquals(player.getHealth(), 2);
+    }
+
+    @Test
     void checkAmmoPassingThroughAliens(){
         Arena arena = new Arena(40, 20);
         Alien alien = new Alien(10,14,'A',2);

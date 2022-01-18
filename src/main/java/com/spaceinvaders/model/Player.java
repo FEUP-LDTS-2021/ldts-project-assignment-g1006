@@ -20,4 +20,7 @@ public class Player extends Element {
     public int getHealth(){
         return health;
     }
+
+    public void setHealth(int health){
+    }
 }
