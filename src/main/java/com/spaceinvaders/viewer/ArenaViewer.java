@@ -25,8 +25,12 @@ public class ArenaViewer {
         drawElements(arena.getProjectiles(), new AmmoViewer());
         drawElements(arena.getWalls(), new WallViewer());
         drawElement(arena.getPlayer(), new PlayerViewer());
+        drawHealth(arena.getPlayer().getHealth(), new HealthViewer());
 
         gui.refresh();
+    }
+
+    private void drawHealth(int health, HealthViewer viewer){
     }
 
     private <T extends Element> void drawElement(T element, ElementViewer<T> viewer) {

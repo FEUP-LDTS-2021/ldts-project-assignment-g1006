@@ -174,4 +174,9 @@ public class LanternaGUI implements GUI {
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "O");
     }
+
+    @Override
+    public void drawHealth() {
+
+    }
 }
