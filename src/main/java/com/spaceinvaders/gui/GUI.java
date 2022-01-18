@@ -6,7 +6,7 @@ import com.spaceinvaders.model.Position;
 import java.io.IOException;
 
 public interface GUI {
-enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
+    enum Action {KEYUP, KEYDOWN, KEYRIGHT, KEYLEFT, ENTER, EXIT, NONE}
 
     int getWidth();
     int getHeight();
