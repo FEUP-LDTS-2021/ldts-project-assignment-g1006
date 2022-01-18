@@ -1,16 +1,26 @@
 package com.spaceinvaders.state;
 
 import com.spaceinvaders.Game;
+import com.spaceinvaders.controller.Controller;
 
-public abstract class GameState {
-    protected Game game;
+import java.io.IOException;
 
-    public GameState(Game game){
-        this.game = game;
+public abstract class GameState<T> {
+    private final T model;
+    private final Controller<T> controller;
+
+    public GameState(T model){
+        this.model = model;
+        this.controller = getController();
     }
 
-    public abstract void step(Game game, long time);
-    public void changeState(GameState gameState){
+    public T getModel() {
+        return null;
+    }
+
+    public void step(Game game, long time) throws IOException {
 
     }
+
+    protected abstract Controller<T> getController();
 }
