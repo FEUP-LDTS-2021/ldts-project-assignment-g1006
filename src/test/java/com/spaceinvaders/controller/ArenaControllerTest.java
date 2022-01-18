@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArenaControllerTest {
     private ArenaController arenaController;
@@ -143,7 +144,7 @@ public class ArenaControllerTest {
     void processActionKeyUp(){
         arenaController.processAction(GUI.Action.KEYUP);
 
-        Mockito.when(arena.getProjectiles()).thenReturn(new ArrayList<Ammo>());
+        Mockito.when(arena.getProjectiles()).thenReturn(new ArrayList<>());
         Mockito.verify(playerController, Mockito.times(1)).shoot();
     }
 
@@ -155,22 +156,160 @@ public class ArenaControllerTest {
         Assertions.assertTrue(arenaController.checkLimits(new Position(19, 10)));
     }
 
-//    @Test
-//    void checkAlienProjectilesCollisions(){
-//        Arena arena = new Arena(40, 20);
-//        Alien alien = new Alien(1,1,'A');
-//        Ammo ammo = new Ammo(1,1,'|', 1, 0);
-//
-//        List<List<Alien>> aliens = List.of(List.of(alien));
-//        List<Ammo> projectiles = List.of(ammo);
-//
-//        arena.setAliens(aliens);
-//        arena.setProjectiles(projectiles);
-//
-//        ArenaController arenaController = new ArenaController(arena, gui);
-//        arenaController.checkAlienProjectilesCollisions();
-//
-//        Assertions.assertEquals(aliens.size(), 0);
-//        Assertions.assertEquals(projectiles.size(), 0);
-//    }
+    @Test
+    void checkAlienProjectilesCollisions(){
+        Arena arena = new Arena(40, 20);
+        Alien alien = new Alien(10,14,'A',0);
+        Ammo ammo = new Ammo(10,14,'|', -1, 1);
+
+        List<List<Alien>> aliens = new ArrayList<>(new ArrayList<>());
+        List<Alien> listAlien = new ArrayList<>();
+        listAlien.add(alien);
+        aliens.add(listAlien);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        projectiles.add(ammo);
+
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        ArenaController arenaController = new ArenaController(arena, gui);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertTrue(alien.isDead());
+
+
+        alien.setArmor(1);
+        aliens = List.of(List.of(alien));
+        projectiles = List.of(ammo);
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertFalse(alien.isDead());
+        Assertions.assertEquals(alien.getArmor(),0);
+        Assertions.assertEquals(ammo.getDirection(),1);
+    }
+
+    @Test
+    void checkWallProjectilesCollisions() {
+        Arena arena = new Arena(40, 20);
+        Wall wall = new Wall(1, 1, 'O', 1);
+        Ammo ammo = new Ammo(1, 1, '|', 1, 1);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        List<Wall> walls = new ArrayList<>();
+        walls.add(wall);
+        projectiles.add(ammo);
+
+        arena.setWalls(walls);
+        arena.setProjectiles(projectiles);
+        ArenaController arenaController = new ArenaController(arena, gui);
+        
+        arenaController.checkWallProjectilesCollisions();
+
+        Assertions.assertEquals(walls.size(), 0);
+        Assertions.assertEquals(projectiles.size(), 0);
+    }
+
+    @Test
+    void checkProjectilesOutOfBounds() {
+        Arena arena = new Arena(40, 20);
+        Ammo ammo1 = new Ammo(1, 1, '|', 1, 1);
+        Ammo ammo2 = new Ammo(41, 21, '|', 1, 1);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        projectiles.add(ammo1);
+        projectiles.add(ammo2);
+
+        arena.setProjectiles(projectiles);
+        ArenaController arenaController = new ArenaController(arena, gui);
+        arenaController.checkProjectilesOutOfBounds();
+
+        Assertions.assertEquals(projectiles.size(), 1);
+    }
+
+    @Test
+    void checkAmmoPassingThroughAliens(){
+        Arena arena = new Arena(40, 20);
+        Alien alien = new Alien(10,14,'A',2);
+        Alien alien2 = new Alien(12,14,'A',0);
+        Alien alien3 = new Alien(14,14,'A',3);
+        Alien alien4 = new Alien(16,14,'A', 0);
+        Ammo ammo = new Ammo(10,14,'|', -1, 9);
+
+        List<List<Alien>> aliens = new ArrayList<>(new ArrayList<>());
+        List<Alien> listAlien = new ArrayList<>();
+        listAlien.add(alien);
+        aliens.add(listAlien);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        projectiles.add(ammo);
+
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        ArenaController arenaController = new ArenaController(arena, gui);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertTrue(alien.isDead());
+        Assertions.assertEquals(ammo.getDamage(),6);
+        Assertions.assertEquals(ammo.getDirection(),-1);
+        Assertions.assertFalse(arena.getProjectiles().isEmpty());
+
+
+        aliens.clear();
+        listAlien.clear();
+        listAlien.add(alien2);
+        aliens.add(listAlien);
+        ammo.setPosition(new Position(12,14));
+        projectiles.clear();
+        projectiles.add(ammo);
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertTrue(alien2.isDead());
+        Assertions.assertEquals(ammo.getDamage(),5);
+        Assertions.assertEquals(ammo.getDirection(),-1);
+        Assertions.assertFalse(arena.getProjectiles().isEmpty());
+
+        aliens.clear();
+        listAlien.clear();
+        listAlien.add(alien3);
+        aliens.add(listAlien);
+        ammo.setPosition(new Position(14,14));
+        projectiles.clear();
+        projectiles.add(ammo);
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertTrue(alien3.isDead());
+        Assertions.assertEquals(ammo.getDamage(),1);
+        Assertions.assertEquals(ammo.getDirection(),-1);
+        Assertions.assertFalse(arena.getProjectiles().isEmpty());
+
+
+        aliens.clear();
+        listAlien.clear();
+        listAlien.add(alien4);
+        aliens.add(listAlien);
+        ammo.setPosition(new Position(16,14));
+        projectiles.clear();
+        projectiles.add(ammo);
+        arena.setAliens(aliens);
+        arena.setProjectiles(projectiles);
+
+        arenaController.checkAlienProjectilesCollisions();
+
+        Assertions.assertTrue(alien4.isDead());
+        Assertions.assertEquals(ammo.getDamage(),0);
+        Assertions.assertTrue(arena.getProjectiles().isEmpty());
+    }
 }

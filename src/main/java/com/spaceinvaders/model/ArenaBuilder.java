@@ -9,6 +9,7 @@ public class ArenaBuilder {
         arena.setAliens(createAliens());
         arena.setProjectiles(createProjectiles());
         arena.setPlayer(createPlayer());
+        arena.setWalls(createWalls());
         return arena;
     }
 
@@ -16,10 +17,13 @@ public class ArenaBuilder {
         List<List<Alien>> aliens = new ArrayList<>();
         int numberOfRows = 3;
         int aliensPerRow = 6;
+        int maxArmorLevel = 3;
+        int minArmorLevel = 0;
         for(int i = 0; i < numberOfRows; i++){
             List<Alien> row = new ArrayList<>();
             for(int j = 0; j < aliensPerRow; j++){
-                row.add(new Alien(j, i, 'A'));
+                int armorLevel = (int)Math.floor(Math.random() * (maxArmorLevel - minArmorLevel + 1) + minArmorLevel);
+                row.add(new Alien(j, i, 'A', armorLevel));
             }
             aliens.add(row);
         }
@@ -34,6 +38,17 @@ public class ArenaBuilder {
     }
 
     private Player createPlayer(){
-        return new Player(5,15,'P');
+        return new Player(5,20,'P');
+    }
+
+    private List<Wall> createWalls(){
+        int x = 10; int y = 17; int health = 2; int size = 3;
+        List<Wall> walls = new ArrayList<>();
+        while (x <= 40){
+            for (int i = 0; i<size; i++)
+                walls.add(new Wall(x+i, y, 'O', health));
+            x += 10;
+        }
+        return walls;
     }
 }

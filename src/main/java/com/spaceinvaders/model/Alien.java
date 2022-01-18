@@ -2,9 +2,13 @@ package com.spaceinvaders.model;
 
 public class Alien extends Element {
     private int direction = 1;
+    private int armor;
+    private AlienStrategy strategy;
+    private Boolean dead = false;
 
-    public Alien(int x, int y, char character){
+    public Alien(int x, int y, char character, int armor){
         super(x, y, character);
+        setArmor(armor);
     }
 
     @Override
@@ -17,14 +21,6 @@ public class Alien extends Element {
         return super.getPosition();
     }
 
-    public void move(Arena arena){
-        Position newPos = new Position(getPosition().getX() + getDirection(), getPosition().getY());
-        if (newPos.getX() >= 0 && newPos.getX() <= arena.getWidth() - 1)
-            setPosition(newPos);
-        else
-            changeDirection();
-    }
-
     public int getDirection(){
         return direction;
     }
@@ -32,6 +28,49 @@ public class Alien extends Element {
     public void changeDirection() {
         direction*=-1;
     }
+
+    public AlienStrategy getStrategy(){
+        return strategy;
+    }
+
+    private void setStrategy(){
+        if(armor > 0)
+            this.strategy = new ArmoredAlienStrategy();
+        else
+            this.strategy = new NormalAlienStrategy();
+    }
+
+    public void setArmor(int armor) {
+        if(armor < 0){
+            setAsDead();
+            return;
+        }
+        else
+            setAsAlive();
+        this.armor = armor;
+        setStrategy();
+    }
+
+    private void setAsAlive() {
+        dead = false;
+    }
+
+    public int getArmor(){
+        return armor;
+    }
+
+    public Boolean isDead(){
+        return dead;
+    }
+
+    public void setAsDead(){
+        dead = true;
+    }
+
+    public void handleShot(Ammo ammo){
+        setArmor(strategy.handleShot(getArmor(),ammo));
+    }
+
 
     /*
     public boolean freeToShoot(com.spaceinvaders.model.Arena arena){

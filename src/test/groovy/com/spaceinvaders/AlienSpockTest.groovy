@@ -1,8 +1,10 @@
 package com.spaceinvaders
 
 import com.spaceinvaders.model.Alien
+import com.spaceinvaders.model.Ammo
 import com.spaceinvaders.model.Arena
-import com.spaceinvaders.model.Position
+import com.spaceinvaders.model.ArmoredAlienStrategy
+import com.spaceinvaders.model.NormalAlienStrategy
 import spock.lang.Specification
 
 class AlienSpockTest extends Specification{
@@ -12,52 +14,9 @@ class AlienSpockTest extends Specification{
         this.arena = Mock(Arena.class)
     }
 
-    def "alien move outside of the arena (right side)"(){
-        given:
-        arena.getWidth() >> 20
-        def alien = new Alien(20,10,'A' as char)
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(20,10)
-    }
-
-    def "alien move outside of the arena (left side)"(){
-        given:
-        def alien = new Alien(0,10,'A' as char)
-        arena.getWidth() >> 20
-        alien.changeDirection()
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(0,10)
-    }
-
-    def "alien movement"(){
-        given:
-        arena.getWidth() >> 20
-        def alien = new Alien(10,20,'A' as char)
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(11,20);
-
-        when:
-        alien.move(arena)
-
-        then:
-        alien.getPosition() == new Position(12,20);
-    }
-
     def "change alien movement direction"(){
         given:
-        def alien = new Alien(10,10, 'A' as char)
+        def alien = new Alien(10,10, 'A' as char,0)
 
         when:
         alien.changeDirection()
@@ -66,24 +25,143 @@ class AlienSpockTest extends Specification{
         alien.getDirection() == -1
     }
 
-    def "alien movement decision"(){
+    def "alien strategy test"(){
         given:
-        arena.getWidth() >> 20
-        def alien = new Alien(10,10, 'A' as char)
+        def alien1 = new Alien(10,10, 'A' as char,0)
+        def alien2 = new Alien(10,10, 'A' as char,1)
 
         when:
-        alien.move(arena)
+        def strategy = alien1.getStrategy()
 
         then:
-        alien.getPosition() == new Position(11,10);
+        strategy instanceof NormalAlienStrategy
 
         when:
-        alien.changeDirection()
-        alien.move(arena)
-        alien.move(arena)
+        strategy = alien2.getStrategy()
 
         then:
-        alien.getPosition() == new Position(9,10);
+        strategy instanceof ArmoredAlienStrategy
+    }
+
+    def "alien change strategy test"(){
+        given:
+        def alien1 = new Alien(10,10, 'A' as char,0)
+
+        when:
+        def strategy = alien1.getStrategy()
+
+        then:
+        strategy instanceof NormalAlienStrategy
+
+        when:
+        alien1.setArmor(1)
+        strategy = alien1.getStrategy()
+
+        then:
+        strategy instanceof ArmoredAlienStrategy
+    }
+
+    def "alien test if dead"(){
+        given:
+        def alien = new Alien(10,10,'A' as char,1)
+
+        expect:
+        !alien.isDead()
+
+        when:
+        alien.setArmor(0)
+
+        then:
+        !alien.isDead()
+
+        when:
+        alien.setArmor(-1)
+
+        then:
+        alien.isDead()
+    }
+
+    def "handle shot test"(){
+        given:
+        def alien = new Alien(10,10,'A' as char, 2)
+        def ammo = new Ammo(10,10,'|' as char, -1,1)
+
+        when:
+        alien.handleShot(ammo)
+
+        then:
+        alien.getArmor() == 1
+        ammo.getDirection() == 1
+        !alien.isDead()
+
+        when:
+        alien.setArmor(0)
+        ammo.setDirection(-1)
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDirection() == -1
+    }
+
+    def "handle shot bullets passing through test"(){
+        given:
+        def alien = new Alien(12,12,'A' as char, 0)
+        def ammo = new Ammo(12,12,'|' as char, -1, 2)
+
+        when:
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDirection() == -1
+        ammo.getDamage() == 1
+
+        when:
+        alien.setArmor(0)
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDamage() == 0
+
+        when:
+        ammo.setDamage(4)
+
+        and:
+        alien.setArmor(2)
+        alien.handleShot(ammo)
+
+        then:
+        alien.isDead()
+        ammo.getDirection() == -1
+        ammo.getDamage() == 1
+
+        when:
+        alien.setArmor(1)
+        alien.handleShot(ammo)
+
+        then:
+        alien.getArmor() == 0
+        ammo.getDamage() == 1
+        ammo.getDirection() == 1
+    }
+
+    def "alien test if alive"(){
+        given:
+        def alien = new Alien(10,10,'A' as char,1)
+
+        when:
+        alien.setArmor(-1)
+
+        then:
+        alien.isDead()
+
+        when:
+        alien.setArmor(0)
+
+        then:
+        !alien.isDead()
     }
 
     /*

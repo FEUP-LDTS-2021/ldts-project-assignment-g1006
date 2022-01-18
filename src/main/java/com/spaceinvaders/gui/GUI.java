@@ -17,8 +17,10 @@ enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
     void close() throws IOException;
     TextGraphics createTextGraphics();
 
-    void drawBackground(TextGraphics textGraphics);
-    void drawPlayer(TextGraphics textGraphics, Position position);
-    void drawAmmo(TextGraphics textGraphics, Position position);
-    void drawAlien(TextGraphics textGraphics, Position position);
+    void drawBackground();
+    void drawPlayer(Position position);
+    void drawAmmo(Position position);
+    void drawNormalAlien(Position position);
+    void drawArmoredAlien(Position position);
+    void drawWall(Position position);
 }

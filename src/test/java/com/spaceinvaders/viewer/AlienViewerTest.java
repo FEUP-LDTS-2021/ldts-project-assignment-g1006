@@ -19,8 +19,16 @@ public class AlienViewerTest {
     }
 
     @Test
-    void drawElement() {
+    void drawNormalAlien() {
+        Mockito.when(alien.getArmor()).thenReturn(0);
         viewer.drawElement(alien, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawPlayer(gui.createTextGraphics(), alien.getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawNormalAlien(alien.getPosition());
+    }
+
+    @Test
+    void drawArmoredAlien() {
+        Mockito.when(alien.getArmor()).thenReturn(1);
+        viewer.drawElement(alien, gui);
+        Mockito.verify(gui, Mockito.times(1)).drawArmoredAlien(alien.getPosition());
     }
 }
