@@ -192,7 +192,7 @@ public class ArenaControllerTest {
         arenaController.checkAlienProjectilesCollisions();
 
         Assertions.assertFalse(alien.isDead());
-        Assertions.assertEquals(alien.getArmor(),0);
+        Assertions.assertEquals(alien.getArmor(),1);
         Assertions.assertEquals(ammo.getDirection(),1);
     }
 
