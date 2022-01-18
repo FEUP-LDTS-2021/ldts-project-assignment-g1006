@@ -132,12 +132,16 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawAmmo(Position position) {
+    public void drawNormalAmmo(Position position) {
         TextGraphics textGraphics = createTextGraphics();
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#E7D501"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "|");
+    }
+
+    @Override
+    public void drawSuperAmmo(Position position) {
     }
 
     @Override

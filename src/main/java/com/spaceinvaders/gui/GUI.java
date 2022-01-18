@@ -19,7 +19,8 @@ enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
 
     void drawBackground();
     void drawPlayer(Position position);
-    void drawAmmo(Position position);
+    void drawNormalAmmo(Position position);
+    void drawSuperAmmo(Position position);
     void drawNormalAlien(Position position);
     void drawArmoredAlien(Position position);
     void drawWall(Position position);
