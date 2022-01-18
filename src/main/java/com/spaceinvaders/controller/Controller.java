@@ -1,5 +1,7 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
+
 import java.io.IOException;
 
 public abstract class Controller <T>{
@@ -13,5 +15,5 @@ public abstract class Controller <T>{
         return model;
     }
 
-    public abstract void step() throws IOException;
+    public abstract void step(Game game, long time) throws IOException;
 }

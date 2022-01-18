@@ -1,5 +1,6 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
 import com.spaceinvaders.viewer.ArenaViewer;
@@ -63,11 +64,11 @@ public class ArenaController extends Controller<Arena> {
     }
 
     @Override
-    public void step() throws IOException {
+    public void step(Game game, long time) throws IOException {
         arenaViewer.draw();
         processAction(gui.getAction());
-        alienController.step();
-        ammoController.step();
+        alienController.step(game, time);
+        ammoController.step(game, time);
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
     }

@@ -19,7 +19,7 @@ public abstract class GameState<T> {
     }
 
     public void step(Game game, long time) throws IOException {
-        controller.step();
+        controller.step(game, time);
     }
 
     protected abstract Controller<T> getController();

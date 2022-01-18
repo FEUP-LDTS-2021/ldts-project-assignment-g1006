@@ -47,7 +47,7 @@ public class Game {
         while (!arenaController.exit()){
             long startTime = System.currentTimeMillis();
 
-            arenaController.step();
+            arenaController.step(this, startTime);
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
