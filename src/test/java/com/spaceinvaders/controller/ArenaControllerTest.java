@@ -242,8 +242,9 @@ public class ArenaControllerTest {
 
         List<Ammo> projectiles = new ArrayList<>();
         projectiles.add(ammo);
-
         arena.setProjectiles(projectiles);
+
+        arena.setPlayer(player);
         ArenaController arenaController = new ArenaController(arena, gui);
         arenaController.checkProjectilesPlayerCollisions();
 
