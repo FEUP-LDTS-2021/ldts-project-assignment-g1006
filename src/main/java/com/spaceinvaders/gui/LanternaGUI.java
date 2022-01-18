@@ -88,8 +88,10 @@ public class LanternaGUI implements GUI {
         KeyStroke keyPressed = screen.pollInput();
         if (keyPressed == null) return Action.NONE;
         else if (keyPressed.getKeyType() == KeyType.ArrowUp)return Action.KEYUP;
+        else if (keyPressed.getKeyType() == KeyType.ArrowDown)return Action.KEYDOWN;
         else if (keyPressed.getKeyType() == KeyType.ArrowLeft)return Action.KEYLEFT;
         else if (keyPressed.getKeyType() == KeyType.ArrowRight)return Action.KEYRIGHT;
+        else if (keyPressed.getKeyType() == KeyType.Enter)return Action.ENTER;
         else if (keyPressed.getKeyType() == KeyType.EOF) return Action.EXIT;
         else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == 'q') return Action.EXIT;
         else return Action.NONE;
