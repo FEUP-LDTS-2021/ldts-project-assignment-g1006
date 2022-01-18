@@ -19,8 +19,16 @@ public class AmmoViewerTest {
     }
 
     @Test
-    void drawElement() {
+    void drawNormalAmmo() {
+        Mockito.when(ammo.getDamage()).thenReturn(1);
         viewer.drawElement(ammo, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawAmmo(ammo.getPosition());
+        Mockito.verify(gui, Mockito.times(1)).drawNormalAmmo(ammo.getPosition());
+    }
+
+    @Test
+    void drawSuperAmmo() {
+        Mockito.when(ammo.getDamage()).thenReturn(2);
+        viewer.drawElement(ammo, gui);
+        Mockito.verify(gui, Mockito.times(1)).drawSuperAmmo(ammo.getPosition());
     }
 }
