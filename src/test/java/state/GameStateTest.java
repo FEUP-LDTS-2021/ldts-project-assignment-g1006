@@ -26,7 +26,7 @@ public class GameStateTest {
         this.game = Mockito.mock(Game.class);
         this.gui = Mockito.mock(GUI.class);
         this.arenaController = Mockito.mock(ArenaController.class);
-        this.gameState = new GameState(arena) {
+        this.gameState = new GameState(arena, gui) {
             @Override
             public Controller getController() {
                 return arenaController;

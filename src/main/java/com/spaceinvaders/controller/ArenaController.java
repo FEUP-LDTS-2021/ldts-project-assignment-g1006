@@ -15,7 +15,6 @@ public class ArenaController extends Controller<Arena> {
     private AmmoController ammoController;
     private ArenaViewer arenaViewer;
     private final GUI gui;
-    private boolean exit;
 
     public ArenaController(Arena model, GUI gui) {
         super(model);
@@ -24,7 +23,6 @@ public class ArenaController extends Controller<Arena> {
         setAlienController(new AlienController(getModel()));
         setAmmoController(new AmmoController(getModel()));
         setArenaViewer(new ArenaViewer(gui, getModel()));
-        this.exit = false;
     }
 
     public AlienController getAlienController() {
@@ -59,23 +57,19 @@ public class ArenaController extends Controller<Arena> {
         this.playerController = playerController;
     }
 
-    public boolean exit(){
-        return this.exit;
-    }
-
     @Override
     public void step(Game game, long time) throws IOException {
         arenaViewer.draw();
-        processAction(gui.getAction());
+        processAction(game, gui.getAction());
         alienController.step(game, time);
         ammoController.step(game, time);
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
     }
 
-    public void processAction(GUI.Action action){
+    public void processAction(Game game, GUI.Action action){
         switch (action) {
-            case EXIT -> this.exit = true;
+            case EXIT -> game.setGameState(null);
             case KEYLEFT -> {
                 Position newPos = playerController.moveLeft();
                 if(checkLimits(newPos)) playerController.move(newPos);
