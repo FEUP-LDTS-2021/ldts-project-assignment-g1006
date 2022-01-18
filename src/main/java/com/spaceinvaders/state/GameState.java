@@ -15,11 +15,11 @@ public abstract class GameState<T> {
     }
 
     public T getModel() {
-        return null;
+        return model;
     }
 
     public void step(Game game, long time) throws IOException {
-
+        controller.step();
     }
 
     protected abstract Controller<T> getController();
