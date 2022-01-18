@@ -88,6 +88,13 @@ public class LanternaGUITest {
     }
 
     @Test
+    void drawHealth(){
+        int health = 3;
+        gui.drawHealth(health);
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(95, 78, String.valueOf(health) + "h");
+    }
+
+    @Test
     void getKeyClose() throws IOException {
         KeyStroke key = Mockito.mock(KeyStroke.class);
         Mockito.when(terminalScreen.pollInput()).thenReturn(key);

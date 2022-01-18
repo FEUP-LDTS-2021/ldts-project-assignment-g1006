@@ -176,7 +176,7 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawHealth() {
+    public void drawHealth(int health) {
 
     }
 }

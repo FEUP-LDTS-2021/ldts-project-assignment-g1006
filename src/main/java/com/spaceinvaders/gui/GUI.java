@@ -24,5 +24,5 @@ enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
     void drawNormalAlien(Position position);
     void drawArmoredAlien(Position position);
     void drawWall(Position position);
-    void drawHealth();
+    void drawHealth(int health);
 }

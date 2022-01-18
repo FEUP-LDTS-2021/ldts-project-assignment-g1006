@@ -52,5 +52,7 @@ public class ArenaViewerTest {
         }
 
         Mockito.verify(gui, Mockito.times(1)).drawPlayer(arena.getPlayer().getPosition());
+
+        Mockito.verify(gui, Mockito.times(1)).drawHealth(arena.getPlayer().getHealth());
     }
 }
