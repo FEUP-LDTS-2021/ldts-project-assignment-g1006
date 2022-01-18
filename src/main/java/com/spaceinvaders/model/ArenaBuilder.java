@@ -23,7 +23,7 @@ public class ArenaBuilder {
             List<Alien> row = new ArrayList<>();
             for(int j = 0; j < aliensPerRow; j++){
                 int armorLevel = (int)Math.floor(Math.random() * (maxArmorLevel - minArmorLevel + 1) + minArmorLevel);
-                row.add(new Alien(j, i, 'A', armorLevel));
+                row.add(new Alien(j, i, armorLevel));
             }
             aliens.add(row);
         }
@@ -33,7 +33,7 @@ public class ArenaBuilder {
 
     private List<Ammo> createProjectiles(){
         List<Ammo> ammoList = new ArrayList<>();
-        ammoList.add(new Ammo(5,5,'|',1,1));
+        ammoList.add(new Ammo(5,5, 1,1));
         return ammoList;
     }
 

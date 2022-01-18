@@ -3,8 +3,8 @@ package com.spaceinvaders.model;
 public class Wall extends Element{
     private int health;
 
-    public Wall(int x, int y, char character, int health) {
-        super(x, y, character);
+    public Wall(int x, int y, int health) {
+        super(x, y);
         this.health = health;
     }
 

@@ -24,6 +24,6 @@ public class PlayerController {
     }
     
     public Ammo shoot(){
-        return new Ammo(player.getPosition().getX(), player.getPosition().getY() - 1, '|', -1, 1);
+        return new Ammo(player.getPosition().getX(), player.getPosition().getY() - 1,-1, 1);
     }
 }

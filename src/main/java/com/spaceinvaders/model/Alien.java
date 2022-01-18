@@ -6,8 +6,8 @@ public class Alien extends Element {
     private AlienStrategy strategy;
     private Boolean dead = false;
 
-    public Alien(int x, int y, char character, int armor){
-        super(x, y, character);
+    public Alien(int x, int y, int armor){
+        super(x, y);
         setArmor(armor);
     }
 
