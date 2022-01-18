@@ -18,6 +18,6 @@ public class Player extends Element {
     }
 
     public int getHealth(){
-        return 0;
+        return health;
     }
 }
