@@ -22,5 +22,6 @@ public class Player extends Element {
     }
 
     public void setHealth(int health){
+        this.health = health;
     }
 }
