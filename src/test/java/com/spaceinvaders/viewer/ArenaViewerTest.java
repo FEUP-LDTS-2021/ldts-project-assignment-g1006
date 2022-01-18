@@ -41,7 +41,10 @@ public class ArenaViewerTest {
         }
 
         for (Ammo ammo : arena.getProjectiles()){
-            Mockito.verify(gui, Mockito.times(1)).drawAmmo(ammo.getPosition());
+            if(ammo.getDamage() == 1)
+                Mockito.verify(gui, Mockito.times(1)).drawNormalAmmo(ammo.getPosition());
+            else
+                Mockito.verify(gui, Mockito.times(1)).drawSuperAmmo(ammo.getPosition());
         }
 
         for (Wall wall : arena.getWalls()){

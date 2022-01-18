@@ -60,9 +60,16 @@ public class LanternaGUITest {
     }
 
     @Test
-    void drawAmmo(){
+    void drawNormalAmmo(){
         Position  position = new Position(10,10);
-        gui.drawAmmo(position);
+        gui.drawNormalAmmo(position);
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "|");
+    }
+
+    @Test
+    void drawSuperAmmo(){
+        Position  position = new Position(10,10);
+        gui.drawSuperAmmo(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "|");
     }
 
