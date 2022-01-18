@@ -138,5 +138,15 @@ public class ArenaController extends Controller<Arena> {
     }
 
     public void checkProjectilesPlayerCollisions(){
+        for (int i = getModel().getProjectiles().size() - 1; i >= 0; i--) {
+            Ammo ammo = getModel().getProjectiles().get(i);
+            if(ammo.getPosition().equals(getModel().getPlayer().getPosition())){
+                getModel().getProjectiles().remove(i);
+                getModel().getPlayer().setHealth(getModel().getPlayer().getHealth() - ammo.getDamage());
+                if(getModel().getPlayer().getHealth() == 0){
+
+                }
+            }
+        }
     }
 }
