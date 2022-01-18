@@ -24,6 +24,11 @@ public class PlayerController {
     }
     
     public Ammo shoot(){
-        return new Ammo(player.getPosition().getX(), player.getPosition().getY() - 1,-1, 1);
+        int damage = 1;
+        int MaxDamageOdds = 5;
+        int DamageOdd = (int)Math.floor(Math.random() * (MaxDamageOdds - 1 + 1) + 1);
+        if(DamageOdd > 3) // 40% chance of damage = 2
+            damage = 2;
+        return new Ammo(player.getPosition().getX(), player.getPosition().getY() - 1,-1, damage);
     }
 }
