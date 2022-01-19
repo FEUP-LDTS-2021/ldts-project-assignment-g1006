@@ -51,4 +51,8 @@ public class Button {
     public void setCommand(ButtonCommand command) {
         this.command = command;
     }
+
+    public void click(){
+
+    }
 }
