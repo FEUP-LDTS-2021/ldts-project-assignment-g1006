@@ -3,6 +3,8 @@ package com.spaceinvaders.controller;
 import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
+import com.spaceinvaders.model.menu.GameOverMenu;
+import com.spaceinvaders.state.GameOverState;
 import com.spaceinvaders.viewer.ArenaViewer;
 
 import java.io.IOException;
@@ -57,6 +59,10 @@ public class ArenaController extends Controller<Arena> {
         this.playerController = playerController;
     }
 
+    void exit(Game game){
+        game.setGameState(new GameOverState(new GameOverMenu(game), gui));
+    }
+
     @Override
     public void step(Game game, long time) throws IOException {
         arenaViewer.draw();
@@ -66,7 +72,7 @@ public class ArenaController extends Controller<Arena> {
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
         checkProjectilesOutOfBounds();
-        checkProjectilesPlayerCollisions();
+        if (checkProjectilesPlayerCollisions()) exit(game);
     }
 
     public void processAction(Game game, GUI.Action action){
@@ -137,16 +143,17 @@ public class ArenaController extends Controller<Arena> {
         }
     }
 
-    public void checkProjectilesPlayerCollisions(){
+    public boolean checkProjectilesPlayerCollisions(){
         for (int i = getModel().getProjectiles().size() - 1; i >= 0; i--) {
             Ammo ammo = getModel().getProjectiles().get(i);
             if(ammo.getPosition().equals(getModel().getPlayer().getPosition())){
                 getModel().getProjectiles().remove(i);
                 getModel().getPlayer().setHealth(getModel().getPlayer().getHealth() - ammo.getDamage());
                 if(getModel().getPlayer().getHealth() == 0){
-
+                    return true;
                 }
             }
         }
+        return false;
     }
 }
