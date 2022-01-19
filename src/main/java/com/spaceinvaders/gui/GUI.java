@@ -25,4 +25,5 @@ public interface GUI {
     void drawArmoredAlien(Position position);
     void drawWall(Position position);
     void drawButton(Button button);
+    void drawText(String text, String color, Position position);
 }
