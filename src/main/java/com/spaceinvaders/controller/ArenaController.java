@@ -61,6 +61,16 @@ public class ArenaController extends Controller<Arena> {
     public void step(Game game, long time) throws IOException {
         arenaViewer.draw();
         processAction(game, gui.getAction());
+        for (List<Alien> aliensRow : getModel().getAliens()) {
+            for (Alien alien : aliensRow) {
+                int shootingProbability = (int)Math.floor(Math.random() * (300 - 1 + 0) + 0);
+                if(shootingProbability == 0) {
+                    Ammo ammo = alienController.shoot(alien);
+                    if(ammo != null)
+                        getModel().getProjectiles().add(ammo);
+                }
+            }
+        }
         alienController.step(game, time);
         ammoController.step(game, time);
         checkAlienProjectilesCollisions();

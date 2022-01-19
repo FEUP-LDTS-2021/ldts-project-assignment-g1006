@@ -32,7 +32,7 @@ public class AlienController extends Controller<Arena>{
 
     public Ammo shoot(Alien alien){
         if (alien.freeToShoot(getModel())) {
-            return new com.spaceinvaders.model.Ammo(alien.getPosition().getX(), alien.getPosition().getY() + 1, 1, 0);
+            return new com.spaceinvaders.model.Ammo(alien.getPosition().getX(), alien.getPosition().getY() + 1, 1, 1);
         }
         return null;
     }
