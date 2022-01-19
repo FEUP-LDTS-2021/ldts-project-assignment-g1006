@@ -11,6 +11,7 @@ public abstract class Menu {
 
     public Menu(Game game){
         this.game = game;
+        this.selected = 0;
     }
 
     public void setButtons(List<Button> buttons) {
@@ -34,10 +35,18 @@ public abstract class Menu {
     }
 
     public void nextButton(){
-        if (selected < buttons.size()-1) selected++;
+        if (selected < buttons.size()-1){
+            getButtons().get(selected).setHighlight(false);
+            selected++;
+            getButtons().get(selected).setHighlight(true);
+        }
     }
 
     public void previousButton(){
-        if (selected > 0) selected--;
+        if (selected > 0) {
+            getButtons().get(selected).setHighlight(false);
+            selected--;
+            getButtons().get(selected).setHighlight(true);
+        }
     }
 }
