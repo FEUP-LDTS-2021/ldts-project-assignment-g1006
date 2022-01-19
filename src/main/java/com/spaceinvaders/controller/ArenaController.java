@@ -63,7 +63,7 @@ public class ArenaController extends Controller<Arena> {
         processAction(game, gui.getAction());
         for (List<Alien> aliensRow : getModel().getAliens()) {
             for (Alien alien : aliensRow) {
-                int shootingProbability = (int)Math.floor(Math.random() * (300 - 1 + 0) + 0);
+                int shootingProbability = (int)Math.floor(Math.random() * (300 - 1) + 0);
                 if(shootingProbability == 0) {
                     Ammo ammo = alienController.shoot(alien);
                     if(ammo != null)
