@@ -13,6 +13,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.menu.Button;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -21,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import static java.lang.Math.round;
 
 public class LanternaGUI implements GUI {
     private final TerminalScreen screen;
@@ -166,5 +169,31 @@ public class LanternaGUI implements GUI {
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#666666"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(position.getX(), position.getY(), "O");
+    }
+
+    @Override
+    public void drawButton(Button button) {
+        TextGraphics textGraphics = createTextGraphics();
+        if (button.getHighlight())
+            textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
+        else
+            textGraphics.setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
+
+        textGraphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
+        textGraphics.enableModifiers(SGR.BOLD);
+
+        double offsety = (button.getBottomright().getY() - button.getTopleft().getY())/2.0;
+        int textY = (int)round(offsety) + button.getTopleft().getY();
+        double offsetx = (button.getBottomright().getX()-button.getTopleft().getX()-button.getText().length())/2.0;
+        int textX = (int)round(offsetx) + button.getTopleft().getX();
+        textGraphics.putString(textX, textY, button.getText());
+
+        drawRectangle(textGraphics, button.getTopleft(), button.getBottomright());
+    }
+
+    private void drawRectangle(TextGraphics textGraphics, Position topLeft, Position bottomRight){
+        for(int i = topLeft.getX(); i <= bottomRight.getX(); i++ )
+            for(int j = topLeft.getY(); j <= bottomRight.getY(); j++)
+                textGraphics.putString(new TerminalPosition(i, j), " ");
     }
 }
