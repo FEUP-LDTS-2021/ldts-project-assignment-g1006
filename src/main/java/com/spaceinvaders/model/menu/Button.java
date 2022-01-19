@@ -5,19 +5,26 @@ import com.spaceinvaders.model.Position;
 public class Button {
     private final String text;
     private final String color;
-    private final Position position;
+    private final Position topleft;
+    private final Position bottomright;
     private final boolean highlight;
 
-    public Button(String text, String color, Position position){
+    public Button(String text, String color, Position topleft, Position bottomright){
         this.text = text;
         this.color = color;
-        this.position = position;
+        this.topleft = topleft;
+        this.bottomright = bottomright;
         this.highlight = false;
     }
 
-    public Position getPosition() {
-        return position;
+    public Position getTopleft() {
+        return topleft;
     }
+
+    public Position getBottomright() {
+        return bottomright;
+    }
+
 
     public String getText() {
         return text;
