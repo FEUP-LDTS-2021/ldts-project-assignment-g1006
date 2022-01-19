@@ -45,10 +45,10 @@ public class Button {
     }
 
     public ButtonCommand getCommand() {
-        return null;
+        return command;
     }
 
     public void setCommand(ButtonCommand command) {
-
+        this.command = command;
     }
 }
