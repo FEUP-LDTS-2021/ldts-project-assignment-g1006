@@ -2,6 +2,7 @@ package com.spaceinvaders.gui;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.menu.Button;
 
 import java.io.IOException;
 
@@ -23,4 +24,5 @@ public interface GUI {
     void drawNormalAlien(Position position);
     void drawArmoredAlien(Position position);
     void drawWall(Position position);
+    void drawButton(Button button);
 }
