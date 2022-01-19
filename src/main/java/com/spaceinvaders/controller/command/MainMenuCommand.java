@@ -5,7 +5,7 @@ import com.spaceinvaders.model.menu.StartMenu;
 import com.spaceinvaders.state.MenuState;
 
 public class MainMenuCommand extends ButtonCommand{
-    protected MainMenuCommand(Game game) {
+    public MainMenuCommand(Game game) {
         super(game);
     }
 

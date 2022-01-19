@@ -2,7 +2,7 @@ package com.spaceinvaders.model.menu;
 
 import com.spaceinvaders.Game;
 import com.spaceinvaders.controller.command.AddRecordCommand;
-import com.spaceinvaders.controller.command.ExitCommand;
+import com.spaceinvaders.controller.command.MainMenuCommand;
 import com.spaceinvaders.controller.command.PlayCommand;
 import com.spaceinvaders.model.Position;
 
@@ -14,7 +14,7 @@ public class GameOverMenu extends Menu{
         Button mainMenu = new Button("Main Menu", "#003399", new Position(16, 18), new Position(27, 20));
         play.setCommand(new PlayCommand(game));
         addRecord.setCommand(new AddRecordCommand(game));
-        mainMenu.setCommand(new ExitCommand(game));
+        mainMenu.setCommand(new MainMenuCommand(game));
         getButtons().add(play);
         getButtons().add(mainMenu);
         getButtons().add(addRecord);
