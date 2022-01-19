@@ -151,7 +151,7 @@ public class LanternaGUITest {
         gui.drawButton(button);
 
         Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
-        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#000000"));
+        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#ffffff"));
         Mockito.verify(textGraphics, Mockito.times(1)).enableModifiers(SGR.BOLD);
 
         Mockito.verify(textGraphics, Mockito.times(1)).putString(1, 1, button.getText());
