@@ -3,7 +3,10 @@ package com.spaceinvaders;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.gui.LanternaGUI;
 import com.spaceinvaders.model.*;
+import com.spaceinvaders.model.menu.Menu;
+import com.spaceinvaders.model.menu.StartMenu;
 import com.spaceinvaders.state.GameState;
+import com.spaceinvaders.state.MenuState;
 import com.spaceinvaders.state.PlayingState;
 
 import java.awt.*;
@@ -21,7 +24,8 @@ public class Game {
     private Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(width, height);
         ArenaBuilder builder = new ArenaBuilder();
-        this.gameState = new PlayingState(builder.createArena(width, height), gui);
+        //this.gameState = new PlayingState(builder.createArena(width, height), gui);
+        this.gameState = new MenuState(new StartMenu(this), gui);
     }
 
     public static Game getInstance() throws IOException, URISyntaxException, FontFormatException {
