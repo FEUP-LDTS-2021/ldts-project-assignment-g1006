@@ -2,6 +2,7 @@ package com.spaceinvaders.model.menu;
 
 import com.spaceinvaders.Game;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Menu {
@@ -10,6 +11,7 @@ public abstract class Menu {
     protected Game game;
 
     public Menu(Game game){
+        this.buttons = new ArrayList<>();
         this.game = game;
         this.selected = 0;
     }
