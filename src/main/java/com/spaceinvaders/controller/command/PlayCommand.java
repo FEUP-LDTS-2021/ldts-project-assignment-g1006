@@ -6,7 +6,7 @@ import com.spaceinvaders.model.ArenaBuilder;
 import com.spaceinvaders.state.PlayingState;
 
 public class PlayCommand extends ButtonCommand{
-    protected PlayCommand(Game game) {
+    public PlayCommand(Game game) {
         super(game);
     }
 
