@@ -9,6 +9,6 @@ public class ExitCommand extends ButtonCommand{
 
     @Override
     public void execute() {
-
+        game.setGameState(null);
     }
 }
