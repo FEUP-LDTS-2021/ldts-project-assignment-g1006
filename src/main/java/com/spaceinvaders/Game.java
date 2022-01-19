@@ -34,6 +34,18 @@ public class Game {
         return singleton;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+
     public GameState getGameState() {
         return gameState;
     }
