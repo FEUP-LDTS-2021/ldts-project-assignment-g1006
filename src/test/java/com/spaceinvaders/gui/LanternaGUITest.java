@@ -91,7 +91,7 @@ public class LanternaGUITest {
     void drawHealth(){
         int health = 3;
         gui.drawHealth(health);
-        Mockito.verify(textGraphics, Mockito.times(1)).putString(95, 78, String.valueOf(health) + "h");
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(47, 23, String.valueOf(health) + "h");
     }
 
     @Test

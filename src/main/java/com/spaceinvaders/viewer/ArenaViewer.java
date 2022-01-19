@@ -31,6 +31,7 @@ public class ArenaViewer {
     }
 
     private void drawHealth(int health, HealthViewer viewer){
+        viewer.drawElement(health, gui);
     }
 
     private <T extends Element> void drawElement(T element, ElementViewer<T> viewer) {

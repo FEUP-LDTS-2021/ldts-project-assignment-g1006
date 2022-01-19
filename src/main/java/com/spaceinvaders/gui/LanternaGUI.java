@@ -177,6 +177,11 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawHealth(int health) {
+        TextGraphics textGraphics = createTextGraphics();
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
+        textGraphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        textGraphics.enableModifiers(SGR.BOLD);
+        textGraphics.putString(47, 23, String.valueOf(health) + "h");
 
     }
 }
