@@ -1,6 +1,7 @@
 package com.spaceinvaders.viewer.menu;
 
 import com.spaceinvaders.gui.GUI;
+import com.spaceinvaders.model.menu.Button;
 import com.spaceinvaders.model.menu.Menu;
 import com.spaceinvaders.viewer.Viewer;
 
@@ -13,6 +14,10 @@ public class StartMenuViewer extends Viewer<Menu> {
 
     @Override
     public void draw() throws IOException {
-
+        getGui().clear();
+        getGui().drawBackground();
+        for (Button button : getModel().getButtons())
+            getGui().drawButton(button);
+        getGui().refresh();
     }
 }
