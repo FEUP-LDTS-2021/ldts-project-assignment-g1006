@@ -51,10 +51,15 @@ public class StartMenuTest {
         menu.setSelected(0);
 
         menu.nextButton();
+        Mockito.verify(button1, Mockito.times(1)).setHighlight(false);
+        Mockito.verify(button2, Mockito.times(1)).setHighlight(true);
         Assertions.assertEquals(menu.getSelected(), 1);
 
         menu.nextButton();
+        Mockito.verify(button2, Mockito.times(1)).setHighlight(false);
+        Mockito.verify(button3, Mockito.times(1)).setHighlight(true);
         menu.nextButton();
+        Mockito.verify(button3, Mockito.times(0)).setHighlight(false);
         Assertions.assertEquals(menu.getSelected(), 2);
     }
 
@@ -68,10 +73,15 @@ public class StartMenuTest {
         menu.setSelected(2);
 
         menu.previousButton();
+        Mockito.verify(button3, Mockito.times(1)).setHighlight(false);
+        Mockito.verify(button2, Mockito.times(1)).setHighlight(true);
         Assertions.assertEquals(menu.getSelected(), 1);
 
         menu.previousButton();
+        Mockito.verify(button2, Mockito.times(1)).setHighlight(false);
+        Mockito.verify(button1, Mockito.times(1)).setHighlight(true);
         menu.previousButton();
+        Mockito.verify(button1, Mockito.times(0)).setHighlight(false);
         Assertions.assertEquals(menu.getSelected(), 0);
     }
 }
