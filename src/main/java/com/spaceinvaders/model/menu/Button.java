@@ -1,5 +1,6 @@
 package com.spaceinvaders.model.menu;
 
+import com.spaceinvaders.controller.command.ButtonCommand;
 import com.spaceinvaders.model.Position;
 
 public class Button {
@@ -8,6 +9,7 @@ public class Button {
     private final Position topleft;
     private final Position bottomright;
     private boolean highlight;
+    private ButtonCommand command;
 
     public Button(String text, String color, Position topleft, Position bottomright){
         this.text = text;
@@ -40,5 +42,13 @@ public class Button {
 
     public void setHighlight(boolean value){
         this.highlight = value;
+    }
+
+    public ButtonCommand getCommand() {
+        return null;
+    }
+
+    public void setCommand(ButtonCommand command) {
+
     }
 }
