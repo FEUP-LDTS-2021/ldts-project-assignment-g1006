@@ -33,7 +33,6 @@ public class ArenaBuilder {
 
     private List<Ammo> createProjectiles(){
         List<Ammo> ammoList = new ArrayList<>();
-        ammoList.add(new Ammo(5,5, 1,1));
         return ammoList;
     }
 
