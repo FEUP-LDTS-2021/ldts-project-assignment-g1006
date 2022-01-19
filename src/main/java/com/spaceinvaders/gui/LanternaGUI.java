@@ -191,6 +191,14 @@ public class LanternaGUI implements GUI {
         textGraphics.putString(textX, textY, button.getText());
     }
 
+    @Override
+    public void drawText(String text, String color, Position position) {
+        TextGraphics textGraphics = createTextGraphics();
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
+        textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
+        textGraphics.putString(position.getX(), position.getY(), text);
+    }
+
     private void drawRectangle(TextGraphics textGraphics, Position topLeft, Position bottomRight){
         for(int i = topLeft.getX(); i <= bottomRight.getX(); i++ )
             for(int j = topLeft.getY(); j <= bottomRight.getY(); j++)
