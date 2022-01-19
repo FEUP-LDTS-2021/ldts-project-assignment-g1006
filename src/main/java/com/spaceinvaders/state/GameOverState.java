@@ -1,6 +1,7 @@
 package com.spaceinvaders.state;
 
 import com.spaceinvaders.controller.Controller;
+import com.spaceinvaders.controller.GameOverController;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.menu.Menu;
 
@@ -10,7 +11,7 @@ public class GameOverState extends GameState<Menu>{
     }
 
     @Override
-    protected Controller<Menu> getController() {
-        return null;
+    public Controller<Menu> getController() {
+        return new GameOverController(getModel(), gui);
     }
 }
