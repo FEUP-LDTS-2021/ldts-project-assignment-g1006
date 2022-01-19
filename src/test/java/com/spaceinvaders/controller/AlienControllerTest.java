@@ -2,6 +2,7 @@ package com.spaceinvaders.controller;
 
 import com.spaceinvaders.Game;
 import com.spaceinvaders.model.Alien;
+import com.spaceinvaders.model.Ammo;
 import com.spaceinvaders.model.Arena;
 import com.spaceinvaders.model.Position;
 import org.junit.jupiter.api.Assertions;
@@ -67,6 +68,17 @@ public class AlienControllerTest {
 
         Assertions.assertEquals(alien.getPosition(), new Position(0,10));
         Assertions.assertEquals(alien.getDirection(), 1);
+    }
+
+    @Test
+    void shoot(){
+        Alien alien1 = new Alien(10,10,0);
+        Alien alien2 = new Alien(10,12,0);
+        Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien1), List.of(alien2)));
+        arena.setProjectiles(List.of());
+
+        Assertions.assertEquals(alienController.shoot(alien1), null);
+        Assertions.assertEquals(alienController.shoot(alien2).getPosition(), new Position(alien2.getPosition().getX(), alien2.getPosition().getY() + 1));
     }
 
 }

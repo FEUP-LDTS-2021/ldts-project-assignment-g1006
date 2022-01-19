@@ -1,5 +1,7 @@
 package com.spaceinvaders.model;
 
+import java.util.List;
+
 public class Alien extends Element {
     private int direction = 1;
     private int armor;
@@ -72,21 +74,16 @@ public class Alien extends Element {
     }
 
 
-    /*
+
     public boolean freeToShoot(com.spaceinvaders.model.Arena arena){
-        for (com.spaceinvaders.model.Alien alien : arena.getAliens()){
-            if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()){
-                return false;
+        for (List<Alien> aliensRow : arena.getAliens()){
+            for(com.spaceinvaders.model.Alien alien: aliensRow) {
+                if (alien.getPosition().getX() == getPosition().getX() && alien.getPosition().getY() > getPosition().getY()) {
+                    return false;
+                }
             }
         }
         return true;
     }
 
-    public void shoot(com.spaceinvaders.model.Arena arena){
-        if (freeToShoot(arena)){
-            com.spaceinvaders.model.Ammo ammo = new com.spaceinvaders.model.Ammo(getPosition().getX(), getPosition().getY()+getDirection(), getCharacter(), getDirection(), 0);
-            arena.getProjectiles().add(ammo);
-        }
-    }
-    */
 }
