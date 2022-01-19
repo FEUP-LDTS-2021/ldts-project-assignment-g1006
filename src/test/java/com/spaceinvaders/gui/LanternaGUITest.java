@@ -1,17 +1,22 @@
 package com.spaceinvaders.gui;
 
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.menu.Button;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LanternaGUITest {
     private LanternaGUI gui;
@@ -135,5 +140,22 @@ public class LanternaGUITest {
         Mockito.when(key.getKeyType()).thenReturn(KeyType.Enter);
 
         Assertions.assertEquals(gui.getAction(), GUI.Action.ENTER);
+    }
+
+    @Test
+    void drawButton() {
+        Position topleft = new Position(0,0);
+        Position bottomright = new Position(5,2);
+
+        Button button=new Button("play", "#101010", topleft, bottomright);
+        gui.drawButton(button);
+
+        Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
+        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#000000"));
+        Mockito.verify(textGraphics, Mockito.times(1)).enableModifiers(SGR.BOLD);
+
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(1, 1, button.getText());
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(new TerminalPosition(topleft.getX(), topleft.getY()), " ");
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(new TerminalPosition(bottomright.getX(), bottomright.getY()), " ");
     }
 }
