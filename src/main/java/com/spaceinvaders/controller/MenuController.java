@@ -24,7 +24,7 @@ public class MenuController extends Controller<Menu> {
         switch (action){
             case KEYDOWN -> getModel().nextButton();
             case KEYUP -> getModel().previousButton();
-            case ENTER -> getModel().getSelectedButton().getCommand().execute();
+            case ENTER -> getModel().getSelectedButton().click();
             case EXIT -> game.setGameState(null);
         }
     }
