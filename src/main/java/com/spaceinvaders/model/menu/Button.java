@@ -7,7 +7,7 @@ public class Button {
     private final String color;
     private final Position topleft;
     private final Position bottomright;
-    private final boolean highlight;
+    private boolean highlight;
 
     public Button(String text, String color, Position topleft, Position bottomright){
         this.text = text;
@@ -34,7 +34,11 @@ public class Button {
         return color;
     }
 
-    public boolean getHighlight(){
+    public boolean isHighlighted(){
         return highlight;
+    }
+
+    public void setHighlight(boolean value){
+        this.highlight = value;
     }
 }

@@ -37,7 +37,16 @@ public class ButtonTest {
 
     @Test
     void getHighlight(){
-        Assertions.assertFalse(button.getHighlight());
+        Assertions.assertFalse(button.isHighlighted());
     }
+
+    @Test
+    void setHighlight(){
+        button.setHighlight(true);
+        Assertions.assertTrue(button.isHighlighted());
+        button.setHighlight(false);
+        Assertions.assertFalse(button.isHighlighted());
+    }
+
 }
 

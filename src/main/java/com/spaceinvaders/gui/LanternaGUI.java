@@ -174,7 +174,7 @@ public class LanternaGUI implements GUI {
     @Override
     public void drawButton(Button button) {
         TextGraphics textGraphics = createTextGraphics();
-        if (button.getHighlight())
+        if (button.isHighlighted())
             textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         else
             textGraphics.setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
