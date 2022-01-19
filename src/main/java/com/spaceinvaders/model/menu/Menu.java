@@ -51,4 +51,8 @@ public abstract class Menu {
             getButtons().get(selected).setHighlight(true);
         }
     }
+    
+    public Button getSelectedButton(){
+        return null;
+    }
 }
