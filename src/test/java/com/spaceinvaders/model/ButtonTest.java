@@ -1,9 +1,11 @@
 package com.spaceinvaders.model;
 
+import com.spaceinvaders.controller.command.ButtonCommand;
 import com.spaceinvaders.model.menu.Button;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 public class ButtonTest {
     private Button button;
@@ -48,5 +50,16 @@ public class ButtonTest {
         Assertions.assertFalse(button.isHighlighted());
     }
 
+    @Test
+    void setCommand(){
+        ButtonCommand command = Mockito.mock(ButtonCommand.class);
+        button.setCommand(command);
+        Assertions.assertEquals(button.getCommand(), command);
+    }
+
+    @Test
+    void getCommand(){
+        Assertions.assertNull(button.getCommand());
+    }
 }
 
