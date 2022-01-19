@@ -1,5 +1,6 @@
 package com.spaceinvaders;
 
+import com.spaceinvaders.gui.LanternaGUI;
 import com.spaceinvaders.state.GameState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,5 +32,20 @@ public class GameTest {
         game.setGameState(gameState);
 
         Assertions.assertEquals(game.getGameState(), gameState);
+    }
+
+    @Test
+    void getGui() {
+        Assertions.assertEquals(game.getGui().getClass(), LanternaGUI.class);
+    }
+
+    @Test
+    void getHeight(){
+        Assertions.assertEquals(game.getHeight(), 25);
+    }
+
+    @Test
+    void getWidth(){
+        Assertions.assertEquals(game.getWidth(), 50);
     }
 }

@@ -2,11 +2,12 @@ package com.spaceinvaders.gui;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.menu.Button;
 
 import java.io.IOException;
 
 public interface GUI {
-enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
+    enum Action {KEYUP, KEYDOWN, KEYRIGHT, KEYLEFT, ENTER, EXIT, NONE}
 
     int getWidth();
     int getHeight();
@@ -25,4 +26,5 @@ enum Action {KEYUP, KEYRIGHT, KEYLEFT, EXIT, NONE}
     void drawArmoredAlien(Position position);
     void drawWall(Position position);
     void drawHealth(int health);
+    void drawButton(Button button);
 }

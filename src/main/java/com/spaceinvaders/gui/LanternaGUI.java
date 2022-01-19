@@ -13,6 +13,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.menu.Button;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -21,6 +22,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import static java.lang.Math.round;
 
 public class LanternaGUI implements GUI {
     private final TerminalScreen screen;
@@ -88,8 +91,10 @@ public class LanternaGUI implements GUI {
         KeyStroke keyPressed = screen.pollInput();
         if (keyPressed == null) return Action.NONE;
         else if (keyPressed.getKeyType() == KeyType.ArrowUp)return Action.KEYUP;
+        else if (keyPressed.getKeyType() == KeyType.ArrowDown)return Action.KEYDOWN;
         else if (keyPressed.getKeyType() == KeyType.ArrowLeft)return Action.KEYLEFT;
         else if (keyPressed.getKeyType() == KeyType.ArrowRight)return Action.KEYRIGHT;
+        else if (keyPressed.getKeyType() == KeyType.Enter)return Action.ENTER;
         else if (keyPressed.getKeyType() == KeyType.EOF) return Action.EXIT;
         else if (keyPressed.getKeyType() == KeyType.Character && keyPressed.getCharacter() == 'q') return Action.EXIT;
         else return Action.NONE;
@@ -182,6 +187,31 @@ public class LanternaGUI implements GUI {
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         textGraphics.enableModifiers(SGR.BOLD);
         textGraphics.putString(47, 23, String.valueOf(health) + "h");
+    }
 
+    @Override
+    public void drawButton(Button button) {
+        TextGraphics textGraphics = createTextGraphics();
+        if (button.isHighlighted())
+            textGraphics.setBackgroundColor(TextColor.Factory.fromString("#666666"));
+        else
+            textGraphics.setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
+
+        drawRectangle(textGraphics, button.getTopleft(), button.getBottomright());
+
+        textGraphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
+        textGraphics.enableModifiers(SGR.BOLD);
+
+        double offsety = (button.getBottomright().getY() - button.getTopleft().getY())/2.0;
+        int textY = (int)round(offsety) + button.getTopleft().getY();
+        double offsetx = (button.getBottomright().getX()-button.getTopleft().getX()-button.getText().length())/2.0;
+        int textX = (int)round(offsetx) + button.getTopleft().getX();
+        textGraphics.putString(textX, textY, button.getText());
+    }
+
+    private void drawRectangle(TextGraphics textGraphics, Position topLeft, Position bottomRight){
+        for(int i = topLeft.getX(); i <= bottomRight.getX(); i++ )
+            for(int j = topLeft.getY(); j <= bottomRight.getY(); j++)
+                textGraphics.putString(new TerminalPosition(i, j), " ");
     }
 }
