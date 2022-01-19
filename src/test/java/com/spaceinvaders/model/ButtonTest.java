@@ -10,13 +10,19 @@ public class ButtonTest {
 
     @BeforeEach
     void setup(){
-        Position position = new Position(0,0);
-        this.button = new Button("Play", "#000000", position);
+        Position position1 = new Position(0,0);
+        Position position2 = new Position(2,5);
+        this.button = new Button("Play", "#000000", position1, position2);
     }
 
     @Test
-    void getPosition(){
-        Assertions.assertEquals(button.getPosition(), new Position(0,0));
+    void getTopLeft(){
+        Assertions.assertEquals(button.getTopleft(), new Position(0,0));
+    }
+
+    @Test
+    void getBottomright(){
+        Assertions.assertEquals(button.getBottomright(), new Position(2,5));
     }
 
     @Test
@@ -31,7 +37,7 @@ public class ButtonTest {
 
     @Test
     void getHighlight(){
-        Assertions.assertTrue(button.getHighlight());
+        Assertions.assertFalse(button.getHighlight());
     }
 }
 
