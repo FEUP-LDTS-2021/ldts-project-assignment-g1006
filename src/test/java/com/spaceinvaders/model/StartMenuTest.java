@@ -84,4 +84,16 @@ public class StartMenuTest {
         Mockito.verify(button1, Mockito.times(0)).setHighlight(false);
         Assertions.assertEquals(menu.getSelected(), 0);
     }
+
+    @Test
+    void getButtonSel(){
+        Button button1 = Mockito.mock(Button.class);
+        Button button2 = Mockito.mock(Button.class);
+        Button button3 = Mockito.mock(Button.class);
+        buttons = List.of(button1, button2, button3);
+        menu.setButtons(buttons);
+        menu.setSelected(2);
+
+        Assertions.assertEquals(menu.getSelectedButton(), button3);
+    }
 }
