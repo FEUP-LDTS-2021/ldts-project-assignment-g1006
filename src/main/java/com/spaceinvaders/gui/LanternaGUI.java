@@ -175,11 +175,13 @@ public class LanternaGUI implements GUI {
     public void drawButton(Button button) {
         TextGraphics textGraphics = createTextGraphics();
         if (button.isHighlighted())
-            textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
+            textGraphics.setBackgroundColor(TextColor.Factory.fromString("#666666"));
         else
             textGraphics.setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
 
-        textGraphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
+        drawRectangle(textGraphics, button.getTopleft(), button.getBottomright());
+
+        textGraphics.setForegroundColor(TextColor.Factory.fromString("#ffffff"));
         textGraphics.enableModifiers(SGR.BOLD);
 
         double offsety = (button.getBottomright().getY() - button.getTopleft().getY())/2.0;
@@ -187,8 +189,6 @@ public class LanternaGUI implements GUI {
         double offsetx = (button.getBottomright().getX()-button.getTopleft().getX()-button.getText().length())/2.0;
         int textX = (int)round(offsetx) + button.getTopleft().getX();
         textGraphics.putString(textX, textY, button.getText());
-
-        drawRectangle(textGraphics, button.getTopleft(), button.getBottomright());
     }
 
     private void drawRectangle(TextGraphics textGraphics, Position topLeft, Position bottomRight){
