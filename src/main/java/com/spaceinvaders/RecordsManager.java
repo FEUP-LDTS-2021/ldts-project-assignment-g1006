@@ -54,6 +54,8 @@ public class RecordsManager {
             update(sc.next(), Integer.valueOf(sc.next()));
         }
         sort();
+        if(list.size() > number)
+            return list.subList(0,number);
         return list;
     }
 
