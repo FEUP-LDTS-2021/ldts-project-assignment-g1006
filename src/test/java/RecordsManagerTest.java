@@ -40,7 +40,7 @@ public class RecordsManagerTest {
 
     @Test
     public void read() throws FileNotFoundException {
-        data = file2.read();
+        data = file2.read(10);
         Assertions.assertEquals(data.get(0).getKey(),"Another Name");
         Assertions.assertEquals(data.get(0).getValue(),32);
         Assertions.assertEquals(data.get(1).getKey(),"Some Name");
@@ -50,7 +50,7 @@ public class RecordsManagerTest {
     @Test
     public void write() throws FileNotFoundException {
         file3.write("Creative Name",99);
-        data = file3.read();
+        data = file3.read(10);
         Assertions.assertEquals(data.get(0).getKey(),"Creative Name");
         Assertions.assertEquals(data.get(0).getValue(),99);
     }
@@ -59,7 +59,7 @@ public class RecordsManagerTest {
     public void sort() throws FileNotFoundException {
         file1.write("Long Name",99);
         file1.write("Cool Name",3);
-        data = file1.read();
+        data = file1.read(10);
         Assertions.assertEquals(data.get(0).getKey(),"Cool Name");
         Assertions.assertEquals(data.get(0).getValue(),3);
         Assertions.assertEquals(data.get(1).getKey(),"Long Name");
@@ -72,7 +72,7 @@ public class RecordsManagerTest {
         file4.write("Boring Name",6);
         file4.write("Boring Name",4);
         file4.write("Boring Name",7);
-        data = file4.read();
+        data = file4.read(10);
         Assertions.assertEquals(data.get(0).getKey(),"Boring Name");
         Assertions.assertEquals(data.get(0).getValue(),4);
     }
