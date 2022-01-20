@@ -1,17 +1,22 @@
 package com.spaceinvaders.gui;
 
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.menu.Button;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LanternaGUITest {
     private LanternaGUI gui;
@@ -60,9 +65,16 @@ public class LanternaGUITest {
     }
 
     @Test
-    void drawAmmo(){
+    void drawNormalAmmo(){
         Position  position = new Position(10,10);
-        gui.drawAmmo(position);
+        gui.drawNormalAmmo(position);
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "|");
+    }
+
+    @Test
+    void drawSuperAmmo(){
+        Position  position = new Position(10,10);
+        gui.drawSuperAmmo(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "|");
     }
 
@@ -78,6 +90,13 @@ public class LanternaGUITest {
         Position  position = new Position(10,10);
         gui.drawWall(position);
         Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), "O");
+    }
+
+    @Test
+    void drawHealth(){
+        int health = 3;
+        gui.drawHealth(health);
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(47, 23, String.valueOf(health) + "h");
     }
 
     @Test
@@ -117,5 +136,52 @@ public class LanternaGUITest {
         Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowUp);
 
         Assertions.assertEquals(gui.getAction(), GUI.Action.KEYUP);
+    }
+
+    @Test
+    void getKeyDown() throws IOException {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(terminalScreen.pollInput()).thenReturn(key);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.ArrowDown);
+
+        Assertions.assertEquals(gui.getAction(), GUI.Action.KEYDOWN);
+    }
+
+    @Test
+    void getKeyEnter() throws IOException {
+        KeyStroke key = Mockito.mock(KeyStroke.class);
+        Mockito.when(terminalScreen.pollInput()).thenReturn(key);
+        Mockito.when(key.getKeyType()).thenReturn(KeyType.Enter);
+
+        Assertions.assertEquals(gui.getAction(), GUI.Action.ENTER);
+    }
+
+    @Test
+    void drawButton() {
+        Position topleft = new Position(0,0);
+        Position bottomright = new Position(5,2);
+
+        Button button=new Button("play", "#101010", topleft, bottomright);
+        gui.drawButton(button);
+
+        Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
+        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(Mockito.any(TextColor.class));
+        Mockito.verify(textGraphics, Mockito.times(1)).enableModifiers(SGR.BOLD);
+
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(1, 1, button.getText());
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(new TerminalPosition(topleft.getX(), topleft.getY()), " ");
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(new TerminalPosition(bottomright.getX(), bottomright.getY()), " ");
+    }
+
+    @Test
+    void drawText() {
+        Position position = new Position(0,0);
+        String text = "text";
+        String color = "#000000";
+
+        gui.drawText(text, color, position);
+        Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(Mockito.any(TextColor.class));
+        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString(color));
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), text);
     }
 }

@@ -30,7 +30,7 @@ public class PlayerControllerTest {
 
     @Test
     void move(){
-        Player pl = new Player(1,1,'P');
+        Player pl = new Player(1,1);
         playerController = new PlayerController(pl);
         playerController.move(new Position(10, 10));
         Assertions.assertEquals(player.getPosition(), new Position(10, 10));

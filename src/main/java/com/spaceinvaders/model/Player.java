@@ -1,9 +1,10 @@
 package com.spaceinvaders.model;
 
 public class Player extends Element {
+    private int health = 3;
 
-    public Player(int x, int y, char character){
-        super(x,y,character);
+    public Player(int x, int y){
+        super(x,y);
     }
 
     @Override
@@ -14,5 +15,13 @@ public class Player extends Element {
     @Override
     public Position getPosition() {
         return super.getPosition();
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void setHealth(int health){
+        this.health = health;
     }
 }

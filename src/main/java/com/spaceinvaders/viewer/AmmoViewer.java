@@ -6,6 +6,9 @@ import com.spaceinvaders.model.Ammo;
 public class AmmoViewer implements ElementViewer<Ammo>{
     @Override
     public void drawElement(Ammo element, GUI gui) {
-        gui.drawAmmo(element.getPosition());
+        if(element.getDamage() == 1)
+            gui.drawNormalAmmo(element.getPosition());
+        else
+            gui.drawSuperAmmo(element.getPosition());
     }
 }

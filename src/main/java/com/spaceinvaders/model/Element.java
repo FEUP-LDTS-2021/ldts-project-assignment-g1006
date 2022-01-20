@@ -3,12 +3,10 @@ package com.spaceinvaders.model;
 import com.spaceinvaders.model.Position;
 
 public abstract class Element {
-    protected char character;
     protected Position position;
 
-    public Element(int x, int y, char character) {
+    public Element(int x, int y) {
         position = new Position(x,y);
-        this.character = character;
     }
 
     protected Position getPosition(){
@@ -18,13 +16,4 @@ public abstract class Element {
     protected void setPosition(Position position){
         this.position = position;
     }
-
-    public char getCharacter() {
-        return character;
-    }
-
-    public void setCharacter(char character) {
-        this.character = character;
-    }
-
 }

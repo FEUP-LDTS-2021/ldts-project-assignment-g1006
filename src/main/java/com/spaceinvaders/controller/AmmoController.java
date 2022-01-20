@@ -1,5 +1,6 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.model.Ammo;
 import com.spaceinvaders.model.Arena;
 import com.spaceinvaders.model.Position;
@@ -10,7 +11,7 @@ public class AmmoController extends Controller<Arena>{
     }
 
     @Override
-    public void step() {
+    public void step(Game game, long time) {
         for (Ammo ammo : getModel().getProjectiles()){
             move(ammo);
         }

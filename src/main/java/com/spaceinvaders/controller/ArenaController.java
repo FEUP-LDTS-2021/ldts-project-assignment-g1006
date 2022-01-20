@@ -1,7 +1,10 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
+import com.spaceinvaders.model.menu.GameWonMenu;
+import com.spaceinvaders.state.GameWonState;
 import com.spaceinvaders.viewer.ArenaViewer;
 
 import java.io.IOException;
@@ -14,7 +17,7 @@ public class ArenaController extends Controller<Arena> {
     private AmmoController ammoController;
     private ArenaViewer arenaViewer;
     private final GUI gui;
-    private boolean exit;
+    private long startTime;
 
     public ArenaController(Arena model, GUI gui) {
         super(model);
@@ -23,7 +26,7 @@ public class ArenaController extends Controller<Arena> {
         setAlienController(new AlienController(getModel()));
         setAmmoController(new AmmoController(getModel()));
         setArenaViewer(new ArenaViewer(gui, getModel()));
-        this.exit = false;
+        this.startTime = -1;
     }
 
     public AlienController getAlienController() {
@@ -58,24 +61,37 @@ public class ArenaController extends Controller<Arena> {
         this.playerController = playerController;
     }
 
-    public boolean exit(){
-        return this.exit;
+    void exit(Game game, long time){
+        long finalTime = time - startTime;
+        game.setGameState(new GameWonState(new GameWonMenu(game, finalTime), gui));
     }
 
     @Override
-    public void step() throws IOException {
+    public void step(Game game, long time) throws IOException {
+        if (startTime<0) this.startTime = time;
         arenaViewer.draw();
-        processAction(gui.getAction());
-        alienController.step();
-        ammoController.step();
+        processAction(game, gui.getAction());
+        for (List<Alien> aliensRow : getModel().getAliens()) {
+            for (Alien alien : aliensRow) {
+                int shootingProbability = (int)Math.floor(Math.random() * (300 - 1) + 0);
+                if(shootingProbability == 0) {
+                    Ammo ammo = alienController.shoot(alien);
+                    if(ammo != null)
+                        getModel().getProjectiles().add(ammo);
+                }
+            }
+        }
+        alienController.step(game, time);
+        ammoController.step(game, time);
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
         checkProjectilesOutOfBounds();
+        if (checkProjectilesPlayerCollisions()) exit(game, time);
     }
 
-    public void processAction(GUI.Action action){
+    public void processAction(Game game, GUI.Action action){
         switch (action) {
-            case EXIT -> this.exit = true;
+            case EXIT -> game.setGameState(null);
             case KEYLEFT -> {
                 Position newPos = playerController.moveLeft();
                 if(checkLimits(newPos)) playerController.move(newPos);
@@ -139,5 +155,19 @@ public class ArenaController extends Controller<Arena> {
             if(ammo.getPosition().getX() > 40 || ammo.getPosition().getX() < 0 || ammo.getPosition().getY() > 20 || ammo.getPosition().getY() < 0)
                 getModel().getProjectiles().remove(i);
         }
+    }
+
+    public boolean checkProjectilesPlayerCollisions(){
+        for (int i = getModel().getProjectiles().size() - 1; i >= 0; i--) {
+            Ammo ammo = getModel().getProjectiles().get(i);
+            if(ammo.getPosition().equals(getModel().getPlayer().getPosition())){
+                getModel().getProjectiles().remove(i);
+                getModel().getPlayer().setHealth(getModel().getPlayer().getHealth() - ammo.getDamage());
+                if(getModel().getPlayer().getHealth() <= 0){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

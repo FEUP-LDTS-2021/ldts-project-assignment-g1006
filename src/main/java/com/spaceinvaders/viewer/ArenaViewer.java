@@ -8,25 +8,27 @@ import com.spaceinvaders.model.Element;
 import java.io.IOException;
 import java.util.List;
 
-public class ArenaViewer {
-    private final GUI gui;
-    private final Arena arena;
+public class ArenaViewer extends Viewer<Arena>{
 
     public ArenaViewer(GUI gui, Arena arena) {
-        this.gui = gui;
-        this.arena = arena;
+        super(arena, gui);
     }
 
     public void draw() throws IOException {
-        gui.clear();
-        gui.drawBackground();
+        getGui().clear();
+        getGui().drawBackground();
 
-        for (List<Alien> list : arena.getAliens()) drawElements(list, new AlienViewer());
-        drawElements(arena.getProjectiles(), new AmmoViewer());
-        drawElements(arena.getWalls(), new WallViewer());
-        drawElement(arena.getPlayer(), new PlayerViewer());
+        for (List<Alien> list : getModel().getAliens()) drawElements(list, new AlienViewer());
+        drawElements(getModel().getProjectiles(), new AmmoViewer());
+        drawElements(getModel().getWalls(), new WallViewer());
+        drawElement(getModel().getPlayer(), new PlayerViewer());
+        drawHealth(getModel().getPlayer().getHealth(), new HealthViewer());
 
-        gui.refresh();
+        getGui().refresh();
+    }
+
+    private void drawHealth(int health, HealthViewer viewer){
+        viewer.drawElement(health, gui);
     }
 
     private <T extends Element> void drawElement(T element, ElementViewer<T> viewer) {

@@ -9,7 +9,7 @@ public class WallTest {
 
     @BeforeEach
     void setup(){
-        this.wall = new Wall(1,1,'O', 3);
+        this.wall = new Wall(1,1, 3);
     }
 
     @Test

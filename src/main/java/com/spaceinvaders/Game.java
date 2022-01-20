@@ -1,17 +1,21 @@
 package com.spaceinvaders;
 
-import com.spaceinvaders.controller.ArenaController;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.gui.LanternaGUI;
 import com.spaceinvaders.model.*;
+import com.spaceinvaders.model.menu.Menu;
+import com.spaceinvaders.model.menu.StartMenu;
+import com.spaceinvaders.state.GameState;
+import com.spaceinvaders.state.MenuState;
+import com.spaceinvaders.state.PlayingState;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Game {
-    private final ArenaController arenaController;
     private final GUI gui;
+    private GameState gameState;
     private int width = 50;
     private int height = 25;
 
@@ -20,7 +24,8 @@ public class Game {
     private Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(width, height);
         ArenaBuilder builder = new ArenaBuilder();
-        this.arenaController = new ArenaController(builder.createArena(width, height), gui);
+        //this.gameState = new PlayingState(builder.createArena(width, height), gui);
+        this.gameState = new MenuState(new StartMenu(this), gui);
     }
 
     public static Game getInstance() throws IOException, URISyntaxException, FontFormatException {
@@ -29,15 +34,34 @@ public class Game {
         return singleton;
     }
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(GameState gameState) {
+        this.gameState = gameState;
+    }
+
     public void run() throws IOException {
         int fps = 60;
         int frameTime = 1000 / fps;
 
-
-        while (!arenaController.exit()){
+        while (gameState != null){
             long startTime = System.currentTimeMillis();
 
-            arenaController.step();
+            gameState.step(this, startTime);
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;

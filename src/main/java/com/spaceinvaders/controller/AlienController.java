@@ -1,6 +1,8 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.model.Alien;
+import com.spaceinvaders.model.Ammo;
 import com.spaceinvaders.model.Arena;
 import com.spaceinvaders.model.Position;
 
@@ -12,7 +14,7 @@ public class AlienController extends Controller<Arena>{
     }
 
     @Override
-    public void step() {
+    public void step(Game game, long time) {
         for (List<Alien> list : getModel().getAliens()){
             for (Alien alien : list){
                 move(alien);
@@ -26,5 +28,12 @@ public class AlienController extends Controller<Arena>{
             alien.setPosition(newPos);
         else
             alien.changeDirection();
+    }
+
+    public Ammo shoot(Alien alien){
+        if (alien.freeToShoot(getModel())) {
+            return new com.spaceinvaders.model.Ammo(alien.getPosition().getX(), alien.getPosition().getY() + 1, 1, 1);
+        }
+        return null;
     }
 }

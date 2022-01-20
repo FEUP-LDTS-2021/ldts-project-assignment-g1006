@@ -1,5 +1,6 @@
 package com.spaceinvaders.controller;
 
+import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
 import com.spaceinvaders.viewer.ArenaViewer;
@@ -21,10 +22,12 @@ public class ArenaControllerTest {
     private ArenaViewer arenaViewer;
     private GUI gui;
     private Arena arena;
+    private Game game;
 
     @BeforeEach
     void setup(){
         this.arena = Mockito.mock(Arena.class);
+        this.game = Mockito.mock(Game.class);
         Mockito.when(arena.getWidth()).thenReturn(20);
         Player player = Mockito.mock(Player.class);
         Mockito.when(arena.getPlayer()).thenReturn(player);
@@ -89,10 +92,10 @@ public class ArenaControllerTest {
     void step() throws IOException {
         Mockito.when(gui.getAction()).thenReturn(GUI.Action.NONE);
 
-        arenaController.step();
+        arenaController.step(game, 0);
 
-        Mockito.verify(alienController, Mockito.times(1)).step();
-        Mockito.verify(ammoController, Mockito.times(1)).step();
+        Mockito.verify(alienController, Mockito.times(1)).step(game, 0);
+        Mockito.verify(ammoController, Mockito.times(1)).step(game, 0);
         Mockito.verify(arenaViewer, Mockito.times(1)).draw();
     }
 
@@ -101,7 +104,7 @@ public class ArenaControllerTest {
         Position position = new Position(10,10);
         Mockito.when(playerController.moveRight()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYRIGHT);
+        arenaController.processAction(game, GUI.Action.KEYRIGHT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveRight();
         Mockito.verify(playerController, Mockito.times(1)).move(position);
@@ -112,7 +115,7 @@ public class ArenaControllerTest {
         Position position = new Position(10,10);
         Mockito.when(playerController.moveLeft()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYLEFT);
+        arenaController.processAction(game, GUI.Action.KEYLEFT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveLeft();
         Mockito.verify(playerController, Mockito.times(1)).move(position);
@@ -123,7 +126,7 @@ public class ArenaControllerTest {
         Position position = new Position(20,10);
         Mockito.when(playerController.moveRight()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYRIGHT);
+        arenaController.processAction(game, GUI.Action.KEYRIGHT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveRight();
         Mockito.verify(playerController, Mockito.times(0)).move(position);
@@ -134,7 +137,7 @@ public class ArenaControllerTest {
         Position position = new Position(-1,10);
         Mockito.when(playerController.moveLeft()).thenReturn(position);
 
-        arenaController.processAction(GUI.Action.KEYLEFT);
+        arenaController.processAction(game, GUI.Action.KEYLEFT);
 
         Mockito.verify(playerController, Mockito.times(1)).moveLeft();
         Mockito.verify(playerController, Mockito.times(0)).move(position);
@@ -142,7 +145,7 @@ public class ArenaControllerTest {
 
     @Test
     void processActionKeyUp(){
-        arenaController.processAction(GUI.Action.KEYUP);
+        arenaController.processAction(game, GUI.Action.KEYUP);
 
         Mockito.when(arena.getProjectiles()).thenReturn(new ArrayList<>());
         Mockito.verify(playerController, Mockito.times(1)).shoot();
@@ -159,8 +162,8 @@ public class ArenaControllerTest {
     @Test
     void checkAlienProjectilesCollisions(){
         Arena arena = new Arena(40, 20);
-        Alien alien = new Alien(10,14,'A',0);
-        Ammo ammo = new Ammo(10,14,'|', -1, 1);
+        Alien alien = new Alien(10,14,0);
+        Ammo ammo = new Ammo(10,14, -1, 1);
 
         List<List<Alien>> aliens = new ArrayList<>(new ArrayList<>());
         List<Alien> listAlien = new ArrayList<>();
@@ -189,15 +192,15 @@ public class ArenaControllerTest {
         arenaController.checkAlienProjectilesCollisions();
 
         Assertions.assertFalse(alien.isDead());
-        Assertions.assertEquals(alien.getArmor(),0);
+        Assertions.assertEquals(alien.getArmor(),1);
         Assertions.assertEquals(ammo.getDirection(),1);
     }
 
     @Test
     void checkWallProjectilesCollisions() {
         Arena arena = new Arena(40, 20);
-        Wall wall = new Wall(1, 1, 'O', 1);
-        Ammo ammo = new Ammo(1, 1, '|', 1, 1);
+        Wall wall = new Wall(1, 1, 1);
+        Ammo ammo = new Ammo(1, 1, 1, 1);
 
         List<Ammo> projectiles = new ArrayList<>();
         List<Wall> walls = new ArrayList<>();
@@ -217,8 +220,8 @@ public class ArenaControllerTest {
     @Test
     void checkProjectilesOutOfBounds() {
         Arena arena = new Arena(40, 20);
-        Ammo ammo1 = new Ammo(1, 1, '|', 1, 1);
-        Ammo ammo2 = new Ammo(41, 21, '|', 1, 1);
+        Ammo ammo1 = new Ammo(1, 1, 1, 1);
+        Ammo ammo2 = new Ammo(41, 21, 1, 1);
 
         List<Ammo> projectiles = new ArrayList<>();
         projectiles.add(ammo1);
@@ -232,13 +235,30 @@ public class ArenaControllerTest {
     }
 
     @Test
+    void checkProjectilesPlayerCollisions(){
+        Arena arena = new Arena(40, 20);
+        Ammo ammo = new Ammo(1, 1, 1, 1);
+        Player player = new Player(1,1);
+
+        List<Ammo> projectiles = new ArrayList<>();
+        projectiles.add(ammo);
+        arena.setProjectiles(projectiles);
+
+        arena.setPlayer(player);
+        ArenaController arenaController = new ArenaController(arena, gui);
+        arenaController.checkProjectilesPlayerCollisions();
+
+        Assertions.assertEquals(player.getHealth(), 2);
+    }
+
+    @Test
     void checkAmmoPassingThroughAliens(){
         Arena arena = new Arena(40, 20);
-        Alien alien = new Alien(10,14,'A',2);
-        Alien alien2 = new Alien(12,14,'A',0);
-        Alien alien3 = new Alien(14,14,'A',3);
-        Alien alien4 = new Alien(16,14,'A', 0);
-        Ammo ammo = new Ammo(10,14,'|', -1, 9);
+        Alien alien = new Alien(10,14,2);
+        Alien alien2 = new Alien(12,14,0);
+        Alien alien3 = new Alien(14,14,3);
+        Alien alien4 = new Alien(16,14, 0);
+        Ammo ammo = new Ammo(10,14, -1, 9);
 
         List<List<Alien>> aliens = new ArrayList<>(new ArrayList<>());
         List<Alien> listAlien = new ArrayList<>();

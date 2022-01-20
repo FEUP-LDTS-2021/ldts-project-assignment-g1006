@@ -1,8 +1,11 @@
 package com.spaceinvaders;
 
+import com.spaceinvaders.gui.LanternaGUI;
+import com.spaceinvaders.state.GameState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.awt.*;
 import java.io.IOException;
@@ -21,5 +24,28 @@ public class GameTest {
         Game game1 = Game.getInstance();
         Assertions.assertNotNull(game1);
         Assertions.assertEquals(game,game1);
+    }
+
+    @Test
+    void gameStateTest(){
+        GameState gameState = Mockito.mock(GameState.class);
+        game.setGameState(gameState);
+
+        Assertions.assertEquals(game.getGameState(), gameState);
+    }
+
+    @Test
+    void getGui() {
+        Assertions.assertEquals(game.getGui().getClass(), LanternaGUI.class);
+    }
+
+    @Test
+    void getHeight(){
+        Assertions.assertEquals(game.getHeight(), 25);
+    }
+
+    @Test
+    void getWidth(){
+        Assertions.assertEquals(game.getWidth(), 50);
     }
 }

@@ -5,8 +5,8 @@ public class Ammo extends Element {
     private int direction;
     private int damage;
 
-    public Ammo(int x, int y, char character, int direction, int damage) {
-        super(x, y, character);
+    public Ammo(int x, int y, int direction, int damage) {
+        super(x, y);
         this.direction = direction;
         this.damage = damage;
     }
