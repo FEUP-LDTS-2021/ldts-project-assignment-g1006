@@ -9,16 +9,24 @@ import com.spaceinvaders.model.Position;
 import java.util.List;
 
 public class AlienController extends Controller<Arena>{
+    private long lastMoveTime;
+    private long beginTime;
     public AlienController(Arena model) {
         super(model);
+        this.lastMoveTime = 0;
+        this.beginTime = 0;
     }
 
     @Override
     public void step(Game game, long time) {
-        for (List<Alien> list : getModel().getAliens()){
-            for (Alien alien : list){
-                move(alien);
+        if(this.beginTime == 0) this.beginTime = time;
+        if (time - lastMoveTime > 150) {
+            for (List<Alien> list : getModel().getAliens()){
+                for (Alien alien : list){
+                    move(alien);
+                }
             }
+            this.lastMoveTime = time;
         }
     }
 
