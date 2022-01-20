@@ -8,8 +8,8 @@ import com.spaceinvaders.model.Position;
 public class RecordsMenu extends Menu{
     public RecordsMenu(Game game) {
         super(game);
-        Button play = new Button("Play", "#003399", new Position(3, 18), new Position(14, 20));
-        Button mainMenu = new Button("Main Menu", "#003399", new Position(16, 18), new Position(27, 20));
+        Button play = new Button("Play", "#003399", new Position(3, 20), new Position(14, 22));
+        Button mainMenu = new Button("Main Menu", "#003399", new Position(16, 20), new Position(27, 22));
         play.setCommand(new PlayCommand(game));
         mainMenu.setCommand(new MainMenuCommand(game));
         getButtons().add(play);
