@@ -47,7 +47,7 @@ public class RecordsManager {
         }
     }
 
-    public List<Map.Entry<String, Integer>> read() throws FileNotFoundException {
+    public List<Map.Entry<String, Integer>> read(int number) throws FileNotFoundException {
         Scanner sc = getScanner();
         sc.useDelimiter("\n");
         while(sc.hasNext()){
