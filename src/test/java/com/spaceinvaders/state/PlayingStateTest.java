@@ -1,4 +1,4 @@
-package state;
+package com.spaceinvaders.state;
 
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.Arena;
