@@ -30,7 +30,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step(game, 0);
+        alienController.step(game, 1000);
 
         Assertions.assertEquals(alien.getPosition(), new Position(11,10));
     }
@@ -41,7 +41,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step(game, 0);
+        alienController.step(game, 1000);
 
         Assertions.assertEquals(alien.getPosition(), new Position(9,10));
     }
@@ -52,7 +52,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step(game, 0);
+        alienController.step(game, 1000);
 
         Assertions.assertEquals(alien.getPosition(), new Position(20,10));
         Assertions.assertEquals(alien.getDirection(), -1);
@@ -64,7 +64,7 @@ public class AlienControllerTest {
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
-        alienController.step(game, 0);
+        alienController.step(game, 1000);
 
         Assertions.assertEquals(alien.getPosition(), new Position(0,10));
         Assertions.assertEquals(alien.getDirection(), 1);
