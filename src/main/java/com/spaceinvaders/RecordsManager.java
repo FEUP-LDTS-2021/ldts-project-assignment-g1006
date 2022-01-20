@@ -1,11 +1,18 @@
 package com.spaceinvaders;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 
 public class RecordsManager {
     private String file_name;
     private String path;
     private File file;
+    private Map<String, Integer> times = new HashMap<>();
+    List<Map.Entry<String, Integer>> list;
+
 
     public RecordsManager(String file_name, String path) {
         this.file_name = file_name;
@@ -37,5 +44,9 @@ public class RecordsManager {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    public List<Map.Entry<String, Integer>> read() {
+        return list;
     }
 }
