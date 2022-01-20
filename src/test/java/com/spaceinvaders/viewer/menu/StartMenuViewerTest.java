@@ -2,6 +2,7 @@ package com.spaceinvaders.viewer.menu;
 
 import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
+import com.spaceinvaders.model.Position;
 import com.spaceinvaders.model.Wall;
 import com.spaceinvaders.model.menu.Button;
 import com.spaceinvaders.model.menu.Menu;
@@ -43,6 +44,7 @@ public class StartMenuViewerTest {
         Mockito.verify(gui, Mockito.times(1)).clear();
         Mockito.verify(gui, Mockito.times(1)).refresh();
         Mockito.verify(gui, Mockito.times(1)).drawBackground();
+        Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(String.class), Mockito.any(String.class), Mockito.any(Position.class));
         for (Button button : buttons)
             Mockito.verify(gui, Mockito.times(1)).drawButton(button);
     }
