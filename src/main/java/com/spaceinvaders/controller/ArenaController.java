@@ -17,6 +17,7 @@ public class ArenaController extends Controller<Arena> {
     private AmmoController ammoController;
     private ArenaViewer arenaViewer;
     private final GUI gui;
+    private long startTime;
 
     public ArenaController(Arena model, GUI gui) {
         super(model);
@@ -25,6 +26,7 @@ public class ArenaController extends Controller<Arena> {
         setAlienController(new AlienController(getModel()));
         setAmmoController(new AmmoController(getModel()));
         setArenaViewer(new ArenaViewer(gui, getModel()));
+        this.startTime = -1;
     }
 
     public AlienController getAlienController() {
@@ -59,12 +61,14 @@ public class ArenaController extends Controller<Arena> {
         this.playerController = playerController;
     }
 
-    void exit(Game game){
-        game.setGameState(new GameOverState(new GameOverMenu(game), gui));
+    void exit(Game game, long time){
+        long finalTime = time - startTime;
+        game.setGameState(new GameOverState(new GameOverMenu(game, finalTime), gui));
     }
 
     @Override
     public void step(Game game, long time) throws IOException {
+        if (startTime<0) this.startTime = time;
         arenaViewer.draw();
         processAction(game, gui.getAction());
         alienController.step(game, time);
@@ -72,7 +76,7 @@ public class ArenaController extends Controller<Arena> {
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
         checkProjectilesOutOfBounds();
-        if (checkProjectilesPlayerCollisions()) exit(game);
+        if (checkProjectilesPlayerCollisions()) exit(game, time);
     }
 
     public void processAction(Game game, GUI.Action action){

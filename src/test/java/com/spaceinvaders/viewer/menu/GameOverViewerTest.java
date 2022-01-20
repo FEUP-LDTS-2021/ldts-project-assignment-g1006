@@ -21,7 +21,7 @@ public class GameOverViewerTest {
 
     @BeforeEach
     void setup() {
-        this.menu = new GameOverMenu(Mockito.mock(Game.class));
+        this.menu = new GameOverMenu(Mockito.mock(Game.class), 0);
         this.gui = Mockito.mock(GUI.class);
         this.viewer = new GameOverViewer(menu, gui);
     }

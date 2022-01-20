@@ -7,8 +7,10 @@ import com.spaceinvaders.controller.command.PlayCommand;
 import com.spaceinvaders.model.Position;
 
 public class GameOverMenu extends Menu{
-    public GameOverMenu(Game game) {
+    public long time;
+    public GameOverMenu(Game game, long finalTime) {
         super(game);
+        this.time = finalTime;
         Button play = new Button("Retry", "#003399", new Position(3, 18), new Position(14, 20));
         Button addRecord = new Button("Add Record", "#003399", new Position(29, 18), new Position(40, 20));
         Button mainMenu = new Button("Main Menu", "#003399", new Position(16, 18), new Position(27, 20));
