@@ -38,7 +38,7 @@ public class GameWonViewerTest {
         viewer.draw();
         Mockito.verify(gui, Mockito.times(1)).clear();
         Mockito.verify(gui, Mockito.times(1)).refresh();
-        Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(String.class), Mockito.any(String.class), Mockito.any(Position.class));
+        Mockito.verify(gui, Mockito.times(3)).drawText(Mockito.any(String.class), Mockito.any(String.class), Mockito.any(Position.class));
         Mockito.verify(gui, Mockito.times(1)).drawBackground();
         for (Button button : buttons)
             Mockito.verify(gui, Mockito.times(1)).drawButton(button);

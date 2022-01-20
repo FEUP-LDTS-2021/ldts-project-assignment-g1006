@@ -18,8 +18,7 @@ public class GameWonViewer extends Viewer<Menu> {
 
     @Override
     public void draw() throws IOException {
-        long time = ((GameWonMenu)getModel()).time / 1000;
-        String timeStr = String.valueOf(round(time));
+        String timeStr = getTime();
         getGui().clear();
         getGui().drawBackground();
         getGui().drawText("YOU DEFEATED THE ALIENS", "#101010", new Position(10,5));
@@ -28,5 +27,10 @@ public class GameWonViewer extends Viewer<Menu> {
         for (Button button : getModel().getButtons())
             getGui().drawButton(button);
         getGui().refresh();
+    }
+
+    private String getTime(){
+        long time = ((GameWonMenu)getModel()).time / 1000;
+        return String.valueOf(round(time));
     }
 }
