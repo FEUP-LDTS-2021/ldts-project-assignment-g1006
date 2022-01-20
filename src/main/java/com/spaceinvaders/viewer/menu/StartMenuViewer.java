@@ -64,7 +64,7 @@ public class StartMenuViewer extends Viewer<Menu> {
         getGui().drawText("|","#BF27F2", new Position(37,12));
         getGui().drawText("|","#BF27F2", new Position(37,11));
 
-        getGui().drawText("0","#BF27F2", new Position(37,10));
+        getGui().drawText("O","#BF27F2", new Position(37,10));
 
         getGui().drawText("\\","#2FFF24", new Position(38,9));
         getGui().drawText("\\","#2FFF24", new Position(39,10));
