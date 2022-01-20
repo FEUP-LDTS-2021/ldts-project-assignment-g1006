@@ -3,11 +3,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.Map;
+
 public class RecordsManagerTest {
     private RecordsManager file1;
     private RecordsManager file2;
     private RecordsManager file3;
     private RecordsManager file4;
+    private List<Map.Entry<String, Integer>> data;
+
 
     @BeforeEach
     public void setup(){
@@ -30,5 +36,14 @@ public class RecordsManagerTest {
         Assertions.assertEquals(file2.getFilePath(), "src/test/resources/" + file2.getFileName());
         Assertions.assertEquals(file3.getFilePath(), "src/test/resources/" + file3.getFileName());
         Assertions.assertEquals(file4.getFilePath(), "src/test/resources/" + file4.getFileName());
+    }
+
+    @Test
+    public void read() {
+        data = file2.read();
+        Assertions.assertEquals(data.get(0).getKey(),"Another Name");
+        Assertions.assertEquals(data.get(0).getValue(),32);
+        Assertions.assertEquals(data.get(1).getKey(),"Some Name");
+        Assertions.assertEquals(data.get(1).getValue(),45);
     }
 }
