@@ -27,4 +27,5 @@ public interface GUI {
     void drawWall(Position position);
     void drawHealth(int health);
     void drawButton(Button button);
+    void drawText(String text, String color, Position position);
 }

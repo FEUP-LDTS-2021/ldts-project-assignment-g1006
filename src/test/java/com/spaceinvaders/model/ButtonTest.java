@@ -61,5 +61,14 @@ public class ButtonTest {
     void getCommand(){
         Assertions.assertNull(button.getCommand());
     }
+
+    @Test
+    void click(){
+        ButtonCommand command = Mockito.mock(ButtonCommand.class);
+        button.setCommand(command);
+        button.click();
+        Mockito.verify(command, Mockito.times(1)).execute();
+    }
+
 }
 

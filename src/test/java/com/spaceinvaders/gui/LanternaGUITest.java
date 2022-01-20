@@ -165,11 +165,23 @@ public class LanternaGUITest {
         gui.drawButton(button);
 
         Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(TextColor.Factory.fromString(button.getColor()));
-        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString("#ffffff"));
+        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(Mockito.any(TextColor.class));
         Mockito.verify(textGraphics, Mockito.times(1)).enableModifiers(SGR.BOLD);
 
         Mockito.verify(textGraphics, Mockito.times(1)).putString(1, 1, button.getText());
         Mockito.verify(textGraphics, Mockito.times(1)).putString(new TerminalPosition(topleft.getX(), topleft.getY()), " ");
         Mockito.verify(textGraphics, Mockito.times(1)).putString(new TerminalPosition(bottomright.getX(), bottomright.getY()), " ");
+    }
+
+    @Test
+    void drawText() {
+        Position position = new Position(0,0);
+        String text = "text";
+        String color = "#000000";
+
+        gui.drawText(text, color, position);
+        Mockito.verify(textGraphics, Mockito.times(1)).setBackgroundColor(Mockito.any(TextColor.class));
+        Mockito.verify(textGraphics, Mockito.times(1)).setForegroundColor(TextColor.Factory.fromString(color));
+        Mockito.verify(textGraphics, Mockito.times(1)).putString(position.getX(), position.getY(), text);
     }
 }
