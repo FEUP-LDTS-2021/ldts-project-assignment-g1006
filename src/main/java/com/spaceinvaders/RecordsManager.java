@@ -64,7 +64,7 @@ public class RecordsManager {
 
     public void write(String name, int time) throws FileNotFoundException {
         update(name,time);
-        read();
+        read(10);
         try {
             FileWriter myWriter = new FileWriter(path + file_name);
             BufferedWriter bufferedWriter = new BufferedWriter(myWriter);
