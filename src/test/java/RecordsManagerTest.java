@@ -46,4 +46,12 @@ public class RecordsManagerTest {
         Assertions.assertEquals(data.get(1).getKey(),"Some Name");
         Assertions.assertEquals(data.get(1).getValue(),45);
     }
+
+    @Test
+    public void write() throws FileNotFoundException {
+        file3.write("Creative Name",99);
+        data = file3.read();
+        Assertions.assertEquals(data.get(0).getKey(),"Creative Name");
+        Assertions.assertEquals(data.get(0).getValue(),99);
+    }
 }
