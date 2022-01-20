@@ -19,10 +19,6 @@ public class Arena {
         return width;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
     public Player getPlayer() {
         return player;
     }
