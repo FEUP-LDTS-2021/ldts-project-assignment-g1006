@@ -6,9 +6,9 @@ import com.spaceinvaders.controller.command.MainMenuCommand;
 import com.spaceinvaders.controller.command.PlayCommand;
 import com.spaceinvaders.model.Position;
 
-public class GameOverMenu extends Menu{
+public class GameWonMenu extends Menu{
     public long time;
-    public GameOverMenu(Game game, long finalTime) {
+    public GameWonMenu(Game game, long finalTime) {
         super(game);
         this.time = finalTime;
         Button play = new Button("Retry", "#003399", new Position(3, 18), new Position(14, 20));

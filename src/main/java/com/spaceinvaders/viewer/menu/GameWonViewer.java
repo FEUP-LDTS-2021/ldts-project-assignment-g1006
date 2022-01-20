@@ -3,7 +3,7 @@ package com.spaceinvaders.viewer.menu;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.Position;
 import com.spaceinvaders.model.menu.Button;
-import com.spaceinvaders.model.menu.GameOverMenu;
+import com.spaceinvaders.model.menu.GameWonMenu;
 import com.spaceinvaders.model.menu.Menu;
 import com.spaceinvaders.viewer.Viewer;
 
@@ -11,14 +11,14 @@ import java.io.IOException;
 
 import static java.lang.Math.round;
 
-public class GameOverViewer extends Viewer<Menu> {
-    public GameOverViewer(Menu model, GUI gui) {
+public class GameWonViewer extends Viewer<Menu> {
+    public GameWonViewer(Menu model, GUI gui) {
         super(model, gui);
     }
 
     @Override
     public void draw() throws IOException {
-        long time = ((GameOverMenu)getModel()).time / 1000;
+        long time = ((GameWonMenu)getModel()).time / 1000;
         String timeStr = String.valueOf(round(time));
         getGui().clear();
         getGui().drawBackground();

@@ -4,7 +4,7 @@ import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.Position;
 import com.spaceinvaders.model.menu.Button;
-import com.spaceinvaders.model.menu.GameOverMenu;
+import com.spaceinvaders.model.menu.GameWonMenu;
 import com.spaceinvaders.model.menu.Menu;
 import com.spaceinvaders.viewer.Viewer;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,16 +14,16 @@ import org.mockito.Mockito;
 import java.io.IOException;
 import java.util.List;
 
-public class GameOverViewerTest {
+public class GameWonViewerTest {
     private Viewer<Menu> viewer;
     private Menu menu;
     private GUI gui;
 
     @BeforeEach
     void setup() {
-        this.menu = new GameOverMenu(Mockito.mock(Game.class), 0);
+        this.menu = new GameWonMenu(Mockito.mock(Game.class), 0);
         this.gui = Mockito.mock(GUI.class);
-        this.viewer = new GameOverViewer(menu, gui);
+        this.viewer = new GameWonViewer(menu, gui);
     }
 
     @Test

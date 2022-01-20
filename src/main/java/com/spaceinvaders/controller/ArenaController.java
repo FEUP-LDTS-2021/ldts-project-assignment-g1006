@@ -3,8 +3,8 @@ package com.spaceinvaders.controller;
 import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
-import com.spaceinvaders.model.menu.GameOverMenu;
-import com.spaceinvaders.state.GameOverState;
+import com.spaceinvaders.model.menu.GameWonMenu;
+import com.spaceinvaders.state.GameWonState;
 import com.spaceinvaders.viewer.ArenaViewer;
 
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class ArenaController extends Controller<Arena> {
 
     void exit(Game game, long time){
         long finalTime = time - startTime;
-        game.setGameState(new GameOverState(new GameOverMenu(game, finalTime), gui));
+        game.setGameState(new GameWonState(new GameWonMenu(game, finalTime), gui));
     }
 
     @Override

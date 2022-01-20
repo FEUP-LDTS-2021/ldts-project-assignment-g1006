@@ -3,17 +3,17 @@ package com.spaceinvaders.controller;
 import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.menu.Menu;
-import com.spaceinvaders.viewer.menu.GameOverViewer;
+import com.spaceinvaders.viewer.menu.GameWonViewer;
 
 import java.io.IOException;
 
-public class GameOverController extends Controller<Menu> {
-    private final GameOverViewer viewer;
+public class GameWonController extends Controller<Menu> {
+    private final GameWonViewer viewer;
     private final GUI gui;
-    public GameOverController(Menu model, GUI gui) {
+    public GameWonController(Menu model, GUI gui) {
         super(model);
         this.gui = gui;
-        this.viewer = new GameOverViewer(getModel(), gui);
+        this.viewer = new GameWonViewer(getModel(), gui);
     }
 
     @Override
