@@ -19,6 +19,13 @@ public class GameOverController extends Controller<Menu>{
 
     @Override
     public void step(Game game, long time) throws IOException {
-
+        viewer.draw();
+        GUI.Action action = gui.getAction();
+        switch (action){
+            case KEYRIGHT -> getModel().nextButton();
+            case KEYLEFT -> getModel().previousButton();
+            case ENTER -> getModel().getSelectedButton().click();
+            case EXIT -> game.setGameState(null);
+        }
     }
 }
