@@ -12,6 +12,7 @@ public class RecordsManagerTest {
     private RecordsManager file2;
     private RecordsManager file3;
     private RecordsManager file4;
+    private RecordsManager file5;
     private List<Map.Entry<String, Integer>> data;
 
 
@@ -21,6 +22,7 @@ public class RecordsManagerTest {
         file2 = new RecordsManager("testing2.txt","test");
         file3 = new RecordsManager("testing3.txt","test");
         file4 = new RecordsManager("testing4.txt","test");
+        file5 = new RecordsManager("testing5.txt","test");
     }
     @Test
     public void getFilenameTest(){
@@ -28,6 +30,7 @@ public class RecordsManagerTest {
         Assertions.assertEquals(file2.getFileName(), "testing2.txt");
         Assertions.assertEquals(file3.getFileName(), "testing3.txt");
         Assertions.assertEquals(file4.getFileName(), "testing4.txt");
+        Assertions.assertEquals(file5.getFileName(), "testing5.txt");
     }
 
     @Test
@@ -36,6 +39,7 @@ public class RecordsManagerTest {
         Assertions.assertEquals(file2.getFilePath(), "src/test/resources/" + file2.getFileName());
         Assertions.assertEquals(file3.getFilePath(), "src/test/resources/" + file3.getFileName());
         Assertions.assertEquals(file4.getFilePath(), "src/test/resources/" + file4.getFileName());
+        Assertions.assertEquals(file5.getFilePath(), "src/test/resources/" + file5.getFileName());
     }
 
     @Test
@@ -75,5 +79,17 @@ public class RecordsManagerTest {
         data = file4.read(10);
         Assertions.assertEquals(data.get(0).getKey(),"Boring Name");
         Assertions.assertEquals(data.get(0).getValue(),4);
+    }
+
+    @Test
+    public void numberofLinesTest() throws FileNotFoundException {
+        file5.write("Boring Name",5);
+        file5.write("Strong Name",6);
+        file5.write("Weak Name",4);
+        file5.write("Smith Name",7);
+        data = file5.read(2);
+        Assertions.assertEquals(data.get(0).getKey(),"Weak Name");
+        Assertions.assertEquals(data.get(0).getValue(),4);
+        Assertions.assertEquals(data.size(),2);
     }
 }
