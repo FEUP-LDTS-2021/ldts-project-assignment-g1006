@@ -1,6 +1,7 @@
 package com.spaceinvaders.state;
 
 import com.spaceinvaders.controller.Controller;
+import com.spaceinvaders.controller.RecordsMenuController;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.menu.Menu;
 
@@ -11,6 +12,6 @@ public class RecordsMenuState extends GameState<Menu>{
 
     @Override
     protected Controller<Menu> getController() {
-        return null;
+        return new RecordsMenuController(getModel(), gui);
     }
 }
