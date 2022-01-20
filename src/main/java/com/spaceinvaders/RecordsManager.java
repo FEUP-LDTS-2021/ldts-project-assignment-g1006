@@ -10,14 +10,15 @@ public class RecordsManager {
     public RecordsManager(String file_name, String path) {
         this.file_name = file_name;
         this.path = "src/" + path + "/resources/";
+        createFile();
     }
 
     public String getFileName(){
-        return "";
+        return getFile().getName();
     }
 
     public String getFilePath(){
-        return "";
+        return getFile().getPath();
     }
 
     public File getFile(){
@@ -25,6 +26,16 @@ public class RecordsManager {
     }
 
     public void createFile() {
-
+        file = new File(path + file_name);
+        try {
+            if (new File(path + file_name).createNewFile()) {
+                System.out.println("File created.");
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }
