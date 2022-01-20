@@ -163,7 +163,7 @@ public class ArenaController extends Controller<Arena> {
             if(ammo.getPosition().equals(getModel().getPlayer().getPosition())){
                 getModel().getProjectiles().remove(i);
                 getModel().getPlayer().setHealth(getModel().getPlayer().getHealth() - ammo.getDamage());
-                if(getModel().getPlayer().getHealth() == 0){
+                if(getModel().getPlayer().getHealth() <= 0){
                     return true;
                 }
             }
