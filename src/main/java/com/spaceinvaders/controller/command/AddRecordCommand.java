@@ -5,9 +5,11 @@ import com.spaceinvaders.controller.InputDialog;
 import com.spaceinvaders.model.menu.StartMenu;
 import com.spaceinvaders.state.MenuState;
 
+import java.io.FileNotFoundException;
+
 public class AddRecordCommand extends ButtonCommand{
-    private String time;
-    public AddRecordCommand(Game game, String time) {
+    private final int time;
+    public AddRecordCommand(Game game, int time) {
         super(game);
         this.time = time;
     }
@@ -15,6 +17,8 @@ public class AddRecordCommand extends ButtonCommand{
     @Override
     public void execute() {
         String name = new InputDialog().getString();
+        try{ game.getRecordsManager().write(name, time);
+        }catch (FileNotFoundException ignored){}
         game.setGameState(new MenuState(new StartMenu(game), game.getGui()));
     }
 }
