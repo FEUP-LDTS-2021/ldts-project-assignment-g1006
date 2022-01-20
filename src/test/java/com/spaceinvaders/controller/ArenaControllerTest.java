@@ -3,6 +3,9 @@ package com.spaceinvaders.controller;
 import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
+import com.spaceinvaders.model.menu.GameWonMenu;
+import com.spaceinvaders.state.GameOverState;
+import com.spaceinvaders.state.GameWonState;
 import com.spaceinvaders.viewer.ArenaViewer;
 
 import org.junit.jupiter.api.Assertions;
@@ -331,5 +334,15 @@ public class ArenaControllerTest {
         Assertions.assertTrue(alien4.isDead());
         Assertions.assertEquals(ammo.getDamage(),0);
         Assertions.assertTrue(arena.getProjectiles().isEmpty());
+    }
+
+    @Test
+    void exit(){
+        arenaController.exit(game, 0, true);
+        Mockito.verify(game, Mockito.times(1)).setGameState(Mockito.any(GameWonState.class));
+
+        arenaController.exit(game, 0, false);
+        Mockito.verify(game, Mockito.times(1)).setGameState(Mockito.any(GameOverState.class));
+
     }
 }
