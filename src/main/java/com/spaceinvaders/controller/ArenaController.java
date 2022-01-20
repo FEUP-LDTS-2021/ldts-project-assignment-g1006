@@ -63,10 +63,10 @@ public class ArenaController extends Controller<Arena> {
         this.playerController = playerController;
     }
 
-    void exit(Game game, long time){
+    void exit(Game game, long time, boolean win){
         long finalTime = time - startTime;
-        //game.setGameState(new GameWonState(new GameWonMenu(game, finalTime), gui));
-        game.setGameState(new GameOverState(new GameOverMenu(game, finalTime), gui));
+        if (win) game.setGameState(new GameWonState(new GameWonMenu(game, finalTime), gui));
+        else game.setGameState(new GameOverState(new GameOverMenu(game, finalTime), gui));
     }
 
     @Override
@@ -89,7 +89,8 @@ public class ArenaController extends Controller<Arena> {
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
         checkProjectilesOutOfBounds();
-        if (checkProjectilesPlayerCollisions()) exit(game, time);
+        if (checkProjectilesPlayerCollisions()) exit(game, time, false);
+        if (getModel().getAliens().isEmpty()) exit(game, time, true);
     }
 
     public void processAction(Game game, GUI.Action action){
