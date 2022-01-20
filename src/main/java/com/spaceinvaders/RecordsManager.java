@@ -57,6 +57,10 @@ public class RecordsManager {
         return list;
     }
 
+    public void write(String name, int time) {
+
+    }
+
     public void update(String name, Integer time){
         if(times.containsKey(name)){
             if(times.get(name) > time){
