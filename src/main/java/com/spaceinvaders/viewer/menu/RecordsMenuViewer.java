@@ -1,6 +1,9 @@
 package com.spaceinvaders.viewer.menu;
 
 import com.spaceinvaders.gui.GUI;
+import com.spaceinvaders.model.Position;
+import com.spaceinvaders.model.menu.Button;
+import com.spaceinvaders.model.menu.GameWonMenu;
 import com.spaceinvaders.model.menu.Menu;
 import com.spaceinvaders.viewer.Viewer;
 
@@ -13,6 +16,11 @@ public class RecordsMenuViewer extends Viewer<Menu> {
 
     @Override
     public void draw() throws IOException {
-
+        getGui().clear();
+        getGui().drawBackground();
+        getGui().drawText("RECORDS", "#101010", new Position(18,3));
+        for (Button button : getModel().getButtons())
+            getGui().drawButton(button);
+        getGui().refresh();
     }
 }
