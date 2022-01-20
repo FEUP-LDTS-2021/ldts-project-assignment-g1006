@@ -54,4 +54,15 @@ public class RecordsManagerTest {
         Assertions.assertEquals(data.get(0).getKey(),"Creative Name");
         Assertions.assertEquals(data.get(0).getValue(),99);
     }
+
+    @Test
+    public void sort() throws FileNotFoundException {
+        file1.write("Long Name",99);
+        file1.write("Cool Name",3);
+        data = file1.read();
+        Assertions.assertEquals(data.get(0).getKey(),"Cool Name");
+        Assertions.assertEquals(data.get(0).getValue(),3);
+        Assertions.assertEquals(data.get(1).getKey(),"Long Name");
+        Assertions.assertEquals(data.get(1).getValue(),99);
+    }
 }
