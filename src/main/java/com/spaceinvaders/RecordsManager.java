@@ -58,7 +58,8 @@ public class RecordsManager {
     }
 
     public void sort(){
-
+        list = new ArrayList<>(times.entrySet());
+        list.sort(Map.Entry.comparingByValue());
     }
 
     public void write(String name, int time) throws FileNotFoundException {
