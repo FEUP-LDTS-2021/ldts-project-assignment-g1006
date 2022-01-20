@@ -23,4 +23,8 @@ public class RecordsManager {
     public File getFile(){
         return file;
     }
+
+    public void createFile(){
+
+    }
 }
