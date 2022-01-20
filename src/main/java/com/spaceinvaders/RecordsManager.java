@@ -53,8 +53,12 @@ public class RecordsManager {
         while(sc.hasNext()){
             update(sc.next(), Integer.valueOf(sc.next()));
         }
-        list = new ArrayList<>(times.entrySet());
+        sort();
         return list;
+    }
+
+    public void sort(){
+
     }
 
     public void write(String name, int time) throws FileNotFoundException {
