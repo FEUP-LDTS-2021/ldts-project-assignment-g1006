@@ -66,7 +66,7 @@ public class LanternaGUI implements GUI {
     }
 
     public AWTTerminalFontConfiguration loadGameFont() throws URISyntaxException, IOException, FontFormatException {
-        URL resource = getClass().getClassLoader().getResource("square.ttf");
+        URL resource = getClass().getClassLoader().getResource("teste.ttf");
         assert resource != null;
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -133,7 +133,7 @@ public class LanternaGUI implements GUI {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
         textGraphics.enableModifiers(SGR.BOLD);
-        textGraphics.putString(position.getX(), position.getY(), "P");
+        textGraphics.putString(position.getX(), position.getY(), "p");
     }
 
     @Override
@@ -160,7 +160,7 @@ public class LanternaGUI implements GUI {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#07C400"));
         textGraphics.enableModifiers(SGR.BOLD);
-        textGraphics.putString(position.getX(), position.getY(), "A");
+        textGraphics.putString(position.getX(), position.getY(), "a");
     }
 
     @Override
@@ -169,7 +169,7 @@ public class LanternaGUI implements GUI {
         textGraphics.setBackgroundColor(TextColor.Factory.fromString("#3360FF"));
         textGraphics.setForegroundColor(TextColor.Factory.fromString("#E50000"));
         textGraphics.enableModifiers(SGR.BOLD);
-        textGraphics.putString(position.getX(), position.getY(), "A");}
+        textGraphics.putString(position.getX(), position.getY(), "b");}
 
     @Override
     public void drawWall(Position position) {
