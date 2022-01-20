@@ -57,8 +57,20 @@ public class RecordsManager {
         return list;
     }
 
-    public void write(String name, int time) {
-
+    public void write(String name, int time) throws FileNotFoundException {
+        update(name,time);
+        read();
+        try {
+            FileWriter myWriter = new FileWriter(path + file_name);
+            BufferedWriter bufferedWriter = new BufferedWriter(myWriter);
+            for(Map.Entry<String,Integer> pair : list){
+                bufferedWriter.write(pair.getKey() + '\n');
+                bufferedWriter.write(String.valueOf(pair.getValue()) + '\n');
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void update(String name, Integer time){
