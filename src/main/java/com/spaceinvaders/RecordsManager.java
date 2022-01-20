@@ -1,10 +1,7 @@
 package com.spaceinvaders;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class RecordsManager {
     private String file_name;
@@ -32,6 +29,10 @@ public class RecordsManager {
         return file;
     }
 
+    public Scanner getScanner() throws FileNotFoundException {
+        return new Scanner(getFile());
+    }
+
     public void createFile() {
         file = new File(path + file_name);
         try {
@@ -46,7 +47,25 @@ public class RecordsManager {
         }
     }
 
-    public List<Map.Entry<String, Integer>> read() {
+    public List<Map.Entry<String, Integer>> read() throws FileNotFoundException {
+        Scanner sc = getScanner();
+        sc.useDelimiter("\n");
+        while(sc.hasNext()){
+            update(sc.next(), Integer.valueOf(sc.next()));
+        }
+        list = new ArrayList<>(times.entrySet());
         return list;
     }
+
+    public void update(String name, Integer time){
+        if(times.containsKey(name)){
+            if(times.get(name) > time){
+                times.replace(name,time);
+            }
+        }
+        else
+            times.put(name,time);
+    }
+
+
 }

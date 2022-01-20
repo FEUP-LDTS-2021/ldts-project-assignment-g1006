@@ -39,7 +39,7 @@ public class RecordsManagerTest {
     }
 
     @Test
-    public void read() {
+    public void read() throws FileNotFoundException {
         data = file2.read();
         Assertions.assertEquals(data.get(0).getKey(),"Another Name");
         Assertions.assertEquals(data.get(0).getValue(),32);
