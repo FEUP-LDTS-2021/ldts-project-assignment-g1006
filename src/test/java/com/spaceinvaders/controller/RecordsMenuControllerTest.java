@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class RecordsMenuControllerTest {
     private RecordsMenuController recordsMenuController;
@@ -21,6 +24,8 @@ public class RecordsMenuControllerTest {
         this.game = Mockito.mock(Game.class);
         this.gui = Mockito.mock(GUI.class);
         this.menu = Mockito.mock(RecordsMenu.class);
+        List<Map.Entry<String, Integer>> list = new ArrayList<>();
+        Mockito.when(menu.getEntries()).thenReturn(list);
         this.recordsMenuController = new RecordsMenuController(menu, gui);
     }
 
