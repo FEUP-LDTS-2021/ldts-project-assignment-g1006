@@ -90,7 +90,7 @@ public class ArenaController extends Controller<Arena> {
         checkWallProjectilesCollisions();
         checkProjectilesOutOfBounds();
         if (checkProjectilesPlayerCollisions()) exit(game, time, false);
-        if (getModel().getAliens().isEmpty()) exit(game, time, true);
+        if (getModel().allAliensDead()) exit(game, time, true);
     }
 
     public void processAction(Game game, GUI.Action action){
