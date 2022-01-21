@@ -1,4 +1,4 @@
-package state;
+package com.spaceinvaders.state;
 
 import com.spaceinvaders.Game;
 import com.spaceinvaders.controller.ArenaController;

@@ -3,7 +3,9 @@ package com.spaceinvaders.controller;
 import com.spaceinvaders.Game;
 import com.spaceinvaders.gui.GUI;
 import com.spaceinvaders.model.*;
+import com.spaceinvaders.model.menu.GameOverMenu;
 import com.spaceinvaders.model.menu.GameWonMenu;
+import com.spaceinvaders.state.GameOverState;
 import com.spaceinvaders.state.GameWonState;
 import com.spaceinvaders.viewer.ArenaViewer;
 
@@ -61,9 +63,10 @@ public class ArenaController extends Controller<Arena> {
         this.playerController = playerController;
     }
 
-    void exit(Game game, long time){
+    void exit(Game game, long time, boolean win){
         long finalTime = time - startTime;
-        game.setGameState(new GameWonState(new GameWonMenu(game, finalTime), gui));
+        if (win) game.setGameState(new GameWonState(new GameWonMenu(game, finalTime), gui));
+        else game.setGameState(new GameOverState(new GameOverMenu(game, finalTime), gui));
     }
 
     @Override
@@ -86,7 +89,8 @@ public class ArenaController extends Controller<Arena> {
         checkAlienProjectilesCollisions();
         checkWallProjectilesCollisions();
         checkProjectilesOutOfBounds();
-        if (checkProjectilesPlayerCollisions()) exit(game, time);
+        if (checkProjectilesPlayerCollisions()) exit(game, time, false);
+        if (getModel().allAliensDead()) exit(game, time, true);
     }
 
     public void processAction(Game game, GUI.Action action){
@@ -152,7 +156,7 @@ public class ArenaController extends Controller<Arena> {
     public void checkProjectilesOutOfBounds(){
         for (int i = getModel().getProjectiles().size() - 1; i >= 0; i--) {
             Ammo ammo = getModel().getProjectiles().get(i);
-            if(ammo.getPosition().getX() > 40 || ammo.getPosition().getX() < 0 || ammo.getPosition().getY() > 20 || ammo.getPosition().getY() < 0)
+            if(ammo.getPosition().getX() > getModel().getWidth()-1 || ammo.getPosition().getX() < 0 || ammo.getPosition().getY() > 20 || ammo.getPosition().getY() < 0)
                 getModel().getProjectiles().remove(i);
         }
     }

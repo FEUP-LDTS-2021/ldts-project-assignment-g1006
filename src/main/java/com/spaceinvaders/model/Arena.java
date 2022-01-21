@@ -19,10 +19,6 @@ public class Arena {
         return width;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
     public Player getPlayer() {
         return player;
     }
@@ -53,5 +49,11 @@ public class Arena {
 
     public void setWalls(List<Wall> walls) {
         this.walls = walls;
+    }
+
+    public boolean allAliensDead(){
+        for (List<Alien> list : getAliens())
+            if (list.size() > 0) return false;
+        return true;
     }
 }

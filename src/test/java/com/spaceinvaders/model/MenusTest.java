@@ -11,7 +11,7 @@ import org.mockito.Mockito;
 
 import java.util.List;
 
-public class StartMenuTest {
+public class MenusTest {
     private List<Button> buttons;
     private Game game;
     private Menu menu;
