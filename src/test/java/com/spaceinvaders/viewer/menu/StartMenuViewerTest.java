@@ -44,7 +44,7 @@ public class StartMenuViewerTest {
         Mockito.verify(gui, Mockito.times(1)).clear();
         Mockito.verify(gui, Mockito.times(1)).refresh();
         Mockito.verify(gui, Mockito.times(1)).drawBackground();
-        Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(String.class), Mockito.any(String.class), Mockito.any(Position.class));
+        Mockito.verify(gui, Mockito.times(16)).drawText(Mockito.any(String.class), Mockito.any(String.class), Mockito.any(Position.class));
         for (Button button : buttons)
             Mockito.verify(gui, Mockito.times(1)).drawButton(button);
     }
