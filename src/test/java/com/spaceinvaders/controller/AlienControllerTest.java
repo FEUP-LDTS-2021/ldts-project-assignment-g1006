@@ -46,21 +46,22 @@ public class AlienControllerTest {
         Assertions.assertEquals(alien.getPosition(), new Position(9,10));
     }
 
+
     @Test
     void testRightLimit(){
-        Alien alien = new Alien(20,10,0);
+        Alien alien = new Alien(18,10,0);
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
         alienController.step(game, 1000);
 
-        Assertions.assertEquals(alien.getPosition(), new Position(20,10));
+        Assertions.assertEquals(alien.getPosition(), new Position(19,10));
         Assertions.assertEquals(alien.getDirection(), -1);
     }
 
     @Test
     void testLeftLimit(){
-        Alien alien = new Alien(0,10,0); alien.changeDirection();
+        Alien alien = new Alien(1,10,0); alien.changeDirection();
         Mockito.when(arena.getAliens()).thenReturn(List.of(List.of(alien)));
         Mockito.when(arena.getWidth()).thenReturn(20);
 
@@ -69,6 +70,7 @@ public class AlienControllerTest {
         Assertions.assertEquals(alien.getPosition(), new Position(0,10));
         Assertions.assertEquals(alien.getDirection(), 1);
     }
+
 
     @Test
     void shoot(){
