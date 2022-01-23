@@ -56,7 +56,7 @@ Link to Game class constructor: https://github.com/FEUP-LDTS-2021/ldts-project-a
 
 **The Pattern**
 
-We decided to use the Singleton Pattern, which can be classified as a Creational Pattern. This limits the ammount of instances of a class, so it can have only one, which can be called anywhere in the code.
+We decided to use the Singleton Pattern, which can be classified as a Creational Pattern. This limits the ammount of instances of a class, so it can have only one, which can be called from anywhere in the code.
 
 **Implementation**
 
@@ -64,6 +64,12 @@ The following image shows in detail how the pattern was implemented:
 <p align="center" justify="center">
   <img src="singletonUML"/>
 </p>
+
+The code regarding this pattern can be found in the following links:
+- Game - Singleton: https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1006/blob/main/src/main/java/com/spaceinvaders/Game.java#L20
+- Game - getInstace: https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1006/blob/main/src/main/java/com/spaceinvaders/Game.java#L28
+- Application: https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1006/blob/main/src/main/java/com/spaceinvaders/Application.java#L9
+
 
 **Consequences**
 
@@ -73,12 +79,12 @@ The usage of this pattern had a positive impact in our code, since it completely
 
 **Problem in Context**
 
-We realized that each object of each class that extended Element had to be drawn. The problem regarding that is the code is very fragile in the sense that if we wanted to add way more different things to be drawed, it could have gotten out of hand very easily.
+We realized that the class Button would have to be extended by many others, since there are naturally buttons with unique functionalities. The problem is that the creation of those several subclasses would eventually become exponencial.
 
 
 **The Pattern**
 
-We decided to use the Command Pattern, which can be considered a Behavioral Pattern. This can structure a system around high-level operations built on primitive operations. In fact, this design turns a funtion call into an object that contains all the information about the request itself.
+We decided to use the Command Pattern, which can be considered a Action Pattern. This can structure a system around high-level operations built on primitive operations. In fact, this design turns a funtion call into an object that contains all the information about the request itself, letting you use various commands with the same request sender.
 
 **Implementation**
 
@@ -86,6 +92,10 @@ The following image shows in detail how the pattern was implemented:
 <p align="center" justify="center">
   <img src="drawcommandUML"/>
 </p>
+
+These classes can be found in the following files:
+- [Button](../src/main/java/com/spaceinvaders/model/menu/Button.java)
+- [Command](../src/main/java/com/spaceinvaders/controller/command/ButtonCommand.java)
 
 **Consequences**
 
