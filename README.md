@@ -49,6 +49,14 @@ The following content describes how our game looks like, as well as its features
 <br>
 <br />
 
+- Not as easy as you might think!
+
+<p align="center" justify="center">
+  <img src="docs/gifs/gameplay.gif"/>
+</p>
+<br>
+<br />
+
 ### Menus
 
 - Main menu
