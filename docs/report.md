@@ -13,22 +13,36 @@ This project was developed by Alexandre Correia (up202007042@fe.up.pt), Henrique
 
 ### Implemented Features
 
-- **Movement** - Single direction movement. Every spaceship moves horizontally.
-- **Aliens** - Represented by character 'A'. They switch direction when they are about to leave the arena. 
-- **Ammo** - The player can shoot multiple bullets. If an alien is hit, it will die and dissapear from the screen.
+- **Connected Menus** - The user has the capability of browsing through all the different menus, which are: main menu, won menu, lost menu, leaderboard menu and playing menu, where the game takes place.
+
+- **Buttons** - The user can switch the selected button with the respective ARROW KEYS, according to their relative position. They are activated by pressing ENTER.
+
+- **Leaderboard** - If the player ends up victorious, he can choose to add his name to the current Leaderboard, which is a file that contains information about the winners and their times.
+
+- **Movement** - Single direction movement. Every spaceship, including the player, only moves horizontally. Alien movement is automatic.
+
+- **Aliens** - They switch direction when they are about to leave the arena or in the inevitability of colliding with each other. Some are Armored and others are Normal ones, which are drawn differently.
+
+- **Ammo** - The player can shoot up to 2 bullets shown in the arena. If an alien is hit, there are many possibilities:
+  - If the alien is normal, it will die and disappear from the screen, since it has 0 armor;
+  - If the alien is armored and the ammo can't kill it, if it didn+t break the alien's armor, the ammo will be reflected;
+  - If a bullet kills a certain alien, it will continue through it, with its damage reduced, if it is greater than 0.
+
+- **Walls** - The arena has a few walls with a fixed number of resistance, in order for the player to defend itself.
+
+- **Player** - It has 3 lives.
+
+- **Animations** - When an alien loses its armor it becomes a normal one, changing its form and colour.
+
+- **Graphics** - There are several custom shapes implemented in the game.
+
+- **Collisions detection** - Collisions between ammo and spaceships or walls are taken into consideration. The game will be over if either the player or all aliens die.
+
+- **Randomness** - The player's ammo has a 40% chance of dealing 2 damage. Plus, the armor of the alliens at the start of a game is random, varying from 0 to 3.
 
 ### Planned Features
 
-- **Aliens** - They exist in many shapes and forms. Some will be able to shoot back at the player (only the ones that dont have any others bellow them). They can have armor aswell.
-  MOCK OF FUTURE ALIENS
-
-- **Menu** - We will design a Menu for the game, which will be able to redirect the player to the leaderboard or the game.
-
-- **Leaderboard** - Contains the best players' names, and the time that needed to defeat the Aliens.
-
-- **Shields** - They will be deployed between the Player and the Aliens. They can support a limited amount of Ammo, so they will eventually break.
-
-- **Ammo** - The ammo that the player can shoot will be limited. In this way, it can only shoot one or a few bullets at a time.
+We've managed to add every planned feature and a few more.
 
 
 ## DESIGN
@@ -38,7 +52,7 @@ This project was developed by Alexandre Correia (up202007042@fe.up.pt), Henrique
 **Problem in Context**
 
 While thinking about the Game itself, we realised that there could be lots of Game class objects created during an execution of the code. That is obviously incorrect, since there can only be ONE object of the Game class.
-Link to Game class constructor: https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1006/blob/68d6da17c528137e35c9dc79a5c4d23cc771390e/src/main/java/Game.java#L28 .
+Link to Game class constructor: https://github.com/FEUP-LDTS-2021/ldts-project-assignment-g1006/blob/main/src/main/java/com/spaceinvaders/Game.java#L22 .
 
 **The Pattern**
 
