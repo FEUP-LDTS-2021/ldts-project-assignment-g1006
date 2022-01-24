@@ -221,7 +221,7 @@ Some classes, for instance LanternaGUI, contain a lot of methods, and others, li
 
 [Mutation tests](../build/reports/pitest/202201241707/index.html)
 
-Note that spock tests are not taken into consideration in this report, that justifies the low coverage.
+Note that spock tests are not taken into consideration in this report, that justifies the low coverage on Better Code Hub.
 
 ## SELF-EVALUATION
 
