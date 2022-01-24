@@ -30,7 +30,7 @@ This project was developed by Alexandre Correia (up202007042@fe.up.pt), Henrique
 
 - **Walls** - The arena has a few walls with a fixed number of resistance, in order for the player to defend itself.
 
-- **Player** - It has 3 lives.
+- **Player** - Has 3 lives.
 
 - **Animations** - When an alien loses its armor it becomes a normal one, changing its form and colour.
 
@@ -101,27 +101,129 @@ These classes can be found in the following files:
 
 The usage of this pattern granted the ability to separate the entity that invokes the operation from the element that knows how to handle and performs it.
 
-#### KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
+### Facade Pattern
+
+**Problem in Context**
+
+The lanterna libraby includes many features, but only a small portion of them is really needed for this projetct. Plus, we realised that, before implementing this pattern, the logic of our classes would be highly dependent on the details of third-party classes, making it hard to understand.
 
 
-**Example of such a subsection**:
+**The Pattern**
+
+We decided to use the Facade Pattern, which can be considered a Structural Pattern, since it provides a simplified interface to a complex libraby.
+
+**Implementation**
+
+The following image shows in detail how the pattern was implemented:
+<p align="center" justify="center">
+  <img src="drawcommandUML"/>
+</p>
+
+These classes can be found in the following files:
+- [Game](../src/main/java/com/spaceinvaders/Game.java)
+- [GUI](../src/main/java/com/spaceinvaders/gui/LanternaGUI.java)
+- [LanternaGUI](../src/main/java/com/spaceinvaders/controller/command/ButtonCommand.java)
+
+**Consequences**
+
+This pattern solved a violation on the Dependency Inversion Principle, since if we used the hole libraby, a high level module would be directly depending on a low level module. Basically we created an interface that only contains features that we really care about.
 
 
-#### FEATURE ENVY
+### Strategy Pattern
+
+**Problem in Context**
+
+Initially, we thought about creating several subclasses in order to diversify the different types of Aliens. The issue is that, in that way, our code wouldn't be versatile. In fact, adding more Alien types would require a lot of changes to the code, and bugs were more likely to appear.
+
+
+**The Pattern**
+
+We decided to use the Strategy Pattern, which can be considered a Behavioral Pattern. This can define a family of algorithms, putting each on a separate class, making the objects interchangable.
+
+**Implementation**
+
+The following image shows in detail how the pattern was implemented:
+<p align="center" justify="center">
+  <img src="drawcommandUML"/>
+</p>
+
+These classes can be found in the following files:
+- [Alien](../src/main/java/com/spaceinvaders/model/Alien.java)
+- [AlienStrategy](../src/main/java/com/spaceinvaders/model/AlienStrategy.java)
+- [NormalAlienStrategy](../src/main/java/com/spaceinvaders/model/NormalAlienStrategy.java)
+- [ArmoredAlienStrategy](../src/main/java/com/spaceinvaders/model/ArmoredAlienStrategy.java)
+
+
+**Consequences**
+
+In this case, the Alien class, considered the Context Class. It isn’t responsible for selecting an appropriate algorithm for the job. Instead, the client passes the desired strategy to the context, which is independent of the concrete strategies. 
+Adding new types of Aliens is also easier.
+
+### Architectural and State Pattern
+
+**Problem in Context**
+
+We quickly figured that many files would be needed for our project to work out, and the structure of the hole code started to be a concern. 
+
+
+**The Pattern**
+
+We decided to use the Model-View-Controller Pattern, which can be considered an Architectural one that is frequently used in a GUI. Besides that, we also implemented the State Pattern, considered a Behavioral Pattern, that lets an object alter its behavior when its internal state changes. It appears as if the object changed its class.
+
+**Implementation**
+
+The following image shows in detail how the pattern was implemented:
+<p align="center" justify="center">
+  <img src="drawcommandUML"/>
+</p>
+
+The game states permite the game alter its behavior in a very simple and efficient way.
+
+
+**Consequences**
+
+The MVC pattern heavily contributed to the organization of our code, which eases the implementation of new features. On the other hand, the State Pattern also allows the representation of the several menus to be very explicit and clear.
+
+## KNOWN CODE SMELLS AND REFACTORING SUGGESTIONS
+
+#### **Data classes**
+https://refactoring.guru/smells/data-class
+
+This code smell is present in our code, since all Model Classes are Data Classes, in the way that they are simply containers for data used by other classes. On the other hand, this classes also can't independently operate on data, since that's secured by the Controller classes.
+Furthermore, this is not a bad code smell, since it exists due to the implementation of the MVC Pattern, which had a very positive impact in our code.
+
+#### **Feature envy and message chains**
 https://refactoring.guru/smells/feature-envy
 
-This code smell consists of a method (or in this case, a part of a method) that uses more data from another class that its own. For example, part of the code in Game::run() function, specially the section after the arena.processkey() function call, only uses data from the Arena class, so it should be in that class.
-The solution is very simple. The code should be moved to the arena class, using the move method: https://refactoring.guru/move-method.
+As the result of the MVC pattern some of the controllers use is narrowed to its model method calls. Our controller envies its model.
+Also, acessing a model's parameter can only be done by its controller, causing some message chains.
+
+https://refactoring.guru/smells/message-chains
+
+#### **Large Class**
+https://refactoring.guru/smells/large-class
+
+Some classes, for instance LanternaGUI, contain a lot of methods, and others, like Game, a lot of fields, eventhough we think that is acceptable and completely normal regarding the structure of our game. In fact, the Game class stores a big amount of data, since it is the main one. On the other hand, LanternaGUI class contains various methods needed for the interface, and it wouldn't make sense to split the classe into several ones.
+
+## Testing
+
+### Screenshot of coverage report
+<p align="center" justify="center">
+  <img src="images/coverage.png"/>
+</p>
 
 
-### SELF-EVALUATION
+### Link to mutation testing report
+not working yet
+
+## SELF-EVALUATION
 
 In our opinion, each individual of the group worked and contributed a lot to this project. While everyone focused on developing and testing new features on an early stage of the project, on a later stage each individual focused more on specific parts of it. For instance:
-Alexandre Correia did the UML diagram;
-Henrique Silva focused on testing and writing the initial part of the Project's description;
-Tiago Branquinho implemented the design patterns and made the Report.
+- Alexandre Correia did the UML diagram, implemented MVC and State patterns, Menus and Buttons;
+- Henrique Silva focused on general testing and bug fixing;
+- Tiago Branquinho implemented the Strategy Pattern, made the Report, the font and implemented reads and writes to files.
 
-Considering that, we evaluate ourselves equaly:
-Alexandre Correia: 33%
-Henrique Silva: 34%
-Tiago Branquinho: 33%
+Considering that, we evaluate ourselves like this:
+- Alexandre Correia: 36%
+- Henrique Silva: 32%
+- Tiago Branquinho: 32%
