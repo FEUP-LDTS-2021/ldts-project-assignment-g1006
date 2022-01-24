@@ -181,7 +181,7 @@ The following image shows in detail how the pattern was implemented:
   <img src="images/UML/mvc.png"/>
 </p>
 
-The game states permite the game alter its behavior in a very simple and efficient way.
+The game states allows the game to alter its behavior in a very simple and efficient way.
 
 
 **Consequences**
