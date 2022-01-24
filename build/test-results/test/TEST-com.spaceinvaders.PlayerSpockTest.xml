@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.spaceinvaders.PlayerSpockTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-01-24T17:03:57" hostname="Air-de-Tiago-2.lan" time="0.257">
+  <properties/>
+  <testcase name="player constructor" classname="com.spaceinvaders.PlayerSpockTest" time="0.23"/>
+  <testcase name="player gets" classname="com.spaceinvaders.PlayerSpockTest" time="0.025"/>
+  <testcase name="player sets" classname="com.spaceinvaders.PlayerSpockTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
