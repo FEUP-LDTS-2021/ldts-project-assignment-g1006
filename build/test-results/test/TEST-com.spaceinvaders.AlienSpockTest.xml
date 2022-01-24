@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.spaceinvaders.AlienSpockTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2022-01-24T17:03:57" hostname="Air-de-Tiago-2.lan" time="0.509">
+  <properties/>
+  <testcase name="change alien movement direction" classname="com.spaceinvaders.AlienSpockTest" time="0.485"/>
+  <testcase name="alien strategy test" classname="com.spaceinvaders.AlienSpockTest" time="0.002"/>
+  <testcase name="alien change strategy test" classname="com.spaceinvaders.AlienSpockTest" time="0.001"/>
+  <testcase name="alien test if dead" classname="com.spaceinvaders.AlienSpockTest" time="0.002"/>
+  <testcase name="handle shot test" classname="com.spaceinvaders.AlienSpockTest" time="0.002"/>
+  <testcase name="handle shot bullets passing through test" classname="com.spaceinvaders.AlienSpockTest" time="0.001"/>
+  <testcase name="alien test if alive" classname="com.spaceinvaders.AlienSpockTest" time="0.001"/>
+  <testcase name="test if there is an alien below" classname="com.spaceinvaders.AlienSpockTest" time="0.012"/>
+  <testcase name="test if there is an alien below in the same column" classname="com.spaceinvaders.AlienSpockTest" time="0.001"/>
+  <testcase name="test if there isn't any alien below" classname="com.spaceinvaders.AlienSpockTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

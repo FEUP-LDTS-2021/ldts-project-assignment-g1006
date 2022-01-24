@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RecordsManagerTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2022-01-24T17:03:58" hostname="Air-de-Tiago-2.lan" time="0.059">
+  <properties/>
+  <testcase name="updateTime()" classname="RecordsManagerTest" time="0.037"/>
+  <testcase name="numberofLinesTest()" classname="RecordsManagerTest" time="0.006"/>
+  <testcase name="read()" classname="RecordsManagerTest" time="0.002"/>
+  <testcase name="sort()" classname="RecordsManagerTest" time="0.004"/>
+  <testcase name="write()" classname="RecordsManagerTest" time="0.002"/>
+  <testcase name="getFilepathTest()" classname="RecordsManagerTest" time="0.001"/>
+  <testcase name="getFilenameTest()" classname="RecordsManagerTest" time="0.001"/>
+  <system-out><![CDATA[File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+File already exists.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
