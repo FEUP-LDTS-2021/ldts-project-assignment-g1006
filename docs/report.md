@@ -25,7 +25,7 @@ This project was developed by Alexandre Correia (up202007042@fe.up.pt), Henrique
 
 - **Ammo** - The player can shoot up to 2 bullets shown in the arena. If an alien is hit, there are many possibilities:
   - If the alien is normal, it will die and disappear from the screen, since it has 0 armor;
-  - If the alien is armored and the ammo can't kill it, if it didn+t break the alien's armor, the ammo will be reflected;
+  - If the alien is armored and the ammo can't kill it, if it didn't break the alien's armor, the ammo will be reflected;
   - If a bullet kills a certain alien, it will continue through it, with its damage reduced, if it is greater than 0.
 
 - **Walls** - The arena has a few walls with a fixed number of resistance, in order for the player to defend itself.
@@ -47,6 +47,10 @@ We've managed to add every planned feature and a few more.
 
 ## DESIGN
 
+<p align="center" justify="center">
+  <img src="images/UML/code.png"/>
+</p>
+
 ### Singleton Pattern
 
 **Problem in Context**
@@ -62,7 +66,7 @@ We decided to use the Singleton Pattern, which can be classified as a Creational
 
 The following image shows in detail how the pattern was implemented:
 <p align="center" justify="center">
-  <img src="singletonUML"/>
+  <img src="images/UML/singleton.png"/>
 </p>
 
 The code regarding this pattern can be found in the following links:
@@ -90,7 +94,7 @@ We decided to use the Command Pattern, which can be considered a Action Pattern.
 
 The following image shows in detail how the pattern was implemented:
 <p align="center" justify="center">
-  <img src="drawcommandUML"/>
+  <img src="images/UML/command.png"/>
 </p>
 
 These classes can be found in the following files:
@@ -116,7 +120,7 @@ We decided to use the Facade Pattern, which can be considered a Structural Patte
 
 The following image shows in detail how the pattern was implemented:
 <p align="center" justify="center">
-  <img src="drawcommandUML"/>
+  <img src="images/UML/gui.png"/>
 </p>
 
 These classes can be found in the following files:
@@ -144,7 +148,7 @@ We decided to use the Strategy Pattern, which can be considered a Behavioral Pat
 
 The following image shows in detail how the pattern was implemented:
 <p align="center" justify="center">
-  <img src="drawcommandUML"/>
+  <img src="images/UML/strategy.png"/>
 </p>
 
 These classes can be found in the following files:
@@ -174,7 +178,7 @@ We decided to use the Model-View-Controller Pattern, which can be considered an 
 
 The following image shows in detail how the pattern was implemented:
 <p align="center" justify="center">
-  <img src="drawcommandUML"/>
+  <img src="images/UML/mvc.png"/>
 </p>
 
 The game states permite the game alter its behavior in a very simple and efficient way.
@@ -220,7 +224,7 @@ not working yet
 
 In our opinion, each individual of the group worked and contributed a lot to this project. While everyone focused on developing and testing new features on an early stage of the project, on a later stage each individual focused more on specific parts of it. For instance:
 - Alexandre Correia did the UML diagram, implemented MVC and State patterns, Menus and Buttons;
-- Henrique Silva focused on general testing and bug fixing;
+- Henrique Silva focused on general testing and bug fixing, as well as Alien movement;
 - Tiago Branquinho implemented the Strategy Pattern, made the Report, the font and implemented reads and writes to files.
 
 Considering that, we evaluate ourselves like this:
