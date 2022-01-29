@@ -1,8 +1,0 @@
-Weak Name
-4
-Boring Name
-5
-Strong Name
-6
-Smith Name
-7
