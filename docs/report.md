@@ -226,9 +226,9 @@ Note that spock tests are not taken into consideration in this report, that just
 ## SELF-EVALUATION
 
 In our opinion, each individual of the group worked and contributed a lot to this project. While everyone focused on developing and testing new features on an early stage of the project, on a later stage each individual focused more on specific parts of it. For instance:
-- Alexandre Correia did the UML diagram, implemented MVC and State patterns, Menus and Buttons;
-- Henrique Silva focused on general testing and bug fixing, as well as Alien movement;
-- Tiago Branquinho implemented the Strategy Pattern, made the Report, the font and implemented reads and writes to files.
+- Alexandre Correia implemented MVC, State and Command patterns, as well as Menus and Buttons;
+- Henrique Silva focused probability functions, bug fixing, and Alien movement;
+- Tiago Branquinho implemented the Strategy and Singleton Patterns, made the report, the font and implemented reads and writes to files.
 
 Considering that, we evaluate ourselves like this:
 - Alexandre Correia: 36%
