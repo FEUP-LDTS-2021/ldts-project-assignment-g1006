@@ -25,7 +25,7 @@ This project was developed by Alexandre Correia (up202007042@fe.up.pt), Henrique
 
 - **Ammo** - The player can shoot up to 2 bullets shown in the arena. If an alien is hit, there are many possibilities:
   - If the alien is normal, it will die and disappear from the screen, since it has 0 armor;
-  - If the alien is armored and the ammo can't kill it, if it didn't break the alien's armor, the ammo will be reflected;
+  - If the alien is armored and the ammo can't kill it, if it didn't break the alien's armor, the ammo will be reflected and the armor will be reduced;
   - If a bullet kills a certain alien, it will continue through it, with its damage reduced, if it is greater than 0.
 
 - **Walls** - The arena has a few walls with a fixed number of resistance, in order for the player to defend itself.
@@ -38,7 +38,7 @@ This project was developed by Alexandre Correia (up202007042@fe.up.pt), Henrique
 
 - **Collisions detection** - Collisions between ammo and spaceships or walls are taken into consideration. The game will be over if either the player or all aliens die.
 
-- **Randomness** - The player's ammo has a 40% chance of dealing 2 damage. Plus, the armor of the alliens at the start of a game is random, varying from 0 to 3.
+- **Randomness** - The player's ammo has a 40% chance of dealing 2 damage, which is represented by a "darker" colour. Plus, the armor of the alliens at the start of a game is random, varying from 0 to 3.
 
 ### Planned Features
 
@@ -125,8 +125,8 @@ The following image shows in detail how the pattern was implemented:
 
 These classes can be found in the following files:
 - [Game](../src/main/java/com/spaceinvaders/Game.java)
-- [GUI](../src/main/java/com/spaceinvaders/gui/LanternaGUI.java)
-- [LanternaGUI](../src/main/java/com/spaceinvaders/controller/command/ButtonCommand.java)
+- [GUI](../src/main/java/com/spaceinvaders/gui/GUI.java)
+- [LanternaGUI](../src/main/java/com/spaceinvaders/gui/LanternaGUI.java)
 
 **Consequences**
 
